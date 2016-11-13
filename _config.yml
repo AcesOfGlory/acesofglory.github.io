@@ -23,6 +23,7 @@ description: Sam Nayak's Personal Website
 
 # List of links in the navigation bar
 navbar-links:
+  Home: "http://acesofglory.github.io"
   About Me: "aboutme"
   Resources:
     - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
