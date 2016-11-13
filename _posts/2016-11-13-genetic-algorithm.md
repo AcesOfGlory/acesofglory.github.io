@@ -10,7 +10,7 @@ Evolutionary computation is the field relating algorithmic problem solving to bi
 Genetic algorithms are a problem-independent, Turing-complete algorithm and therefore can theoretically solve any possible problem as long as the fitness function is successfully modified according to the problem. Genetic algorithms are an extremely fascinating topic and consequently I wanted to create this algorithm in Python.
 
 
-# Keywords:
+# ___Keywords___
 
 - algorithm:              A step-by-step procedure for performing a calculation.
 - chromosome/individual:  A binary string which is comprised of genes
@@ -19,7 +19,7 @@ Genetic algorithms are a problem-independent, Turing-complete algorithm and ther
 - population:             The amount of chromosomes that will go through the genetic operators
 
 
-# User Documentation:
+# ___User Documentation___
 
 
 ## What it does:
@@ -70,7 +70,7 @@ promote genetic diversity and should improve the 'score' given to each individua
 
 
 
-# Technical Documentation:
+# ___Technical Documentation___
 
 
 ## Parameters:
@@ -98,10 +98,10 @@ promote genetic diversity and should improve the 'score' given to each individua
 
 ## Fitness functions:
 
-*Fitness is a measure of how close the actual solution is to the ideal solution. Each chromosome is given a "score" depending on how far it is to the best solution. A perfect fitness of 1 may not always be achieved if the parameters are irregular and high. Fitness can be measured in several different ways (see below).
+/*Fitness is a measure of how close the actual solution is to the ideal solution. Each chromosome is given a "score" depending on how far it is to the best solution. A perfect fitness of 1 may not always be achieved if the parameters are irregular and high. Fitness can be measured in several different ways (see below).
 
 
-*The fitness function is the main contributor towards the time complexity. The fitness function is problem-dependent and the more complex is the problem, the bigger the time and space complexity. The algorithm with binary strings is O(n*m*g) where 'n' is the gene number, 'm' is the population size and 'g' is the generation number. This time complexity ignores the fitness function.
+/*The fitness function is the main contributor towards the time complexity. The fitness function is problem-dependent and the more complex is the problem, the bigger the time and space complexity. The algorithm with binary strings is O(n*m*g) where 'n' is the gene number, 'm' is the population size and 'g' is the generation number. This time complexity ignores the fitness function.
 
 
 - Fitness function 1: 1 divided by total amount of bits that are correct between the ideal and actual by their position which is added to 1 (independent on length)
