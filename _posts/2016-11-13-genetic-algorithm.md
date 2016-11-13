@@ -10,7 +10,7 @@ Evolutionary computation is the field relating algorithmic problem solving to bi
 Genetic algorithms are a problem-independent, Turing-complete algorithm and therefore can theoretically solve any possible problem as long as the fitness function is successfully modified according to the problem. Genetic algorithms are an extremely fascinating topic and consequently I wanted to create this algorithm in Python.
 
 
-# ___Keywords___
+# Keywords
 
 - algorithm:              A step-by-step procedure for performing a calculation.
 - chromosome/individual:  A binary string which is comprised of genes
@@ -19,7 +19,7 @@ Genetic algorithms are a problem-independent, Turing-complete algorithm and ther
 - population:             The amount of chromosomes that will go through the genetic operators
 
 
-# ___User Documentation___
+# User Documentation
 
 
 ## What it does:
@@ -70,7 +70,7 @@ promote genetic diversity and should improve the 'score' given to each individua
 
 
 
-# ___Technical Documentation___
+# Technical Documentation
 
 
 ## Parameters:
