@@ -23,7 +23,7 @@ description: Sam Nayak's Personal Website
 
 # List of links in the navigation bar
 navbar-links:
-  Home: "http://acesofglory.github.io"
+  Home: "index"
   Résumé: "resume"
   Projects: "projects"
   ?: "search"
