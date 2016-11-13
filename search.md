@@ -6,7 +6,7 @@ subtitle: Feeling lost? Look for things in my blog.
 
 <script>
   (function() {
-    var cx = '014150256298900832872:c_9b9o6qovi';
+    var cx = '014150256298900832872:fanunksbbkm';
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
     gcse.async = true;
