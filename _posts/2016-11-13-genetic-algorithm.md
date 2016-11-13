@@ -1,12 +1,7 @@
 ---
 layout: post
-published: false
-title: genetic-algorithm
----
----
-layout: post
+published: true
 title: Genetic Algorithm
-subtitle: Extended Project Qualification (EPQ) project
 ---
 
 # Keywords:
