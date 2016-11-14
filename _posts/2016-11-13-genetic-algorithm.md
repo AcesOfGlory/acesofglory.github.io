@@ -4,12 +4,12 @@ published: true
 title: Genetic Algorithms as An Approach for Machine Learning
 subtitle: EPQ Project
 ---
-*See project [here](https://github.com/AcesOfGlory/Projects/tree/master/Genetic-Algorithm)*
 
 Evolutionary computation is the field relating algorithmic problem solving to biological evolution. These reductionist algorithms were inspired by biological evolution and consequently decompose the complex problem into much simpler and more manageable stages, which are easier to comprehend. Evolutionary algorithms are a branch of machine learning since the algorithm is metaheuristic and therefore will improve and ‘evolve’ from the previous generations.
 
 Genetic algorithms are a problem-independent, Turing-complete algorithm and therefore can theoretically solve any possible problem as long as the fitness function is successfully modified according to the problem. Genetic algorithms are an extremely fascinating topic and consequently I wanted to create this algorithm in Python.
 
+*See project [here](https://github.com/AcesOfGlory/Projects/tree/master/Genetic-Algorithm)*
 
 # Keywords
 
