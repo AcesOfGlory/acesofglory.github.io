@@ -119,11 +119,11 @@ This is how long the algorithm takes to find the best solution. The bigger the g
 
 ## Initial average fitness:
 
-An average fitness of the population is determined at initialisation (generation 0). Each chromosome in the population has their fitness determined which is then ummed together and is divided by the population size.
+An average fitness of the population is determined at initialisation (generation 0). Each chromosome in the population has their fitness determined which is then summed together and is divided by the population size.
 
 
 
- ## Final average fitness:
+## Final average fitness:
 
 An average fitness of the population is determined at termination (generation number or earlier). If the best solution is found before the whilst generation < generation_number, the average fitness of collected off the last and current generation. Each chromosome in the population has their fitness determined which is then summed together and is divided by the population size.
 
