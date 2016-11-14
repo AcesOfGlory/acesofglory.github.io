@@ -61,12 +61,12 @@ promote genetic diversity and should improve the 'score' given to each individua
                         The chromosomes with a higher fitness have a higher probability of getting selected 
                         and therefore the best chromosomes survive (survival of the fittest).
 
-4. **Crossover**          - The chromosomes in the population will swap their genes with one another (given a randomly generated crossover point).
+4. ```Crossover```          - The chromosomes in the population will swap their genes with one another (given a randomly generated crossover point).
 
-5. *Mutation*           - Given a certain mutation rate (probability), each gene may invert (0 -> 1, 1 -> 0). 
+5. ```Mutation```           - Given a certain mutation rate (probability), each gene may invert (0 -> 1, 1 -> 0). 
                         Repeat step 2-5 until the best solution has a perfect fitness or the generation number is exceeded.
 
-6. Final generation    - The final/best solution is generated.
+6. ```Final generation```    - The final/best solution is generated.
 
 
 
@@ -76,13 +76,13 @@ promote genetic diversity and should improve the 'score' given to each individua
 
 ## Parameters:
 
-- population_size: the number of individuals in the population
-- gene_number:     the number of values per individual
-- mutation_rate:   probability that a gene may mutate
-- crossover_rate:  how many individuals will crossover and breed
-- generation_rate: how many iterations the population will go through (it may break earlier)
-- crossover_type:  which crossover variant is selected
-- function_type:   determines which fitness function is used
+- ```population_size```: the number of individuals in the population
+- ```gene_number```:     the number of values per individual
+- ```mutation_rate```:   probability that a gene may mutate
+- ```crossover_rate```:  how many individuals will crossover and breed
+- ```generation_rate```: how many iterations the population will go through (it may break earlier)
+- ```crossover_type```:  which crossover variant is selected
+- ```function_type```:   determines which fitness function is used
 
 ### Note: 
 - A high mutation rate may significantly decrease the best solution since the genes are inverted which change each chromosome in the population.
@@ -91,9 +91,9 @@ promote genetic diversity and should improve the 'score' given to each individua
 
 ## The variants for the parameters are:
 
-- single_point: the crossover point is a single randomly generated number within range of the gene number
-- two_point:    the crossover point is two randomly generated numbers within range of the gene number
-- uniform:      a crossover mask is procedurally generated and the population may invert their genes depending on the crossover mask
+- ```single_point```: the crossover point is a single randomly generated number within range of the gene number
+- ```two_point```:    the crossover point is two randomly generated numbers within range of the gene number
+- ```uniform```:      a crossover mask is procedurally generated and the population may invert their genes depending on the crossover mask
 
 
 
@@ -105,9 +105,9 @@ Fitness is a measure of how close the actual solution is to the ideal solution. 
 The fitness function is the main contributor towards the time complexity. The fitness function is problem-dependent and the more complex is the problem, the bigger the time and space complexity. The algorithm with binary strings is O(n*m*g) where 'n' is the gene number, 'm' is the population size and 'g' is the generation number. This time complexity ignores the fitness function.
 
 
-- Fitness function 1: 1 divided by total amount of bits that are correct between the ideal and actual by their position which is added to 1 (independent on length)
-- Fitness function 2: the total amount of bits that are correct between the ideal and actual by their position divided by length of the ideal (dependent on length)
-- Fitness function 3: the binary string is converted into its denary equivalent and the fitness is how close the denary actual is to the denary ideal
+- ```Fitness function 1```: 1 divided by total amount of bits that are correct between the ideal and actual by their position which is added to 1 (independent on length)
+- ```Fitness function 2```: the total amount of bits that are correct between the ideal and actual by their position divided by length of the ideal (dependent on length)
+- ```Fitness function 3```: the binary string is converted into its denary equivalent and the fitness is how close the denary actual is to the denary ideal
 
 
 
