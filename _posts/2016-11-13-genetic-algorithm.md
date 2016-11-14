@@ -53,20 +53,20 @@ promote genetic diversity and should improve the 'score' given to each individua
 
 ## Process:
 
-1. Initialisation       - A population of randomly generated binary strings are created.
+1. ```Initialisation```      - A population of randomly generated binary strings are created.
 
-2. Fitness Evaluation - Each chromosome is evaluated and given a fitness score regarding how close they are to the ideal solution.
+2. ```Fitness Evaluation``` - Each chromosome is evaluated and given a fitness score regarding how close they are to the ideal solution.
 
-3. Selection          - A new population of chromosomes is created based on their fitness level. 
+3. ```Selection```          - A new population of chromosomes is created based on their fitness level. 
                         The chromosomes with a higher fitness have a higher probability of getting selected 
                         and therefore the best chromosomes survive (survival of the fittest).
 
-4. Crossover          - The chromosomes in the population will swap their genes with one another (given a randomly generated crossover point).
+4. **Crossover**          - The chromosomes in the population will swap their genes with one another (given a randomly generated crossover point).
 
-5. Mutation           - Given a certain mutation rate (probability), each gene may invert (0 -> 1, 1 -> 0). 
+5. *Mutation*           - Given a certain mutation rate (probability), each gene may invert (0 -> 1, 1 -> 0). 
                         Repeat step 2-5 until the best solution has a perfect fitness or the generation number is exceeded.
 
-6. Final generation     - The final/best solution is generated.
+6. Final generation    - The final/best solution is generated.
 
 
 
