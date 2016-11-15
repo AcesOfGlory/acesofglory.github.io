@@ -21,6 +21,12 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 
 - [PyCharm](https://www.jetbrains.com/pycharm/) - Pretty good text-editor used for Python. I prefer it to the original Python IDLE since it's easier to modify code. It doesn't, however, have that many useful commands that save time.
 
+- [oXygen XML](https://www.oxygenxml.com/)
+- [Netbeans](https://netbeans.org/)
+- [IntelliJ](https://www.jetbrains.com/idea/)
+- [RubyMine](https://www.jetbrains.com/ruby/)
+- [XMLSpy](http://www.altova.com/xmlspy.html)
+
 ### Software Planning & Management:
 
 - [Waffle](https://waffle.io/)
