@@ -1,12 +1,12 @@
 ---
 layout: page
 title: Search
-subtitle: Feeling lost? Look for things in my blog.
+subtitle: Feeling lost? Look for things using Google Search.
 ---
 
 <script>
   (function() {
-    var cx = '014150256298900832872:fanunksbbkm';
+    var cx = '014150256298900832872:qfwy9snkq6q';
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
     gcse.async = true;
