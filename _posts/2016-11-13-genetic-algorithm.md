@@ -3,6 +3,7 @@ layout: post
 published: true
 title: Genetic Algorithms as An Approach for Machine Learning
 subtitle: EPQ Project
+tags: [fundamentals, algorithms, machine learning, applied computer science]
 ---
 
 Evolutionary computation is the field relating algorithmic problem solving to biological evolution. These reductionist algorithms were inspired by biological evolution and consequently decompose the complex problem into much simpler and more manageable stages, which are easier to comprehend. Evolutionary algorithms are a branch of machine learning since the algorithm is metaheuristic and therefore will improve and ‘evolve’ from the previous generations.
