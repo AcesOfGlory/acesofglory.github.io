@@ -13,11 +13,13 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 
 ### Text Editors:
 
-- [Sublime Text](https://www.sublimetext.com/)
-- [Atom](https://atom.io/)
+- [Sublime Text](https://www.sublimetext.com/) - My favourite text-editor which I am currently using. The premium version has a lot more advantages than the free version which has some limitations. There are so many very useful commands which aid in modifying code that save hassle and time.
+- [Atom](https://atom.io/) - Amazing free text-editor useful for people who are less familiar with text-editors. If you are new or you don't want to pay for a text-editor, I highly recommend Atom.
 - [Visual Studio](https://www.visualstudio.com/)
 - [Komodo Edit/IDE](http://www.activestate.com/komodo-ide)
-- [Eclipse](https://eclipse.org/)
+- [Eclipse](https://eclipse.org/) - Okay text-editor for Java, not the biggest fan. 
+
+- PyCharm - Pretty good text-editor used for Python. I prefer it to the original Python IDLE since it's easier to modify code. It doesn't, however, have that many useful commands that save time.
 
 ### Software Planning & Management:
 
@@ -28,6 +30,7 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 ### Web Frameworks:
 - [Django](https://www.djangoproject.com/) – Python
 - [Jekyll](https://jekyllrb.com/) - Ruby
+- [Bootstrap](http://getbootstrap.com/) - JavaScript & Sass
 
 ### Other:
 
