@@ -19,7 +19,7 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 - [Komodo Edit/IDE](http://www.activestate.com/komodo-ide)
 - [Eclipse](https://eclipse.org/) - Okay text-editor for Java, not the biggest fan. 
 
-- PyCharm - Pretty good text-editor used for Python. I prefer it to the original Python IDLE since it's easier to modify code. It doesn't, however, have that many useful commands that save time.
+- [PyCharm](https://www.jetbrains.com/pycharm/) - Pretty good text-editor used for Python. I prefer it to the original Python IDLE since it's easier to modify code. It doesn't, however, have that many useful commands that save time.
 
 ### Software Planning & Management:
 
