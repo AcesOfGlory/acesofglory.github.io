@@ -6,7 +6,7 @@ published: true
 
 <form onsubmit="calculate(); return false">
   <p>
-    <label for="password" style="width: 100px;">Password:</label>
+    <label for="coordinates" style="width: 100px;">oordinates:</label>
     <input id="password" name="password" type="password" size="32">
   </p>
   <input class="btn js-textareacopybtn" type="submit" name="btn" value="Calculate" />
@@ -16,19 +16,20 @@ published: true
 <script>
   var f = document.forms[0];
 
-  function calculate() {
+  function isValidCoordinates() {
 
     var btn = f.btn;
     var out = document.querySelector('#out');
 
-    var password = f.password.value;
+    var password = /^-?0*(([1-8]?\d)(\.\d*)?|90(\.0*)?), -?0*(([1-9]?\d|1[0-7]\d)(\.\d*)?|180(\.0*)?)$/.test(f.coordinates.value);
+    
 
     btn.disabled = true;
     btn.value = 'Wait...';
 
     window.setTimeout(function(res="") {
       var t2 = ((new Date()).getTime());
-      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
+      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: 'password'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
       btn.disabled = false;
       btn.value = 'Calculate';
       var copyTextarea = document.querySelector('#res');
