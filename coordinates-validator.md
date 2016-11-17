@@ -21,32 +21,34 @@ title: Coordinates Validator
 
   function calculate() {
 
-  var btn = f.btn;
-  var out = document.querySelector('#out');
+    var btn = f.btn;
+    var out = document.querySelector('#out');
 
-  var password = f.password.value;
-  var keyword = f.keyword.value;
+    var password = f.password.value;
+    var keyword = f.keyword.value;
 
-  btn.disabled = true;
-  btn.value = 'Wait...';
+    btn.disabled = true;
+    btn.value = 'Wait...';
 
-  window.setTimeout(function() {
-  try {
-  var t1 = (new Date()).getTime();
-  scrypt(password, keyword, {
-  logN: 15,
-  r: 8,
-  p: 1,
-  dkLen: 32,
-  interruptStep: 0,
-  encoding: "hex"
-  },
-  function(res) {
-  var t2 = ((new Date()).getTime()-t1);
-  out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
-  btn.disabled = false;
-  btn.value = 'Calculate';
-  var copyTextarea = document.querySelector('#res');
-  copyTextarea.select();
+    window.setTimeout(function() {
+    try {
+      var t1 = (new Date()).getTime();
+      scrypt(password, keyword, {
+      logN: 15,
+      r: 8,
+      p: 1,
+      dkLen: 32,
+      interruptStep: 0,
+      encoding: "hex"
+    },
+    function(res) {
+      var t2 = ((new Date()).getTime()-t1);
+      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
+      btn.disabled = false;
+      btn.value = 'Calculate';
+      var copyTextarea = document.querySelector('#res');
+      copyTextarea.select();
+    }
+  }
 </script>
 
