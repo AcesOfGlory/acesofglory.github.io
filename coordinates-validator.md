@@ -1,4 +1,7 @@
-<h1>Coordinates Validator<\h1>
+---
+layout: page
+title: Coordinates Validator
+---
 
 <form onsubmit="calculate(); return false">
   <p>
