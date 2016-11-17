@@ -23,71 +23,13 @@ google_color_link = "0000FF";
 google_color_text = "000000";
 google_color_url = "008000";
 //--></script>
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></p>
-<table><tbody><tr><td valign="top"> <!-- Left column starts -->
 
-<div class="feed">
-<p class="feed"><a href="http://dev.fyicenter.com">Developer Resources</a></p>
-<p class="feed"><a href="http://jar.fyicenter.com">Java JAR Files</a></p>
-<p class="feed"><a href="http://dll.fyicenter.com">DLL Files</a></p>
-<p class="feed"><a href="http://dba.fyicenter.com">DBA Resources</a></p>
-<p class="feed"><a href="http://sqa.fyicenter.com">Software QA Resources</a></p>
-<p class="feed"><a href="http://sqa.fyicenter.com/Online_Test_Tools/">On-line Testing Tools</a></p>
-<p class="feed"><a href="http://tutorial.fyicenter.com">Programming Tutorials</a></p>
-<p class="feed"><a href="http://biotech.fyicenter.com">Biotech Resources</a></p>
-<p class="feed"><a href="http://file.fyicenter.com">File Extensions</a></p>
-<p class="feed"><a href="http://certificate.fyicenter.com">Security Certificates</a></p>
-<p class="feed"><a href="http://link.fyicenter.com">Link Directories</a></p>
-<p class="feed"><a href="http://windows.fyicenter.com">Windows Tutorials</a></p>
-<p class="feed"><a href="http://interview.fyicenter.com">Interview Q &amp; A</a></p>
-<p class="feed"><a href="http://www.fyicenter.com">FYIcenter Forum</a></p>
-</div>
 
-</td><td valign="top"> <!-- Center column starts -->
-
-<div class="query"><p class="query_intro">If you are a software developer or tester of communication applications, you need to know  what is a valid IP addresses and what is an invalid IP address. This page allows you to learn and test valid version 4 IP addresses.</p>
-<p class="query_title">What is a valid IP address? 
-</p>
-
-<p class="query_desc">An IP address is an identification assigned to a computer host on the Internet.
-The current version of IP address (version 4, IPv4) uses 32 bits or 4 bytes to represent IP addresses.
-This format gives 4,294,967,296, about 4,294 million, possible unique IP addresses.
-</p>
-
-<p class="query_desc">A 4-byte IP address is normally represented with 4 decimal numbers separated by dots (.).
-For example, 64.233.161.147 is a version 4 IP address. Validation of this IP address format is very simple.
-</p>
-
-<p class="query_desc">But not all IP addresses are used to assigned to computer hots on the Internet. 
-A lots of them are reserved for special uses only. Here are some examples of reserved IP address ranges:
-</p>
-<ul>
-<li>127.0.0.0 - 127.255.255.255: Reserved for loopback and private network use only.</li>
-<li>10.0.0.0 - 10.255.255.255: Reserved for private network use only.</li>
-<li>192.168.0.0 - 192.168.255.255: Reserved for private network use only.</li>
-<li>192.88.99.0 - 192.88.99.255: Reserved for IPv6 to IPv4 relay use only.</li>
-</ul>
-
-<p class="query_title">How to valid IP addresses?
-</p>
-
-<p class="query_desc">In order to help your programming or testing tasks, FYIcenter.com has designed this
-online testing page for you to validate any given IP address, using two techniques below: 
-</p>
-<ul>
-<li>Using regular expression /(^127)|(^192)|(^10)\./ to exclude reserved IP addresses.</li>
-<li>Using ip2long($ip) function to validate IP address format.</li>
-</ul>
-
-<p class="query_desc">All you need to do is to enter an IP address
-in the form below and click the Start button. 
-</p>
 
 <form action="IP_Address_Format_Validator.php" method="post"><p class="query_desc">IP Address: <input name="Query" value="64.233.161.147" type="text" size="50" maxlength="320"></p><p class="query_desc"><input name="Submit" value="Start" type="submit"></p></form></div>
 
 
-</td><td valign="top"> <!-- Right column starts -->
+
 
 <div class="promo">
 <p class="promo_name"><a href="http://sqa.fyicenter.com/tools/javascript_popup_windows_testing_tutorials.html">Popup Windows Tutorials</a></p>
@@ -95,7 +37,6 @@ in the form below and click the Start button.
 <p class="promo_link"><a href="http://sqa.fyicenter.com/tools/javascript_popup_windows_testing_tutorials.html">sqa.fyicenter.com/tools</a></p>
 </div>
 
-</td></tr></tbody></table>  <!-- End of columns -->
 
 <div>
-</div></div></body></html>
+</div></body></html>
