@@ -14,7 +14,7 @@ published: true
 
 <div id="out" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;">
 <script>
-  var t2 = ((new Date()).getTime());
+  var t1 = ((new Date()).getTime());
   var f = document.forms[0];
 
   function isValidCoordinates() {
