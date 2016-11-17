@@ -35,8 +35,6 @@ title: Coordinates Validator
       out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
       btn.disabled = false;
       btn.value = 'Calculate';
-      var copyTextarea = document.querySelector('#res');
-      copyTextarea.select();
     })
   }
 </script>
