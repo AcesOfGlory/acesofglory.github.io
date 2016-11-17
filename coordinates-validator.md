@@ -33,7 +33,7 @@ published: true
 
     window.setTimeout(function(res="") {
       var t2 = ((new Date()).getTime());
-      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
+      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br>;
       btn.disabled = false;
       btn.value = 'Calculate';
       var copyTextarea = document.querySelector('#res');
