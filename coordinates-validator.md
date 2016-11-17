@@ -22,11 +22,8 @@ published: true
 
     var password = /^-?0*(([1-8]?\d)(\.\d*)?|90(\.0*)?), -?0*(([1-9]?\d|1[0-7]\d)(\.\d*)?|180(\.0*)?)$/.test(f.coordinates.value);
    
-    window.setTimeout(function(res="") {
-      var t2 = ((new Date()).getTime());
-      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: 'password'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span>
-      var copyTextarea = document.querySelector('#res');
-      copyTextarea.select();
+    window.setTimeout(_ => {
+      out.innerHTML = <br>Master password input length: 'password'<br>
     })
   }
 </script>
