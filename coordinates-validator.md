@@ -9,10 +9,6 @@ published: true
     <label for="password" style="width: 100px;">Password:</label>
     <input id="password" name="password" type="password" size="32">
   </p>
-  <p>
-    <label for="keyword" style="width: 100px;">Keyword:</label>
-    <input id="keyword" name="keyword" type="text" size="32">
-  </p>
   <input class="btn js-textareacopybtn" type="submit" name="btn" value="Calculate" />
 </form>
 
@@ -26,7 +22,6 @@ published: true
     var out = document.querySelector('#out');
 
     var password = f.password.value;
-    var keyword = f.keyword.value;
 
     btn.disabled = true;
     btn.value = 'Wait...';
