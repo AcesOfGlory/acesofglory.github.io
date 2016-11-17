@@ -25,7 +25,7 @@ published: true
     console.log(password);
    
     window.setTimeout(_ => {
-      out.innerHTML = <br>Master password input length: 'password'<br>
+      out.innerHTML = Master password input length: 'password'
     })
   }
 </script>
