@@ -31,24 +31,13 @@ published: true
     btn.disabled = true;
     btn.value = 'Wait...';
 
-    window.setTimeout(function() {
-    try {
-      var t1 = (new Date()).getTime();
-      scrypt(password, keyword, {
-      logN: 15,
-      r: 8,
-      p: 1,
-      dkLen: 32,
-      interruptStep: 0,
-      encoding: "hex"
-    },
-    function(res) {
-      var t2 = ((new Date()).getTime()-t1);
+    window.setTimeout(function(res="") {
+      var t2 = ((new Date()).getTime());
       out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
       btn.disabled = false;
       btn.value = 'Calculate';
       var copyTextarea = document.querySelector('#res');
       copyTextarea.select();
-    }
+    })
   }
 </script>
