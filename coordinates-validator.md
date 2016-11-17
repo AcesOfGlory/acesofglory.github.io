@@ -25,8 +25,8 @@ published: true
     console.log(password);
    
     window.setTimeout(_ => {
-      var t2 = ((new Date()).getTime()-t1);
-      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> 
+      var t2 = ((new Date()).getTime());
+out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + password + '</textarea>';
     })
   }
 </script>
