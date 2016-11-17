@@ -48,20 +48,5 @@ title: Coordinates Validator
   btn.value = 'Calculate';
   var copyTextarea = document.querySelector('#res');
   copyTextarea.select();
-
-  try {
-  var successful = document.execCommand('copy');
-  var msg = successful ? 'successful' : 'unsuccessful';
-  console.log('Copying text command was ' + msg);
-  copyTextarea.innerHTML = '';
-  copyTextarea.style.display = 'none';
-  } catch (err) {
-  console.log('Oops, unable to copy');
-  }
-
-  });
-  } catch(ex) {
-  out.innerHTML = '<span style="color:red">error: ' + ex.message + '</span>'; btn.disabled = false; btn.value = 'Calculate';
-  } }); };
 </script>
 
