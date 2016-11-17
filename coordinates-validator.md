@@ -14,7 +14,6 @@ published: true
 
 <div id="out" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;">
 <script>
-  var t1 = ((new Date()).getTime());
   var f = document.forms[0];
 
   function isValidCoordinates() {
@@ -24,7 +23,6 @@ published: true
     var password = /^-?0*(([1-8]?\d)(\.\d*)?|90(\.0*)?), -?0*(([1-9]?\d|1[0-7]\d)(\.\d*)?|180(\.0*)?)$/.test(f.coordinates.value);
    
     window.setTimeout(_ => {
-      var t2 = ((new Date()).getTime() - t1);
 out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + password + '</textarea>';
     })
   }
