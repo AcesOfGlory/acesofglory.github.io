@@ -21,6 +21,8 @@ published: true
     var out = document.querySelector('#out');
 
     var password = /^-?0*(([1-8]?\d)(\.\d*)?|90(\.0*)?), -?0*(([1-9]?\d|1[0-7]\d)(\.\d*)?|180(\.0*)?)$/.test(f.coordinates.value);
+    
+    console.log(password);
    
     window.setTimeout(_ => {
       out.innerHTML = <br>Master password input length: 'password'<br>
