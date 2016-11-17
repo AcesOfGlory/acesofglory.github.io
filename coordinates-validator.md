@@ -1,7 +1,6 @@
 ---
 layout: page
-title: Sam Nayak
-subtitle: Back-end Developer
+title: Coordinates Validator
 ---
 
 
