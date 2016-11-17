@@ -3,10 +3,10 @@ layout: page
 title: Coordinates Validator
 published: true
 ---
-
-<form onsubmit="calculate(); return false">
+<html>
+<form onsubmit="isValidCoordinates(); return false">
   <p>
-    <label for="coordinates" style="width: 100px;">oordinates:</label>
+    <label for="coordinates" style="width: 100px;">Coordinates:</label>
     <input id="password" name="password" type="password" size="32">
   </p>
   <input class="btn js-textareacopybtn" type="submit" name="btn" value="Calculate" />
@@ -29,7 +29,7 @@ published: true
 
     window.setTimeout(function(res="") {
       var t2 = ((new Date()).getTime());
-      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: 'password'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
+      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: 'password'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span>
       btn.disabled = false;
       btn.value = 'Calculate';
       var copyTextarea = document.querySelector('#res');
@@ -37,3 +37,5 @@ published: true
     })
   }
 </script>
+
+</html>
