@@ -8,10 +8,6 @@ title: Coordinates Validator
     <label for="password" style="width: 100px;">Password:</label>
     <input id="password" name="password" type="password" size="32">
   </p>
-  <p>
-    <label for="keyword" style="width: 100px;">Keyword:</label>
-    <input id="keyword" name="keyword" type="text" size="32">
-  </p>
   <input class="btn js-textareacopybtn" type="submit" name="btn" value="Calculate" />
 </form>
 
@@ -25,14 +21,13 @@ title: Coordinates Validator
     var out = document.querySelector('#out');
 
     var password = f.password.value;
-    var keyword = f.keyword.value;
 
     btn.disabled = true;
     btn.value = 'Wait...';
 
     window.setTimeout(function(res) {
       var t2 = ((new Date()).getTime());
-      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + res + '</textarea>';
+      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password.length+'<br>;
       btn.disabled = false;
       btn.value = 'Calculate';
     })
