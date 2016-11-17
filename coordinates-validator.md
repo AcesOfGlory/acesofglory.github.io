@@ -3,11 +3,11 @@ layout: page
 title: Coordinates Validator
 published: true
 ---
-<html>
+
 <form onsubmit="isValidCoordinates(); return false">
   <p>
-    <label for="coordinates" style="width: 100px;">Coordinates:</label>
-    <input id="password" name="password" type="password" size="32">
+    <label for="coordinates" style="width: 100px;">Coordinates: </label>
+    <input id="coordinates" name="coordinates" type="coordinates" size="32">
   </p>
   <input class="btn js-textareacopybtn" type="submit" name="btn" value="Calculate" />
 </form>
@@ -37,5 +37,3 @@ published: true
     })
   }
 </script>
-
-</html>
