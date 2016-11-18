@@ -37,7 +37,7 @@ published: true
 
 <div id="generate" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
 <script>
-  function generateIP() {
+  function generateCoordinates() {
 
     var generate = document.querySelector('#generate');
 
