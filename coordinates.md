@@ -3,8 +3,6 @@ layout: page
 published: true
 ---
 
-<h1>Coordinates Generator</h1>
-
 <h1>Coordinates Validator</h1>
 <form onsubmit="isValidCoordinates(); return false">
   <p>
