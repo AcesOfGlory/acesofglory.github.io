@@ -31,7 +31,9 @@ published: true
 
 <h1>IPv4 Generator</h1>
 <form onsubmit="generateIP(); return false">
-  <input type="submit"/>
+  <p>
+    <input type="submit"/>
+  </p>
 </form>
 
 <div id="out" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
