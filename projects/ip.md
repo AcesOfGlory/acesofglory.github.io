@@ -3,6 +3,32 @@ layout: page
 published: true
 ---
 
+<h1>IPv4 Generator</h1>
+<form onsubmit="generateIP(); return false">
+  <input type="submit"/>
+</form>
+
+<div id="out" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
+<script>
+  function randomIP() {         
+    return Math.floor(Math.random() * 256);
+  }
+
+
+  function generateIP() {
+
+    var out = document.querySelector('#out');
+
+    var result = `{randomIP()}.{randomIP()}.{randomIP()}.{randomIP()}`
+   
+    window.setTimeout(_ => {
+      out.innerHTML = result
+    })
+  }
+</script>
+
+
+
 <h1>IPv4 Validator</h1>
 <form onsubmit="isValidIP(); return false">
   <p>
@@ -12,7 +38,7 @@ published: true
   <input type="submit"/>
 </form>
 
-<div id="out" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;">
+<div id="out" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
 <script>
   var f = document.forms[0];
 
@@ -27,3 +53,5 @@ published: true
     })
   }
 </script>
+
+
