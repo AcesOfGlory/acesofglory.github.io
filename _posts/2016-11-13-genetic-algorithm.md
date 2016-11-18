@@ -10,7 +10,7 @@ Evolutionary computation is the field relating algorithmic problem solving to bi
 
 Genetic algorithms are a problem-independent, Turing-complete algorithm and therefore can theoretically solve any possible problem as long as the fitness function is successfully modified according to the problem. Genetic algorithms are an extremely fascinating topic and consequently I wanted to create this algorithm in Python.
 
-*See project [here](https://github.com/AcesOfGlory/Projects/tree/master/Genetic-Algorithm)*
+*See project [here](https://acesofglory.github.io/projects/genetic-algorithm)*
 
 # Keywords
 
