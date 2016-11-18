@@ -4,6 +4,7 @@ title: Coordinates Validator
 published: true
 ---
 
+
 <form onsubmit="isValidCoordinates(); return false">
   <p>
     <label for="coordinates" style="width: 100px;">Coordinates: </label>
@@ -17,15 +18,13 @@ published: true
   var f = document.forms[0];
 
   function isValidCoordinates() {
-    var t1 = ((new Date()).getTime())
 
     var out = document.querySelector('#out');
 
-    var password = /^-?0*(([1-8]?\d)(\.\d*)?|90(\.0*)?), -?0*(([1-9]?\d|1[0-7]\d)(\.\d*)?|180(\.0*)?)$/.test(f.coordinates.value);
+    var result = /^-?0*(([1-8]?\d)(\.\d*)?|90(\.0*)?), -?0*(([1-9]?\d|1[0-7]\d)(\.\d*)?|180(\.0*)?)$/.test(f.coordinates.value);
    
     window.setTimeout(_ => {
-      var t2 = ((new Date()).getTime()-t1);
-      out.innerHTML = 'Time: <b>'+t2+' ms</b><br>Master password input length: '+password+'<br><span style="color:cornflowerblue; font-weight:bold">Succesfully copied password to clipboard.</span> <textarea id="res">' + password + '</textarea>';
+      out.innerHTML = result ? "Valid format" : "Invalid format"
     })
   }
 </script>
