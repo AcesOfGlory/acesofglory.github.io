@@ -41,7 +41,7 @@ published: true
 
     var generate = document.querySelector('#generate');
 
-    var result = Math.random() * (90 + 90) - 90 + ", " + Math.random() * (180 + 180) - 180;   
+    var result = (Math.random() * (90 + 90) - 90) + ", " + (Math.random() * (180 + 180) - 180);  
    
     window.setTimeout(_ => {
       generate.innerHTML = result
