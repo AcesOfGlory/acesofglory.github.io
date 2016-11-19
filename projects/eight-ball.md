@@ -29,7 +29,7 @@ published: true
   var answers = {}
   
   function solution(question) {
-    question = question.replace(/\W/g, "").trim()
+    question = question.replace(/[^\w ]/g, "").trim()
     var reply = OUTCOMES[Math.floor(Math.random() * OUTCOMES.length)]
     if (!Object.keys(answers).includes(question)){
       answers[question] = reply
