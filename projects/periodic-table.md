@@ -50,5 +50,45 @@ const ELEMENTS = {'Te': 'Tellurium', 'V': 'Vanadium', 'Ta': 'Tantalum', 'Rb': 'R
   }
 </script>
 
+<h2>Element -> Symbol</h2>
+
+<p>E.g. Helium Aluminium -> HeAl </p>
+
+<form onsubmit="elementDecode(); return false">
+  <p>
+    <input id="element" size="50">
+  </p>
+  <input type="submit"/>
+  <h3>Output: </h3>
+</form>
+
+<div id="element-output" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
+
+<script>
+  var f = document.forms[0];
+
+  function solution(word){
+    var find = word.trim().replace(" ", "").match(/[A-Z][a-z]*/g)
+    if (!find)
+      return "Doesn't exist"
+    var ret = {};
+    for(var key in ELEMENTS){
+      ret[ELEMENTS[key]] = key;
+    }
+    return find.map(i => ret[i]).join("") || "Doesn't exist"
+  }
+  
+  function elementDecode() {
+
+    var elementOutput = document.querySelector('#element-output');
+
+    var result = solution(f.element.value);
+   
+    window.setTimeout(_ => {
+      elementOutput.innerHTML = result
+    })
+  }
+</script>
+
 
 <h1>Element Encoder</h1>
