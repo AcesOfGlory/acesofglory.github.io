@@ -28,13 +28,11 @@ const ELEMENTS = {'Te': 'Tellurium', 'V': 'Vanadium', 'Ta': 'Tantalum', 'Rb': 'R
   var f = document.forms[0];
 
   function solution(word){
-    var find = word.trim().replace(" ", "").match(/[A-Z][a-z]*/g)
-    try{
-      return find.map(x => ELEMENTS[x]).join(" ")
+    var find = word.trim().replace(" ", "").match(/[A-Z][a-z]*/g).map(x => ELEMENTS[x])
+    if (!find.includes(undefined)){
+      return find.join(" ")
     }
-    catch(error){
-      return "Doesn't exist"
-    }
+    return "Doesn't exist"
   }
   
   function symbolDecode() {
