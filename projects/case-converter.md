@@ -2,7 +2,6 @@
 layout: page
 published: true
 ---
-
 <h1>Case Identifier</h1>
 <form onsubmit="caseIdentifier(); return false">
   <p>
@@ -12,31 +11,31 @@ published: true
   <input type="submit"/>
 </form>
 
-<div id="identifier" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
+<div id="validator" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
 <script>
   var f = document.forms[0];
-  
+
   function id(c_str) {
     if( /^([a-z]+([A-Z]{1}[a-z]+)+)$/.test(c_str) ) {
-      return 'camel';
+      return 'camelCase';
     }
     else if( /^([a-z]+-[a-z]+)+$/.test(c_str) ) {
-      return 'kebab';
+      return 'kebab-case';
     }
     else if( /^([a-z]+_[a-z]+)+$/.test(c_str) ) {
-      return 'snake';
+      return 'snake_case';
     }
     return 'none';
   }
 
   function caseIdentifier() {
 
-    var identifier = document.querySelector('identifier');
+    var validator = document.querySelector('#validator');
 
     var result = id(f.case.value);
    
     window.setTimeout(_ => {
-      identifier.innerHTML = result
+      validator.innerHTML = result
     })
   }
 </script>
