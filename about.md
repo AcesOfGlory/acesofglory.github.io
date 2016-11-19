@@ -114,3 +114,6 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
   <img src="https://www.codewars.com/users/AcesOfGlory/badges/large" alt="Codewars AcesOfGlory">
 </a>
 
+
+<center><a href="http://info.flagcounter.com/VoQS"><img src="http://s07.flagcounter.com/count/VoQS/bg_FFFFFF/txt_000000/border_CCCCCC/columns_4/maxflags_8/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a></center>
+
