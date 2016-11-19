@@ -6,7 +6,7 @@ published: true
 <h1>Caesar Cipher</h1>
 <form onsubmit="caesarCipher(); return false">
   <p>
-    <textarea id="encode" cols="85" rows="10"></textarea>
+    <textarea id="encode" cols="80" rows="9"></textarea>
   </p>
   <select id="key">
     <option value='1'>1</option>
