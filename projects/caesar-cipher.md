@@ -53,7 +53,7 @@ published: true
 
     var validator = document.querySelector('#validator');
 
-    var result = encryptcc(f.encode.value, f.key.value);
+    var result = encryptcc(f.encode.value, +f.key.value);
    
     window.setTimeout(_ => {
       validator.innerHTML = result
