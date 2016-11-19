@@ -28,7 +28,10 @@ const ELEMENTS = {'Te': 'Tellurium', 'V': 'Vanadium', 'Ta': 'Tantalum', 'Rb': 'R
   var f = document.forms[0];
 
   function solution(word){
-    var find = word.trim().replace(" ", "").match(/[A-Z][a-z]*/g).map(x => ELEMENTS[x])
+    var find = word.trim().replace(" ", "").match(/[A-Z][a-z]*/g)
+    if (!find)
+      return "Doesn't exist"
+    find = find.map(x => ELEMENTS[x])
     if (!find.includes(undefined)){
       return find.join(" ")
     }
