@@ -3,102 +3,60 @@ layout: page
 published: true
 ---
 
-<h1>IPv4 Validator</h1>
-<form onsubmit="isValidIPv4(); return false">
+<h1>Caesar Cipher</h1>
+<form onsubmit="caesarCipher(); return false">
   <p>
-    <label for="ip" style="width: 100px;">IP: </label>
-    <input id="ip" name="ip" type="ip" size="32">
+    <textarea id="encode" cols="40" rows="10"></textarea>
   </p>
+  <select id="key">
+    <option value='1'>1</option>
+    <option value='2'>2</option>
+    <option value='3'>3</option>
+    <option value='4'>4</option>
+    <option value='5'>5</option>
+    <option value='6'>6</option>
+    <option value='7'>7</option>
+    <option value='8'>8</option>
+    <option value='9'>9</option>
+    <option value='10'>10</option>
+    <option value='11'>11</option>
+    <option value='12'>12</option>
+    <option value='13'>13</option>
+    <option value='14'>14</option>
+    <option value='15'>15</option>
+    <option value='16'>16</option>
+    <option value='17'>17</option>
+    <option value='18'>18</option>
+    <option value='19'>19</option>
+    <option value='20'>20</option>
+    <option value='21'>21</option>
+    <option value='22'>22</option>
+    <option value='23'>23</option>
+    <option value='24'>24</option>
+    <option value='25'>25</option>
+    <option value='26'>26</option>
+  </select>
   <input type="submit"/>
 </form>
+
 
 <div id="validator" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
 <script>
   var f = document.forms[0];
 
-  function isValidIPv4() {
+  function encryptcc(text, shift) {
+    var lower = "abcdefghijklmnopqrstuvwxyz", upper = lower.toUpperCase()
+    return text.split("").map((x, y) => lower.indexOf(x) != -1 ? lower[(lower.indexOf(x) + shift) % 26] : upper.indexOf(x) != -1 ? upper[(upper.indexOf(x) + shift) % 26] : x).join("")
+  }
+
+  function caesarCipher() {
 
     var validator = document.querySelector('#validator');
 
-    var result = /^(([1-9]?\d|1\d\d|2[0-4]\d|25[0-5])(\.(?!$)|$)){4}$/.test(f.ip.value);
+    var result = encryptcc(f.encode.value, f.key.value);
    
     window.setTimeout(_ => {
-      validator.innerHTML = result ? "Valid format" : "Invalid format"
-    })
-  }
-</script>
-
-
-<h1>IPv4 Generator</h1>
-<form onsubmit="generateIPv4(); return false">
-  <p>
-    <input type="submit"/>
-  </p>
-</form>
-
-<div id="out" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
-<script>
-  function randomIPv4() {         
-    return Math.floor(Math.random() * 256);
-  }
-
-  function generateIPv4() {
-
-    var out = document.querySelector('#out');
-
-    var result = `${randomIPv4()}.${randomIPv4()}.${randomIPv4()}.${randomIPv4()}`
-   
-    window.setTimeout(_ => {
-      out.innerHTML = result
-    })
-  }
-</script>
-
-<br>
-
-<h1>IPv6 Validator</h1>
-<form onsubmit="isValidIPv6(); return false">
-  <p>
-    <label for="ip" style="width: 100px;">IP: </label>
-    <input id="ip" name="ip" type="ip" size="32">
-  </p>
-  <input type="submit"/>
-</form>
-
-<div id="ipv6valid" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
-<script>
-  var f = document.forms[0];
-
-  function isValidIPv6() {
-
-    var ipv6valid = document.querySelector('#ipv6valid');
-
-    var result = /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/.test(f.ip.value);
-    
-window.setTimeout(_ => {
-      ipv6valid.innerHTML = result ? "Valid format" : "Invalid format"
-    })
-  }
-</script>
-
-
-<h1>IPv6 Generator</h1>
-<form onsubmit="generateIPv6(); return false">
-  <p>
-    <input type="submit"/>
-  </p>
-</form>
-
-<div id="genipv6" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
-<script>
-  function generateIPv6() {
-
-    var genipv6 = document.querySelector('#genipv6');
-
-    var result = [...Array(8)].map(x => Math.floor(Math.random() * 65535).toString(16)).join(":")
-   
-    window.setTimeout(_ => {
-      genipv6.innerHTML = result
+      validator.innerHTML = result
     })
   }
 </script>
