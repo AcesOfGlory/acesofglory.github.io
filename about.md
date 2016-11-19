@@ -7,8 +7,6 @@ published: true
 My name is Sam Nayak and I am a 17 year old back-end developer. I am very passionate about Computer Science...
 
 
-
-
 # Development Tools
 
 ### Text Editors:
@@ -90,4 +88,32 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
   [Google Chrome Canary](https://www.google.com.au/chrome/browser/canary.html), 
   [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/developer/), 
   [Opera Beta](http://www.opera.com/computer/beta)
+
+
+# Good Software Reads
+
+- [Mastering Regular Expressions](http://regex.info/book.html)
+
+# Useful & Interesting Web Sources
+
+### Websites
+
+- Codewars
+- Stackoverflow
+- [Rosetta Code](http://rosettacode.org/wiki/Rosetta_Code)
+- [Shodan](https://shodan.me/books/)
+
+### Webpages
+
+- http://openbookproject.net/thinkcs/python/english3e/recursion.html
+
+
+
+
+<a href="https://www.codewars.com/users/AcesOfGlory">
+  <img src="https://www.codewars.com/users/AcesOfGlory/badges/large" alt="Codewars AcesOfGlory">
+</a>
+
+<a href="http://info.flagcounter.com/QMX8"><img src="http://s10.flagcounter.com/count2/QMX8/bg_FFFFFF/txt_000000/border_CCCCCC/columns_3/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+
 
