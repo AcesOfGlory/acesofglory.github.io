@@ -48,7 +48,7 @@ published: true
     })
   }
 </script>
-
+<br>
 <h3>Console</h3>
 <textarea disabled id="alltext" cols="70" rows="8" data-role="none"></textarea>
 
