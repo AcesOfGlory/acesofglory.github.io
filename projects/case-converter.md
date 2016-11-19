@@ -4,9 +4,9 @@ published: true
 ---
 
 <h1>Case Identifier</h1>
-<form onsubmit="caseIdentifier; return false">
+<form onsubmit="caseIdentifier(); return false">
   <p>
-    <label for="case" style="width: 100px;">IP: </label>
+    <label for="case" style="width: 100px;">Case: </label>
     <input id="case" name="case" type="case" size="32">
   </p>
   <input type="submit"/>
