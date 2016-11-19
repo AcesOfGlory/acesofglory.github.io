@@ -1,0 +1,48 @@
+---
+layout: page
+published: true
+---
+
+<h1>Magic Eight Ball</h1>
+
+<form onsubmit="eightBall(); return false">
+  <p>
+    <input id="question" size="32">
+  </p>
+  <input type="submit">
+  <h3>Output: </h3>
+</form>
+
+<div id="output" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
+
+<script>
+  var f = document.forms[0];
+  
+  const OUTCOMES = [
+    "It is certain", "It is decidedly so", "Without a doubt","Yes, definitely",
+    "You may rely on it","As I see it, yes","Most likely","Outlook good","Yes",
+    "Signs point to yes","Reply hazy try again","Ask again later", "Better not tell you now",
+    "Cannot predict now","Concentrate and ask again","Don't count on it",
+    "My reply is no","My sources say no","Outlook not so good","Very doubtful"
+   ]
+
+  var answers = {}
+  
+  function solution(question) {
+    question = question.replace(/\W/g, "").trim()
+    var reply = OUTCOMES[Math.floor(Math.random() * OUTCOMES.length)]
+    if (!Object.keys(answers).includes(question))
+      answers[question] = reply
+    return answers[question]
+    
+  }
+  
+  function eightBall() {
+
+    var output = document.querySelector('#output');
+   
+    window.setTimeout(_ => {
+      output.innerHTML = solution(f.question.value);
+    })
+  }
+</script>
