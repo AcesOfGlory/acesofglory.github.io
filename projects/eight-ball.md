@@ -31,10 +31,12 @@ published: true
   function solution(question) {
     question = question.replace(/\W/g, "").trim()
     var reply = OUTCOMES[Math.floor(Math.random() * OUTCOMES.length)]
-    if (!Object.keys(answers).includes(question))
+    if (!Object.keys(answers).includes(question)){
       answers[question] = reply
+      document.getElementById("alltext").value += question + ": " + answers[question] + "\n";
+      document.getElementById("alltext").scrollTop = document.getElementById("alltext").scrollHeight 
+    }
     return answers[question]
-    
   }
   
   function eightBall() {
@@ -46,3 +48,7 @@ published: true
     })
   }
 </script>
+
+<h3>Console</h3>
+<textarea disabled id="alltext" cols="70" rows="8" data-role="none"></textarea>
+
