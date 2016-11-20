@@ -27,7 +27,7 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
 - [Hangman](/projects/hangman)
 - [Unit Converter](/projects/unit-converter)
 - [Sorting Algorithms](/projects/sorting-algorithms)
-- [Random Strawpoll](/project/random-strawpoll)
+- [Random Strawpoll](/projects/random-strawpoll)
 - [RGB Converter](/projects/rgb)
 - [Typing Test](/projects/typing-test)
 - [Random Word](/project/random-word)
@@ -36,7 +36,7 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
 - [Probability Generator](/projects/probability-generator)
 - [Random Pokemon](/projects/random-pokemon)
 - [Word Generator](/projects/word-generator)
-- [Scrabble Score](/project/scrabble-score)
+- [Scrabble Score](/projects/scrabble-score)
 
 
 <button onclick="myFunction()">Random</button>
