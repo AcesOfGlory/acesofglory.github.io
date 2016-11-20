@@ -7,7 +7,7 @@ published: true
 
 <input id="word" size="32" style="display: inline-block;">
 
-<select id="multiplier" style="display: inline-block;">
+<select id="multiplier">
   <option value="1">Single</option>
   <option value="2">Double</option>
   <option value="3">Triple</option>
@@ -28,6 +28,7 @@ published: true
     var score = f.map(x => SCORES[x] || 0).reduce((x, y) => x + y, 0);
 
     score *= document.getElementById("multiplier").value;
+    console.log(typeof(document.getElementById("multiplier").value))
 
     if (f.length >= 7){
       score += 50;
