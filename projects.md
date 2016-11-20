@@ -32,9 +32,23 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
 - [Typing Test](/projects/typing-test)
 - [Random Word](/project/random-word)
 - [Magic Eight Ball](/projects/eight-ball)
+- [Wordsearch Maker](/projects/wordsearch-maker)
+- 
 
 
+<button onclick="myFunction()">Random</button>
 
-
+<script>
+  function myFunction() {
+    var arr = [], l = document.links;
+    for(var i=0; i<l.length; i++) {
+      arr.push(l[i].href);
+    }
+    arr = arr.filter(x => /https:\/\/acesofglory.github.io\/projects\/\w+/.test(x))
+    var random = Math.floor(Math.random() * arr.length)
+    window.open(arr[random])
+  }
+  
+</script>
 
 
