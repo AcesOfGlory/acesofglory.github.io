@@ -15,10 +15,12 @@ published: true
   </select>
 </form>
 
+<p>
 <button onclick="scrabbleCalculator()">Calculate</button>
-
+</p>
 <div id="score"></div>
-
+<p>
+</p>
 <script>
   const SCORES = {
     "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3,
