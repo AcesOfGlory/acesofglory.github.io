@@ -7,12 +7,13 @@ published: true
 
 <input id="word" size="32">
 
-
-<select id="multiplier">
-  <option value=1>Single</option>
-  <option value=2>Double</option>
-  <option value=3>Triple</option>
-</select>
+<form>
+  <select id="multiplier">
+    <option value=1>Single</option>
+    <option value=2>Double</option>
+    <option value=3>Triple</option>
+  </select>
+</form>
 
 <button onclick="scrabbleCalculator()">Calculate</button>
 
