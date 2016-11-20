@@ -33,7 +33,10 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
 - [Random Word](/project/random-word)
 - [Magic Eight Ball](/projects/eight-ball)
 - [Wordsearch Maker](/projects/wordsearch-maker)
-- 
+- [Probability Generator](/projects/probability-generator)
+- [Random Pokemon](/projects/random-pokemon)
+- [Word Generator](/projects/word-generator)
+- [Scrabble Score](/project/scrabble-score)
 
 
 <button onclick="myFunction()">Random</button>
