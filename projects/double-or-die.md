@@ -16,7 +16,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
   }
   
   function readCookie(){
-    var cookieFind = parseInt(document.cookie.match(/highscore=(\d+)/)[0])
+    var cookieFind = parseInt(document.cookie.match(/highscore=(\d+)/)[1])
     highscore = cookieFind
   }
 
