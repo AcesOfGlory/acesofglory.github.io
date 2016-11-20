@@ -5,9 +5,9 @@ published: true
 
 <h1>Scrabble Score</h1>
 
-<input id="word" size="32" display: inline-block;>
+<input id="word" size="32" style="display: inline-block;">
 
-<select id="multiplier">
+<select id="multiplier" style="display: inline-block;">
   <option value="1">Single</option>
   <option value="2">Double</option>
   <option value="3">Triple</option>
@@ -15,7 +15,7 @@ published: true
 
 <button onclick="scrabbleCalculator()">Calculate</button>
 
-<div id="scpre" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
+<div id="score" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
 
 <script>
   const SCORES = {
