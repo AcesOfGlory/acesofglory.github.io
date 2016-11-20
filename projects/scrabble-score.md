@@ -3,24 +3,20 @@ layout: page
 published: true
 ---
 
-<h1>Scrabble Score</h1>
+<h1>Scrabble Score1</h1>
 
 <input id="word" size="32">
 
-<form>
-  <select id="multiplier">
-    <option value=1>Single</option>
-    <option value=2>Double</option>
-    <option value=3>Triple</option>
-  </select>
-</form>
+<select id="multiplier">
+  <option value=1>Single</option>
+  <option value=2>Double</option>
+  <option value=3>Triple</option>
+</select>
 
-<p>
 <button onclick="scrabbleCalculator()">Calculate</button>
-</p>
+
 <div id="score"></div>
-<p>
-</p>
+
 <script>
   const SCORES = {
     "a": 1, "b": 3, "c": 3, "d": 2, "e": 1, "f": 4, "g": 2, "h": 4, "i": 1, "j": 8, "k": 5, "l": 1, "m": 3,
