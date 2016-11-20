@@ -30,7 +30,7 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
 - [Random Strawpoll](/projects/random-strawpoll)
 - [RGB Converter](/projects/rgb)
 - [Typing Test](/projects/typing-test)
-- [Random Word](/project/random-word)
+- [Random Word](/projects/random-word)
 - [Magic Eight Ball](/projects/eight-ball)
 - [Wordsearch Maker](/projects/wordsearch-maker)
 - [Probability Generator](/projects/probability-generator)
