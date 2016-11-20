@@ -45,10 +45,7 @@ published: true
 
   function pollGenerator() {
     const amount = parseInt(document.getElementById('key').value)
-    for (let i = 0; i <= amount; i++){
-      generator()
-    }
-  
+    generator()
   }
   
 </script>
