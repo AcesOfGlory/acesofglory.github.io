@@ -3,9 +3,9 @@ layout: page
 published: true
 ---
 
-<h1>Scrabble Score1</h1>
+<h1>Scrabble Score</h1>
 
-<input id="word" size="32">
+<input id="word" size="32" display: inline-block;>
 
 <select id="multiplier">
   <option value="1">Single</option>
@@ -15,7 +15,7 @@ published: true
 
 <button onclick="scrabbleCalculator()">Calculate</button>
 
-<div id="score"></div>
+<div id="scpre" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
 
 <script>
   const SCORES = {
