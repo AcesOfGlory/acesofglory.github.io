@@ -27,8 +27,7 @@ published: true
     var f = document.getElementById("word").value.split("");
     var score = f.map(x => SCORES[x] || 0).reduce((x, y) => x + y, 0);
 
-    score *= document.getElementById("multiplier").value;
-    console.log(typeof(document.getElementById("multiplier").value))
+    score *= parseInt(document.getElementById("multiplier").value);
 
     if (f.length >= 7){
       score += 50;
