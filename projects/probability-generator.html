@@ -23,7 +23,7 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
 <hr>
 
 <h3>Console</h3>
-<textarea disabled id="console" cols="70" rows="8" data-role="none"></textarea>
+<textarea disabled id="console" cols="70" rows="7" data-role="none"></textarea>
 
 <hr>
 
@@ -43,9 +43,12 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
 				counter.push("Lose");
 			}
 			countNum.push(counter.length)
-			document.getElementById("console").value += `It took ${counter.length} iteration(s) to get a win\n`
-      document.getElementById("console").scrollTop = document.getElementById("console").scrollHeight 
+			
+			if (i != iterations){
+				document.getElementById("console").value += `It took ${counter.length} iteration(s) to get a win\n`
+			}
 		}
+		document.getElementById("console").scrollTop = document.getElementById("console").scrollHeight 
 		
 		const totalSum = countNum.reduce((x, y) => x+y, 0)
 		const iterationLength = countNum.length
