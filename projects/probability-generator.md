@@ -3,13 +3,15 @@ layout: page
 published: true
 ---
 
-
-<h1>Probability Generator</h1>
-
-
-<button onclick="generateProbability()">Generate</button>
+<html>
+  <h1>Probability Generator</h1>
 
 
-<div id=output></div>
+  <button onclick="generateProbability()">Generate</button>
 
+
+  <div id=output></div>
+
+
+</html>
 
