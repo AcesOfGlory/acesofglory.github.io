@@ -5,17 +5,30 @@ published: true
 
 <h1>Probability Generator</h1>
 
-Iterations: <input id="iterations" value=100 size=6 style="text-align:center;margin-left:4em;"/>
+<p>
+	A ma
+</p>
 
 <br>
+Iterations: <input id="iterations" value=100 size=5 style="text-align:center;margin-left:4em;"/>
+<br>
+<br>
 
-Wins: <input id="wins" size=4 value=5 style="text-align:center;"/><br>  
-Loses: <input id="loses" size=4 value=1 style="text-align:center;">
+Wins: <input id="wins" size=5 value=5 style="text-align:center;margin-left:4em;"/><br>  
+Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em;">
 <br>    
+<br>
 
 <button onclick="generateProbability()">Generate</button>
 <br>
+<hr>
 
+<h3>Console</h3>
+<textarea disabled id="console" cols="70" rows="8" data-role="none"></textarea>
+
+<hr>
+
+<h3>Statistics</h3>
 <div id=output></div>
 
 
@@ -31,7 +44,8 @@ Loses: <input id="loses" size=4 value=1 style="text-align:center;">
 				counter.push("Lose");
 			}
 			countNum.push(counter.length)
-			//document.getElementById("output").innerHTML = `It took ${counter.length} iteration(s) to get a win`
+			document.getElementById("console").value += `It took ${counter.length} iteration(s) to get a win\n`
+      document.getElementById("console").scrollTop = document.getElementById("console").scrollHeight 
 		}
 		
 		const totalSum = countNum.reduce((x, y) => x+y, 0)
