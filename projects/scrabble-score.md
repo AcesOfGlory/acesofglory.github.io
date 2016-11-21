@@ -25,7 +25,7 @@ published: true
 
   function scrabbleCalculator(){
     var f = document.getElementById("word").value.split("");
-    var score = f.map(x => SCORES[x] || 0).reduce((x, y) => x + y, 0);
+    var score = f.map(x => SCORES[x.toLowerCase()] || 0).reduce((x, y) => x + y, 0);
 
     score *= parseInt(document.getElementById("multiplier").value);
 
