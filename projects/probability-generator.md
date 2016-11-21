@@ -9,7 +9,7 @@ Iterations: <input id="iterations" value=100 size=6 style="text-align:center;mar
 
 
 
-Wins: <input id="wins" size=4 value=5 style="text-align:center;"/><br>  
+Wins: <input id="wins" size=4 value=5 style="text-align:center;"/>
 Loses: <input id="loses" size=4 value=1 style="text-align:center;">
 
 
