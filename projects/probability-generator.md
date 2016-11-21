@@ -5,12 +5,12 @@ published: true
 
 <h1>Probability Generator</h1>
 
-Iterations: <input id="iterations" value=100 size=6 style="text-align:center;margin-left:4em;">
+<input id="iterations" value=100 size=6 style="text-align:center;margin-left:4em;">
 
 
 
-Wins: <input id="wins" size=4 value=5 style="text-align:center;"/>
-Loses: <input id="loses" size=4 value=1 style="text-align:center;">
+<input id="wins" size=4 value=5 style="text-align:center;"/>
+<input id="loses" size=4 value=1 style="text-align:center;">
 
 
 <button onclick="generateProbability()">Generate</button>
