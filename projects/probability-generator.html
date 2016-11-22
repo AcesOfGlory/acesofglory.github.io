@@ -6,15 +6,42 @@ published: true
 <h1>Probability Generator</h1>
 
 <p>
-	Measures the probable case of losing
+	Measures the probable case of winning
 </p>
 
 Iterations: <input id="iterations" value=100 size=5 style="text-align:center;margin-left:4em;"/>
 <br>
 <br>
 
-Wins: <input id="wins" size=5 value=5 style="text-align:center;margin-left:4em;"/> 
-Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em;">
+Wins: <input id="wins" size=5 value=1 style="text-align:center;margin-left:4em;"/> 
+Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em;">
+<br>    
+<br>
+
+<button onclick="generateProbability()">Generate</button>
+<br>
+<hr>
+
+<h3>Statistics</h3>
+<div id=output></div>
+
+<hr>---
+layout: page
+published: true
+---
+
+<h1>Probability Generator</h1>
+
+<p>
+	Measures the probable case of winning
+</p>
+
+Iterations: <input id="iterations" value=100 size=5 style="text-align:center;margin-left:4em;"/>
+<br>
+<br>
+
+Wins: <input id="wins" size=5 value=1 style="text-align:center;margin-left:4em;"/> 
+Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em;">
 <br>    
 <br>
 
@@ -53,6 +80,25 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
 		var avg = sum / data.length;
 		return avg;
 	}
+	
+		function mode(array){
+			if(array.length == 0)
+					return null;
+			var modeMap = {};
+			var maxEl = array[0], maxCount = 1;
+			for(var i = 0; i < array.length; i++){
+					var el = array[i];
+					if(modeMap[el] == null)
+							modeMap[el] = 1;
+					else
+							modeMap[el]++;  
+					if(modeMap[el] > maxCount){
+							maxEl = el;
+							maxCount = modeMap[el];
+					}
+			}
+			return [maxEl, maxCount];
+	}
 
 	function probability(win=5, lose=1, iterations=100){
 		var total = [...Array(win)].map(_ => "Win").concat([...Array(lose)].map(_ => "Lose"));
@@ -79,6 +125,7 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
     const half = Math.floor(countNum.length / 2);
 		const median = countNum.length % 2 ? countNum[half] : (countNum[half-1] + countNum[half]) / 2.0;
 		const iterationVariance = variance(countNum);
+		const odds = winCount / iterationLength
  
 		document.getElementById("output").innerHTML = 
 			`Iterations: ${iterations}<br>
@@ -87,16 +134,16 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
 			Average iterations: ${(totalSum / countNum.length).toFixed(3)}<br>
 			Expected iterations: ${(iterationLength / winCount).toFixed(3)}<br><br>
 
-			Odds: ${((winCount * 100) / iterationLength).toFixed(3)}<br><br>
+			Odds: ${(odds*100).toFixed(3)}% / ${odds.toFixed(3)}<br><br>
 
 			Maximum: ${Math.max(...countNum)}<br>
 			Minimum: ${Math.min(...countNum)}<br>
 			Range: ${Math.max(...countNum) - Math.min(...countNum)}<br><br>
 
 			Median: ${median}<br>
-			Mode: ${5}<br>
-		  Standard Deviation: ${Math.sqrt(iterationVariance)}<br>
-      Variance: ${iterationVariance}`                      
+			Mode: ${mode(countNum)}<br>
+		  Standard Deviation: ${Math.sqrt(iterationVariance).toFixed(3)}<br>
+      Variance: ${iterationVariance.toFixed(3)}`                      
 	}
 
 	function generateProbability(){
