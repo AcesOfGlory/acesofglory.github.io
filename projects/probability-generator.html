@@ -25,33 +25,6 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 <h3>Statistics</h3>
 <div id=output></div>
 
-<hr>---
-layout: page
-published: true
----
-
-<h1>Probability Generator</h1>
-
-<p>
-	Measures the probable case of winning
-</p>
-
-Iterations: <input id="iterations" value=100 size=5 style="text-align:center;margin-left:4em;"/>
-<br>
-<br>
-
-Wins: <input id="wins" size=5 value=1 style="text-align:center;margin-left:4em;"/> 
-Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em;">
-<br>    
-<br>
-
-<button onclick="generateProbability()">Generate</button>
-<br>
-<hr>
-
-<h3>Statistics</h3>
-<div id=output></div>
-
 <hr>
 
 <h3>Console</h3>
@@ -97,7 +70,7 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 							maxCount = modeMap[el];
 					}
 			}
-			return [maxEl, maxCount];
+			return `${maxEl} (${maxCount})`;
 	}
 
 	function probability(win=5, lose=1, iterations=100){
