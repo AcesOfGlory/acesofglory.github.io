@@ -3,6 +3,8 @@ layout: page
 published: true
 ---
 <div id=output style="float:right;"></div>
+<div id=output2 style="float:right;"></div>
+
 <h1>Probability Generator</h1>
 
 <p>
@@ -102,9 +104,10 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 			Average iterations: ${(totalSum / countNum.length).toFixed(3)}<br>
 			Expected iterations: ${(iterationLength / winCount).toFixed(3)}<br><br>
 
-			Odds: ${((winCount*100)/ iterationLength).toFixed(3)}% / ${(winCount / iterationLength).toFixed(3)}<br><br>
-
-			Maximum: ${Math.max(...countNum)}<br>
+			Odds: ${((winCount*100)/ iterationLength).toFixed(3)}% / ${(winCount / iterationLength).toFixed(3)}`
+		
+		document.getElementById("output2").innerHTML =
+			`Maximum: ${Math.max(...countNum)}<br>
 			Minimum: ${Math.min(...countNum)}<br>
 			Range: ${Math.max(...countNum) - Math.min(...countNum)}<br><br>
 
