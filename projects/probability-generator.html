@@ -95,6 +95,17 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
     const half = Math.floor(countNum.length / 2);
 		const median = countNum.length % 2 ? countNum[half] : (countNum[half-1] + countNum[half]) / 2.0;
 		const iterationVariance = variance(countNum);
+		
+		var max = null;
+		var min = null;
+		
+		for (let i = 0; i < countNum.length; i++){
+			let current = countNum[i]
+			if (max === null || current > max)
+				max = current
+			if (min === null || current < min)
+				min = current
+		}
  
 		document.getElementById("output").innerHTML =
 			`<h3>Statistics</h3>
@@ -106,9 +117,9 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 
 			Odds: ${((winCount*100)/ iterationLength).toFixed(3)}% / ${(winCount / iterationLength).toFixed(3)}<br><br>
 		
-			Maximum: ${Math.max(...countNum)}<br>
-			Minimum: ${Math.min(...countNum)}<br>
-			Range: ${Math.max(...countNum) - Math.min(...countNum)}<br><br>
+			Maximum: ${max}<br>
+			Minimum: ${min}<br>
+			Range: ${max - min}<br><br>
 
 			Median: ${median}<br>
 			Mode: ${mode(countNum)}<br>
