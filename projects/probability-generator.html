@@ -98,7 +98,6 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
     const half = Math.floor(countNum.length / 2);
 		const median = countNum.length % 2 ? countNum[half] : (countNum[half-1] + countNum[half]) / 2.0;
 		const iterationVariance = variance(countNum);
-		const odds = winCount / iterationLength
  
 		document.getElementById("output").innerHTML = 
 			`Iterations: ${iterations}<br>
@@ -107,7 +106,7 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 			Average iterations: ${(totalSum / countNum.length).toFixed(3)}<br>
 			Expected iterations: ${(iterationLength / winCount).toFixed(3)}<br><br>
 
-			Odds: ${(odds*100).toFixed(3)}% / ${odds.toFixed(3)}<br><br>
+			Odds: ${((winCount*100)/ iterationLength).toFixed(3)}% / ${(winCount / iterationLength).toFixed(3)}<br><br>
 
 			Maximum: ${Math.max(...countNum)}<br>
 			Minimum: ${Math.min(...countNum)}<br>
