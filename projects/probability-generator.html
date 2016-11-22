@@ -33,6 +33,27 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
 
 <script type="text/javascript">
 
+	function variance(values){
+		var avg = average(values);
+
+		var squareDiffs = values.map(value => {
+			var diff = value - avg;
+			var sqrDiff = diff * diff;
+			return sqrDiff;
+		});
+
+		var avgSquareDiff = average(squareDiffs);
+
+		return avgSquareDiff;
+	}
+
+	function average(data){
+		var sum = data.reduce((x, y) => x + y, 0);
+
+		var avg = sum / data.length;
+		return avg;
+	}
+
 	function probability(win=5, lose=1, iterations=100){
 		var total = [...Array(win)].map(_ => "Win").concat([...Array(lose)].map(_ => "Lose"));
 		var countNum = [];
@@ -50,27 +71,32 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
 		}
 		document.getElementById("console").scrollTop = document.getElementById("console").scrollHeight 
 		
-		const totalSum = countNum.reduce((x, y) => x+y, 0)
-		const iterationLength = countNum.length
-		const winCount = total.filter(x => x == "Win").length
-
+		const totalSum = countNum.reduce((x, y) => x+y, 0);
+		const iterationLength = total.length;
+		const winCount = total.filter(x => x == "Win").length;
+		
+		const iterationSort = countNum.sort((a, b) => a - b);
+    const half = Math.floor(values.length/2);
+		const median = countNum.length % 2 ? countNum[half] : (countNum[half-1] + countnum[half]) / 2.0;
+		const iterationVariance = variance(countNum);
+ 
 		document.getElementById("output").innerHTML = 
 			`Iterations: ${iterations}<br>
 			Total iterations: ${totalSum}<br><br> 
 
 			Average iterations: ${(totalSum / countNum.length).toFixed(3)}<br>
-			Expected iterations: ${(total.length / winCount).toFixed(3)}<br><br>
+			Expected iterations: ${(iterationLength / winCount).toFixed(3)}<br><br>
 
-			Odds: ${(total.filter(x => x == "Win").length * 100 / total.length).toFixed(3)}<br><br>
+			Odds: ${((winCount * 100) / iterationLength).toFixed(3)}<br><br>
 
 			Maximum: ${Math.max(...countNum)}<br>
 			Minimum: ${Math.min(...countNum)}<br>
 			Range: ${Math.max(...countNum) - Math.min(...countNum)}<br><br>
 
-			Median: ${5}<br>
+			Median: ${median}<br>
 			Mode: ${5}<br>
-		  Standard Deviation: ${5}<br>
-      Variance: ${5}`                      
+		  Standard Deviation: ${Math.sqrt(iterationVariance)}<br>
+      Variance: ${iterationVariance}`                      
 	}
 
 	function generateProbability(){
