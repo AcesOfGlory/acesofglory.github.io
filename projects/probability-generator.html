@@ -123,7 +123,7 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 		var winAmount = document.getElementById("wins").value
 		var loseAmount = document.getElementById("loses").value
 		
-		if (!/^\d+$/.test(iterationAmount+winAmount+loseAmount))
+		if (!/^\d+$/.test(iterationAmount+winAmount+loseAmount) || winAmount === "0")
 			return 
 	
 		probability(+winAmount, +loseAmount, +iterationAmount)
