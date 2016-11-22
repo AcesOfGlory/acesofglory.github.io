@@ -45,25 +45,6 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 		return avgSquareDiff;
 	}
 	
-		function mode(array){
-			if(array.length == 0)
-					return null;
-			var modeMap = {};
-			var maxEl = array[0], maxCount = 1;
-			for(var i = 0; i < array.length; i++){
-					var el = array[i];
-					if(modeMap[el] == null)
-							modeMap[el] = 1;
-					else
-							modeMap[el]++;  
-					if(modeMap[el] > maxCount){
-							maxEl = el;
-							maxCount = modeMap[el];
-					}
-			}
-			return `${maxEl} (${maxCount})`;
-	}
-	
 	const average = data => data.reduce((x, y) => x + y, 0) / data.length;
 
 	function probability(win=5, lose=1, iterations=100){
@@ -90,7 +71,12 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 		
 		var max = null;
 		var min = null;
+		var mode = null;
 		var totalSum = 0;
+		
+		var modeMap = {};
+		var maxEl = countNum[0];
+		var maxCount = 1;
 		
 		for (let i = 0; i < countNum.length; i++){
 			let current = countNum[i];
@@ -99,6 +85,15 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 				max = current;
 			if (min === null || current < min)
 				min = current;
+			
+			if(modeMap[current] == null)
+				modeMap[current] = 1;
+			else
+				modeMap[current]++;  
+			if(modeMap[current] > maxCount){
+				maxEl = current;
+				maxCount = modeMap[current];
+			}
 		}
  
 		document.getElementById("output").innerHTML =
@@ -116,7 +111,7 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 			Range: ${max - min}<br><br>
 
 			Median: ${median}<br>
-			Mode: ${mode(countNum)}<br>
+			Mode: ${maxEl} (${maxCount})<br>
 		  Standard Deviation: ${Math.sqrt(iterationVariance).toFixed(3)}<br>
       Variance: ${iterationVariance.toFixed(3)}`                      
 	}
