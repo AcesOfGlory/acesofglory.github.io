@@ -78,7 +78,7 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 				counter.push("Lose");
 			}
 			countNum.push(counter.length)
-			document.getElementById("console").value += `It took ${counter.length} iteration(s) to get a win` + (i == iterations ? "\n" : "")
+			document.getElementById("console").value += `It took ${counter.length} iteration(s) to get a win` + (i == iterations ? "" : "\n")
 			
 		}
 		document.getElementById("console").scrollTop = document.getElementById("console").scrollHeight 
