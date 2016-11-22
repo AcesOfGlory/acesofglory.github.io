@@ -124,10 +124,14 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 	function generateProbability(){
 		document.getElementById("console").value = ""
 		
-		var iterationAmount = parseInt(document.getElementById("iterations").value)
-		var winAmount = parseInt(document.getElementById("wins").value)
-		var loseAmount = parseInt(document.getElementById("loses").value)
-		probability(winAmount, loseAmount, iterationAmount)
+		var iterationAmount = document.getElementById("iterations").value
+		var winAmount = document.getElementById("wins").value
+		var loseAmount = document.getElementById("loses").value
+		
+		if (!/^\d+$/.test(iterationAmount+winAmount+loseAmount))
+			return 
+	
+		probability(+winAmount, +loseAmount, +iterationAmount)
 	}
 
 </script>
