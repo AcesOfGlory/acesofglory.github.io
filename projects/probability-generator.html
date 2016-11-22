@@ -4,6 +4,8 @@ published: true
 ---
 
 <h1>Probability Generator</h1>
+<div id=output style="float:right;"></div>
+
 
 <p>
 	Measures the probable case of winning
@@ -20,12 +22,7 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 
 <button onclick="generateProbability()">Generate</button>
 <br>
-<hr>
 
-<h3>Statistics</h3>
-<div id=output></div>
-
-<hr>
 
 <h3>Console</h3>
 <textarea disabled id="console" cols="70" rows="8" data-role="none"></textarea>
@@ -99,8 +96,9 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 		const median = countNum.length % 2 ? countNum[half] : (countNum[half-1] + countNum[half]) / 2.0;
 		const iterationVariance = variance(countNum);
  
-		document.getElementById("output").innerHTML = 
-			`Iterations: ${iterations}<br>
+		document.getElementById("output").innerHTML =
+			`<h3>Statistics</h3>
+			Iterations: ${iterations}<br>
 			Total iterations: ${totalSum}<br><br> 
 
 			Average iterations: ${(totalSum / countNum.length).toFixed(3)}<br>
