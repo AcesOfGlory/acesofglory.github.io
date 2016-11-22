@@ -2,11 +2,6 @@
 layout: page
 published: true
 ---
-<div>
-	<label id=output style="float:right;"></label>
-	<label id=output2 style="float:right;"></label>
-</div>
-		 
 
 <h1>Probability Generator</h1>
 
@@ -26,6 +21,11 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 <button onclick="generateProbability()">Generate</button>
 <br>
 
+<hr>
+
+<div id=output></div>
+
+<hr>
 
 <h3>Console</h3>
 <textarea disabled id="console" cols="70" rows="8" data-role="none"></textarea>
@@ -48,10 +48,7 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 	}
 
 	function average(data){
-		var sum = data.reduce((x, y) => x + y, 0);
-
-		var avg = sum / data.length;
-		return avg;
+		return data.reduce((x, y) => x + y, 0) / data.length;
 	}
 	
 		function mode(array){
@@ -107,10 +104,9 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 			Average iterations: ${(totalSum / countNum.length).toFixed(3)}<br>
 			Expected iterations: ${(iterationLength / winCount).toFixed(3)}<br><br>
 
-			Odds: ${((winCount*100)/ iterationLength).toFixed(3)}% / ${(winCount / iterationLength).toFixed(3)}`
+			Odds: ${((winCount*100)/ iterationLength).toFixed(3)}% / ${(winCount / iterationLength).toFixed(3)}<br><br>
 		
-		document.getElementById("output2").innerHTML =
-			`Maximum: ${Math.max(...countNum)}<br>
+			Maximum: ${Math.max(...countNum)}<br>
 			Minimum: ${Math.min(...countNum)}<br>
 			Range: ${Math.max(...countNum) - Math.min(...countNum)}<br><br>
 
