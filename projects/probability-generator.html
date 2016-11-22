@@ -53,7 +53,7 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 
 		for (var i = 1; i <= iterations; i++){
 			var counter = ["Win"];
-			while (total[Math.floor(Math.random() * total.length)] != "Win"){
+			while (total[Math.floor(Math.random() * total.length)] != "Win" && win != 0){
 				counter.push("Lose");
 			}
 			countNum.push(counter.length)
