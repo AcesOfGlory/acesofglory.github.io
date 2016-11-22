@@ -21,8 +21,6 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 <button onclick="generateProbability()">Generate</button>
 <br>
 
-<hr>
-
 <div id=output></div>
 
 <hr>
@@ -83,7 +81,6 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 		}
 		document.getElementById("console").scrollTop = document.getElementById("console").scrollHeight 
 		
-		const totalSum = countNum.reduce((x, y) => x+y, 0);
 		const iterationLength = total.length;
 		
 		const iterationSort = countNum.sort((a, b) => a - b);
@@ -93,17 +90,19 @@ Loses: <input id="loses" size=5 value=5 style="text-align:center;margin-left:4em
 		
 		var max = null;
 		var min = null;
+		var totalSum = 0;
 		
 		for (let i = 0; i < countNum.length; i++){
-			let current = countNum[i]
+			let current = countNum[i];
+			totalSum += current;
 			if (max === null || current > max)
-				max = current
+				max = current;
 			if (min === null || current < min)
-				min = current
+				min = current;
 		}
  
 		document.getElementById("output").innerHTML =
-			`<h3>Statistics</h3>
+			`<hr><h3>Statistics</h3>
 			Iterations: ${iterations}<br>
 			Total iterations: ${totalSum}<br><br> 
 
