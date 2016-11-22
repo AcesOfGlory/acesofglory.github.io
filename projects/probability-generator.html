@@ -54,21 +54,23 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
 		const iterationLength = countNum.length
 		const winCount = total.filter(x => x == "Win").length
 
-		document.getElementById("output").innerHTML = `Iterations: ${iterations}` + "<br>" +
-													  `Total iterations: ${totalSum}` + "<br>" + "<br>" +
-													   
-													  `Average iterations: ${(totalSum / countNum.length).toFixed(3)}` + "<br>" +
-													  `Expected iterations: ${(total.length / winCount).toFixed(3)}` + "<br>" + "<br>" +
-													  
-													  `Odds: ${(total.filter(x => x == "Win").length * 100 / total.length).toFixed(3)}` + "<br>" + "<br>" +
-													   
-													  `Maximum: ${Math.max(...countNum)}` + "<br>" +
-													  `Minimum: ${Math.min(...countNum)}` + "<br>" +
-													  `Range: ${Math.max(...countNum) - Math.min(...countNum)}`
-		
-		
-		
+		document.getElementById("output").innerHTML = 
+			`Iterations: ${iterations}<br>
+			Total iterations: ${totalSum}<br><br> 
 
+			Average iterations: ${(totalSum / countNum.length).toFixed(3)}<br>
+			Expected iterations: ${(total.length / winCount).toFixed(3)}<br><br>
+
+			Odds: ${(total.filter(x => x == "Win").length * 100 / total.length).toFixed(3)}<br><br>
+
+			Maximum: ${Math.max(...countNum)}<br>
+			Minimum: ${Math.min(...countNum)}<br>
+			Range: ${Math.max(...countNum) - Math.min(...countNum)}<br><br>
+
+			Median: ${5}<br>
+			Mode: ${5}<br>
+		  Standard Deviation: ${5}<br>
+      Variance: ${5}`                      
 	}
 
 	function generateProbability(){
