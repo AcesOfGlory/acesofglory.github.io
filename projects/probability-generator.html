@@ -76,8 +76,8 @@ Loses: <input id="loses" size=5 value=1 style="text-align:center;margin-left:4em
 		const winCount = total.filter(x => x == "Win").length;
 		
 		const iterationSort = countNum.sort((a, b) => a - b);
-    const half = Math.floor(values.length/2);
-		const median = countNum.length % 2 ? countNum[half] : (countNum[half-1] + countnum[half]) / 2.0;
+    const half = Math.floor(countNum.length / 2);
+		const median = countNum.length % 2 ? countNum[half] : (countNum[half-1] + countNum[half]) / 2.0;
 		const iterationVariance = variance(countNum);
  
 		document.getElementById("output").innerHTML = 
