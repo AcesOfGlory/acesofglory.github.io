@@ -24,6 +24,7 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 - [IntelliJ](https://www.jetbrains.com/idea/)
 - [RubyMine](https://www.jetbrains.com/ruby/)
 - [XMLSpy](http://www.altova.com/xmlspy.html)
+- [Vim](http://www.vim.org/)
 
 ### Software Planning & Management:
 
