@@ -33,7 +33,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
 
 <center>
 
-  <div id="highscore" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;">Highscore = 1</div>
+  <div id="highscore" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;"></div>
 
   <div id="current-score" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;">Score = 1</div>
 
@@ -53,12 +53,12 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
 
 
 <script>
-  document.querySelector('#highscore').innerHTML = "Highscore = " + highscore;
+  document.querySelector('#highscore').innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
 
   function reset(){
     highscore = 1;
     createCookie(highscore)
-    document.querySelector('#highscore').innerHTML = "Highscore = " + highscore;
+    document.querySelector('#highscore').innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
   }
   function die(){
     return Math.random() >= 0.8
@@ -71,7 +71,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
       if (score > highscore){
         highscore = score;
         createCookie(highscore);
-        output.innerHTML = "Highscore = " + highscore;
+        output.innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
       }
       document.getElementById("output").innerHTML = `<p>You would have ${die() ? 'lost' : 'won'} if you doubled`
         
