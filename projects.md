@@ -37,6 +37,8 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
 - [Random Pokemon](/projects/random-pokemon)
 - [Word Generator](/projects/word-generator)
 - [Scrabble Score](/projects/scrabble-score)
+- [Shitpost Generator](/projects/shitpost-generator)
+- [Integer English](/projects/integer-english)
 
 
 <button onclick="myFunction()">Random</button>
