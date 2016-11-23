@@ -35,29 +35,49 @@ E.g five ==> 5
     "negative" : -1, "point":"."
   }
 
-  function intToEnglish(){
-  
-    var number = parseInt(document.getElementById("integer").value)
-
-    var english = [
-      ['quadrillion', 1e15], ['trillion', 1e12], ['billion', 1e9], ['million', 1e6], ['thousand', 1e3], ['hundred', 1e2],
-      ['ninety', 90], ['eighty', 80], ['seventy', 70], ['sixty', 60], ['fifty', 50], ['forty', 40], ['thirty', 30], ['twenty', 20],
-      ['nineteen', 19], ['eighteen', 18], ['seventeen', 17], ['sixteen', 16], ['fifteen', 15], ['fourteen', 14], ['thirteen', 13], ['twelve', 12], ['eleven', 11], ['ten', 10],
-      ['nine', 9], ['eight', 8], ['seven', 7], ['six', 6], ['five', 5], ['four', 4], ['three', 3], ['two', 2], ['one', 1]
-    ]
-
-    .reduce((str, [name, value]) => {
-      let mult = Math.floor(number / value);
-      if (!mult) return str;
-
-      number = number % value;
-      return str + (value >= 100 ? intToEnglish(mult) + ' ' : '') 
-           + name + (number ? ' ': '');
-      }, '');
-      
-    document.getElementById("integer-output").innerHTML = english
-
+  var mapping = {
+    0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five',
+    6: 'six', 7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten', 11: 'eleven',
+    12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen', 16: 'sixteen',
+    17: 'seventeen', 18: 'eighteen', 19: 'nineteen', 20: 'twenty',
+    30: 'thirty', 40: 'forty', 50: 'fifty', 60: 'sixty', 70: 'seventy',
+    80: 'eighty', 90: 'ninety'
   };
+
+  var say1000Less = function(num){
+      var hundreds = Math.floor(num / 100), res = [];
+      if(hundreds > 0)
+          res.push(`${mapping[hundreds]} hundred`);
+      num = num % 100;
+      if(num != 0 || hundreds == 0){
+          var part = [];
+          if(num <= 20){
+              part.push(mapping[num]);
+          }else{
+              var tens = Math.floor(num / 10) * 10, ones = num % 10;
+              part.push(mapping[tens]);
+              if(ones > 0){
+                  part.push(mapping[ones]);
+              }
+          }
+          res.push(part.join('-'));
+      }
+      return res.join(' and ');
+  };
+
+  function intToEnglish(num){
+    var num = parseInt(document.getElementById("integer").value)
+    var units = [[1000000000000000, 'quadrillion'], [1000000000000, 'trillion'], [1000000000, 'billion'], [1000000, 'million'], [1000, 'thousand'], [1, '']], res = [];
+    for(var unit of units){
+        var base = unit[0], word = unit[1], head = Math.floor(num / base);
+        num = num % base;
+        if(head > 0 || (res.length <= 0 && base == 1)){
+            res.push(`${say1000Less(head)} ${word}`);
+        }
+    }
+    document.getElementById("integer-output").innerHTML = res.join(' ').trim();
+  }
+  
   
   function englishToInt(){
     var w = document.getElementById("english").value
