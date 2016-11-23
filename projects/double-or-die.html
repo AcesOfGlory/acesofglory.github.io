@@ -69,7 +69,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
         createCookie(highscore);
         output.innerHTML = "Highscore = " + highscore;
       }
-      document.getElementById("output").innerHTML = `<p>You would have ${die() ? 'won' : 'lost'} if you doubled`
+      document.getElementById("output").innerHTML = `<p>You would have ${die() ? 'lost' : 'won'} if you doubled`
         
       score = 1;
       document.querySelector('#current-score').innerHTML = "Score = " + score;
