@@ -125,15 +125,12 @@ E.g five ==> 5
   function nameNumber(){
     const n = document.getElementById("name").value
     const nameLength = n.length - 1
+    
     if (2 <= nameLength <= 125){
-      document.getElementById("name-output").innerHTML = prefix[Math.floor(nameLength / 3)]
+      document.getElementById("name-output").innerHTML = `${n.slice(0, (n.length % 3) + 1)} ${prefix[Math.floor(nameLength / 3)]}`;
     }
     else{
       document.getElementById("name-output").innerHTML = n;
-    }
-    
+    } 
   };
-
-
-
 </script>
