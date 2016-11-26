@@ -25,7 +25,17 @@ E.g five ==> 5
 
 <div id="english-output"></div>
 
+<hr>
+
+<h3>Number Name</h3>
+
+<input id="name">
+<button onclick="nameNumber()">Convert</button>
+
+<div id="name-output"></div>
+
 <script type="text/javascript">
+  const prefix = ["hundred", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion", "septillion", "octillion", "nonillion", "decillion", "undecillion", "duodecillion", "tredecillion", "quattuordecillion", "quinquadecillion", "sedecillion", "septendecillion", "octodecillion", "novendecillion", "vigintillion", "unvigintillion", "duovigintillion", "tresvigintillion", "quattuorvigintillion", "quinquavigintillion", "sesvigintillion", "septemvigintillion", "octovigintillion", "novemvigintillion", "trigintillion", "untrigintillion", "duotrigintillion", "trestrigintillion", "quattuortrigintillion", "quinquatrigintillion", "sestrigintillion", "septentrigintillion", "octotrigintillion", "noventrigintillion", "quadragintillion"];
 
   var NBRS = {
     "zero":0,"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,"seven":7,"eight":8,"nine":9,
@@ -111,6 +121,18 @@ E.g five ==> 5
     }
     return aa.reduce(function(s,v){return s+v},0)
   }
+  
+  function nameNumber(){
+    const n = document.getElementById("name").value
+    const nameLength = n.length - 1
+    if (2 <= nameLength <= 125){
+      document.getElementById("name-output").innerHTML = prefix[Math.floor(nameLength / 3)]
+    }
+    else{
+      document.getElementById("name-output").innerHTML = n;
+    }
+    
+  };
 
 
 
