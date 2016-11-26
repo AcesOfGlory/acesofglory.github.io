@@ -37,9 +37,9 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
 
   <div id="current-score" style="margin-top: 10px; padding: 10px 5px; color: #444; line-height: 1.5;">Score = 1</div>
 
-  <button onclick="double()">Double</button>
+  <button onclick="doubleOrDie(double)">Double</button>
 
-  <button onclick="save()">Save</button>
+  <button onclick="doubleOrDie(save)">Save</button>
 
 </center>
 
@@ -60,37 +60,34 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
     createCookie(highscore)
     document.querySelector('#highscore').innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
   }
-  function die(){
-    return Math.random() >= 0.8
+  function doubleOrDie(choice){
+    const die = Math.random() >= 0.8;
+    choice(die);
   }
 
-  function save(){
+  function save(die){
     var output = document.querySelector('#highscore');
 
-    window.setTimeout(_ => {
-      if (score > highscore){
-        highscore = score;
-        createCookie(highscore);
-        output.innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
-      }
-      document.getElementById("output").innerHTML = `<p>You would have ${die() ? 'lost' : 'won'} if you doubled`
-        
-      score = 1;
-      document.querySelector('#current-score').innerHTML = "Score = " + score;
-    })
+    if (score > highscore){
+      highscore = score;
+      createCookie(highscore);
+      output.innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
+    }
+    document.getElementById("output").innerHTML = `<p>You would have ${die ? 'lost' : 'won'} if you doubled`
+
+    score = 1;
+    document.querySelector('#current-score').innerHTML = "Score = " + score;
   }
 
-  function double(){
-    if (die()){
+  function double(die){
+    if (die){
       score = 1;
     }
     else{
-      score *= 2;
+      score <<= 1;
     }
-    window.setTimeout(_ => {
-      document.querySelector('#current-score').innerHTML = "Score = " + score;
-      document.getElementById("output").innerHTML = ""
-    })
+    document.querySelector('#current-score').innerHTML = "Score = " + score;
+    document.getElementById("output").innerHTML = ""
   }
 
 </script>
