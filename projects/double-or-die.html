@@ -3,33 +3,9 @@ layout: page
 published: true
 ---
 
-<h1>Double or Die(NEW)</h1>
+<h1>Double or Die</h1>
 
 You have a 1/5 chance to die each time you try to double your score. You can save your current score or you can continue going in order to beat your highscore. If you die you lose your current score. Try to get the highest possible score.
-
-<script>
-  var score = 1;
-  var highscore;
-
-  function createCookie(highscore) {
-    document.cookie = "highscore="+highscore+";"
-  }
-  
-  function readCookie(){
-    var cookieFind = parseInt(document.cookie.match(/highscore=(\d+)/)[1])
-    highscore = cookieFind
-  }
-
-  try{
-    readCookie()
-  }
-  catch(error){
-    highscore = 1
-    createCookie(highscore)
-  }
-
-
-</script>
 
 <center>
 
@@ -53,6 +29,26 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
 
 
 <script>
+  var score = 1;
+  var highscore;
+
+  function createCookie(highscore) {
+    document.cookie = "highscore="+highscore+";"
+  }
+  
+  function readCookie(){
+    var cookieFind = parseInt(document.cookie.match(/highscore=(\d+)/)[1])
+    highscore = cookieFind
+  }
+
+  try{
+    readCookie()
+  }
+  catch(error){
+    highscore = 1
+    createCookie(highscore)
+  }
+  
   document.querySelector('#highscore').innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
 
   function reset(){
