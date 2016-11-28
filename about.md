@@ -16,7 +16,6 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 - [Visual Studio](https://www.visualstudio.com/)
 - [Komodo Edit/IDE](http://www.activestate.com/komodo-ide) - My first IDE, very useful. 
 - [Eclipse](https://eclipse.org/) - Okay text-editor for Java, not the biggest fan. 
-
 - [PyCharm](https://www.jetbrains.com/pycharm/) - Pretty good text-editor used for Python. I prefer it to the original Python IDLE since it's easier to modify code. It doesn't, however, have that many useful commands that save time.
 
 - [oXygen XML](https://www.oxygenxml.com/)
@@ -43,7 +42,6 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 - [Sortingh.at](http://www.sortingh.at/) -  Tool that gives personalized resources to help get started making games.
 - [Icon generators](http://www.icongenerators.net/index.html) - Make cool avatars and icons.
 - [Subtle Patterns](http://subtlepatterns.com/) - Background images.
-
 
 - [WinMerge](http://winmerge.org/?lang=en), 
   [WinSCP](https://winscp.net/eng/index.php), 
@@ -156,7 +154,6 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 - [Pathfinding Algorithms](http://qiao.github.io/PathFinding.js/visual/)
 - [Conway's Game of Life](http://pmav.eu/stuff/javascript-game-of-life-v3.1.1/)
 - [Cell Simulation](https://notagoat.github.io/Hunter.html)
-
 
 - [Password Security](https://howsecureismypassword.net/)
 - [Simpsons Quotes](https://frinkiac.com/)
