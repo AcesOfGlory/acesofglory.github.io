@@ -31,10 +31,16 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
   }
 
   function dateCalculator(){
+    var startDay = document.getElementById("start-day").value;
+    var startMonth = document.getElementById("start-month").value;
+    var startYear = document.getElementById("start-year").value;
+    var endDay = document.getElementById("end-day").value;
+    var endMonth = document.getElementById("end-month").value;
+    var endYear = document.getElementById("end-year").value;
     
-    var dayDiff = Math.abs(document.getElementById("start-day").value - document.getElementById("end-day").value);
-    var monthDiff = Math.abs(document.getElementById("start-month").value - document.getElementById("end-month").value);
-    var yearDiff = Math.abs(document.getElementById("start-year").value - document.getElementById("end-year").value);
+    var dayDiff = Math.abs(startDay - endDay);
+    var monthDiff = Math.abs(startMonth - endMonth);
+    var yearDiff = Math.abs(startYear - endYear);
     
     var secondsTotal = (dayDiff * 60*60*24) + (monthDiff * 60*60*24*30) + (yearDiff * 60*60*24*365);
     
