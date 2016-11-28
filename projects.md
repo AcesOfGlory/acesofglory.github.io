@@ -39,6 +39,7 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
 - [Scrabble Score](/projects/scrabble-score)
 - [Shitpost Generator](/projects/shitpost-generator)
 - [Integer English](/projects/integer-english)
+- [Date Calculator](/projects/date-calculator)
 
 
 <button onclick="myFunction()">Random</button>
