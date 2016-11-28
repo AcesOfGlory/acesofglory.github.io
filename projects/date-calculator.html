@@ -1,0 +1,49 @@
+---
+layout: page
+published: true
+---
+
+<h1>Date Calculator</h1>
+
+<br>
+
+Start Date: <input id="start-day" size=5 placeholder="dd" style="text-align:center;margin-left:4em;"/>
+<input id="start-month" size=5 placeholder="mm" style="text-align:center;margin-left:4em;"/> 
+<input id="start-year" size=5 placeholder="yyyy" style="text-align:center;margin-left:4em;"/> 
+<button onclick="today()">Today</button>
+<br>    
+<br>
+End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;margin-left:4em;">
+<input id="end-month" size=5 placeholder="mm" style="text-align:center;margin-left:4em;">
+<input id="end-year" size=5 placeholder="yyyy" style="text-align:center;margin-left:4em;">
+<button onclick="today()">Today</button>
+<br>
+<br>
+<button onclick="dateCalculator()">Calculate</button>
+<br>
+
+<div id=output></div>
+
+<script type="text/javascript">
+
+  function dateCalculator(){
+    return `The duration is: ${5} days, ${5} hours, ${5} minutes and ${5} seconds<br><br>
+            
+            ${5} milliseconds<br>
+            ${5} seconds<br>
+            ${5} minutes<br>
+            ${5} hours<br>
+            ${5} days<br>
+            ${5} weeks<br>
+            ${5} months<br>
+            ${5} years (+${5} days of a common year)`
+    };
+  
+  function today(){
+    return 5;
+  }
+
+    
+
+
+</script>
