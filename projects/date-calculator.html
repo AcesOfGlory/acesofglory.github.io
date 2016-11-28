@@ -8,15 +8,15 @@ published: true
 <br>
 
 Start Date: <input id="start-day" size=5 placeholder="dd" style="text-align:center;margin-left:4em;"/>
-<input id="start-month" size=5 placeholder="mm" style="text-align:center;margin-left:4em;"/> 
-<input id="start-year" size=5 placeholder="yyyy" style="text-align:center;margin-left:4em;"/> 
-<button onclick="today()">Today</button>
+/ <input id="start-month" size=5 placeholder="mm" style="text-align:center;"/> 
+/ <input id="start-year" size=5 placeholder="yyyy" style="text-align:center"/> 
+<button onclick="todayUpdate('start')">Today</button>
 <br>    
 <br>
 End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;margin-left:4em;">
-<input id="end-month" size=5 placeholder="mm" style="text-align:center;margin-left:4em;">
-<input id="end-year" size=5 placeholder="yyyy" style="text-align:center;margin-left:4em;">
-<button onclick="today()">Today</button>
+/ <input id="end-month" size=5 placeholder="mm" style="text-align:center">
+/ <input id="end-year" size=5 placeholder="yyyy" style="text-align:center">
+<button onclick="todayUpdate('end')">Today</button>
 <br>
 <br>
 <button onclick="dateCalculator()">Calculate</button>
@@ -25,25 +25,47 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
 <div id=output></div>
 
 <script type="text/javascript">
-
-  function dateCalculator(){
-    return `The duration is: ${5} days, ${5} hours, ${5} minutes and ${5} seconds<br><br>
-            
-            ${5} milliseconds<br>
-            ${5} seconds<br>
-            ${5} minutes<br>
-            ${5} hours<br>
-            ${5} days<br>
-            ${5} weeks<br>
-            ${5} months<br>
-            ${5} years (+${5} days of a common year)`
-    };
   
-  function today(){
-    return 5;
+  function groupByCommas(n) {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  function dateCalculator(){
     
-
+    var dayDiff = Math.abs(document.getElementById("start-day").value - document.getElementById("end-day").value);
+    var monthDiff = Math.abs(document.getElementById("start-month").value - document.getElementById("end-month").value);
+    var yearDiff = Math.abs(document.getElementById("start-year").value - document.getElementById("end-year").value);
+    
+    var secondsTotal = (dayDiff * 60*60*24) + (monthDiff * 60*60*24*30) + (yearDiff * 60*60*24*365);
+    
+    var daysLeft = Math.floor(secondsTotal / (60*60*24));
+    var hoursLeft = daysLeft % 24;
+    var minutesLeft = hoursLeft % 60;
+    var secondsLeft = minutesLeft % 60;
+    
+    document.getElementById("output").innerHTML = 
+    `<br>The duration is: ${groupByCommas(daysLeft)} days, ${groupByCommas(hoursLeft)} hours, 
+    ${groupByCommas(minutesLeft)} minutes and ${groupByCommas(secondsLeft)} seconds<br><br>
+            
+            ${groupByCommas(secondsTotal * 1000)} milliseconds<br>
+            ${groupByCommas(secondsTotal)} seconds<br>
+            ${groupByCommas(Math.floor(secondsTotal / 60))} minutes<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60)))} hours<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60*24)))} days<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*7)))} weeks<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*30)))} months<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*365)))} years (+${Math.floor(secondsTotal / (60*60*24*365)) % 365} days of a common year)`;
+    };
+  
+  function todayUpdate(time){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    
+    document.getElementById(time + "-day").value = dd;
+    document.getElementById(time + "-month").value = mm;
+    document.getElementById(time + "-year").value = yyyy;
+  }
 
 </script>
