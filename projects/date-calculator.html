@@ -31,18 +31,28 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
   }
 
   function dateCalculator(){
-    var startDay = document.getElementById("start-day").value;
-    var startMonth = document.getElementById("start-month").value;
-    var startYear = document.getElementById("start-year").value;
-    var endDay = document.getElementById("end-day").value;
-    var endMonth = document.getElementById("end-month").value;
-    var endYear = document.getElementById("end-year").value;
     
-    var dayDiff = Math.abs(startDay - endDay);
-    var monthDiff = Math.abs(startMonth - endMonth);
-    var yearDiff = Math.abs(startYear - endYear);
+    var todayDate = new Date();
     
-    var secondsTotal = (dayDiff * 60*60*24) + (monthDiff * 60*60*24*30) + (yearDiff * 60*60*24*365);
+    var startDay = +document.getElementById("start-day").value;
+    var startMonth = +document.getElementById("start-month").value;
+    var startYear = +document.getElementById("start-year").value;
+    var endDay = +document.getElementById("end-day").value;
+    var endMonth = +document.getElementById("end-month").value;
+    var endYear = +document.getElementById("end-year").value;
+    
+    var start = new Date(startYear, startMonth - 1, startDay);
+    var end = new Date(endYear, endMonth - 1, endDay);
+    
+    if (todayDate.toDateString() === start.toDateString()){
+      start = new Date();
+    }
+    
+    if (todayDate.toDateString() === end.toDateString()){
+      end = new Date();
+    }
+    
+    var secondsTotal = Math.floor(Math.abs(start.getTime() - end.getTime()) / 1000);
     
     var daysLeft = Math.floor(secondsTotal / (60*60*24));
     var hoursLeft = daysLeft % 24;
@@ -53,25 +63,22 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
     `<br>The duration is: ${groupByCommas(daysLeft)} days, ${groupByCommas(hoursLeft)} hours, 
     ${groupByCommas(minutesLeft)} minutes and ${groupByCommas(secondsLeft)} seconds<br><br>
             
-            ${groupByCommas(secondsTotal * 1000)} milliseconds<br>
-            ${groupByCommas(secondsTotal)} seconds<br>
-            ${groupByCommas(Math.floor(secondsTotal / 60))} minutes<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60)))} hours<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60*24)))} days<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*7)))} weeks<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*30)))} months<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*365)))} years (+${Math.floor(secondsTotal / (60*60*24*365)) % 365} days of a common year)`;
+            ${groupByCommas(secondsTotal * 1000)} millisecond(s)<br>
+            ${groupByCommas(secondsTotal)} second(s)<br>
+            ${groupByCommas(Math.floor(secondsTotal / 60))} minute(s)<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60)))} hour(s)<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60*24)))} day(s)<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*7)))} week(s)<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*30)))} month(s)<br>
+            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*365)))} year(s) (+${Math.floor(secondsTotal / (60*60*24*365)) % 365} days of a common year)`;
     };
   
   function todayUpdate(time){
     var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
     
-    document.getElementById(time + "-day").value = dd;
-    document.getElementById(time + "-month").value = mm;
-    document.getElementById(time + "-year").value = yyyy;
+    document.getElementById(time + "-day").value = today.getDate();
+    document.getElementById(time + "-month").value = today.getMonth() + 1;
+    document.getElementById(time + "-year").value = today.getFullYear();
   }
 
 </script>
