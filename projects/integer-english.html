@@ -76,7 +76,7 @@ E.g five ==> 5
   };
 
   function intToEnglish(num){
-    var num = parseInt(document.getElementById("integer").value)
+    var num = parseInt(document.getElementById("integer").value.replace(/,/g, ""))
     var units = [[1000000000000000, 'quadrillion'], [1000000000000, 'trillion'], [1000000000, 'billion'], [1000000, 'million'], [1000, 'thousand'], [1, '']], res = [];
     for(var unit of units){
         var base = unit[0], word = unit[1], head = Math.floor(num / base);
@@ -123,7 +123,7 @@ E.g five ==> 5
   }
   
   function nameNumber(){
-    const n = document.getElementById("name").value
+    const n = document.getElementById("name").value.replace(/,/g, "")
     if (!/^\d+$/.test(n)){
       return;
     };
