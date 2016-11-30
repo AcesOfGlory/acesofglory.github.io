@@ -124,10 +124,11 @@ E.g five ==> 5
   }
   
   function nameNumber(){
-    const n = document.getElementById("name").value.replace(/,/g, "").trim().replace(/^(?!0$)0+/, "")
-    if (!/^\d+$/.test(n)){
+    var n = document.getElementById("name").value.replace(/,/g, "").trim().replace(/^(?!0$)0+/, "")
+    if (isNaN(parseInt(n)){
       return;
-    };
+    }
+    n = n.split(".")[0];
     const nameLength = n.length - 1
     
     if (3 <= nameLength && nameLength <= 125){
