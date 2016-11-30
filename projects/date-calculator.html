@@ -44,6 +44,12 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
     var start = new Date(startYear, startMonth - 1, startDay);
     var end = new Date(endYear, endMonth - 1, endDay);
     
+    if (!(start.getFullYear() == startYear && (start.getMonth() + 1) == startMonth && start.getDate() == Number(startDay))
+       || !(end.getFullYear() == endYear && (end.getMonth() + 1) == endMonth && end.getDate() == Number(endDay))){
+      return document.getElementById("output").innerHTML = "Invalid Date";
+    }
+    
+    
     if (todayDate.toDateString() === start.toDateString()){
       start = new Date();
     }
