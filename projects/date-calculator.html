@@ -52,10 +52,11 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
       end = new Date();
     }
     
-    var secondsTotal = Math.floor(Math.abs(start.getTime() - end.getTime()) / 1000);
+    var millisecondsTotal = Math.abs(start.getTime() - end.getTime());
+    var secondsTotal = Math.floor(millisecondsTotal / 1000);
+    var yearsTotal = Math.floor(daysLeft / 365)
     
     var daysLeft = secondsTotal / (60*60*24);
-    console.log(daysLeft)
     var hoursLeft = (daysLeft%1) * 24;
     var minutesLeft = (hoursLeft%1) * 60;
     var secondsLeft = (minutesLeft%1) * 60;
@@ -64,15 +65,17 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
     `<br>The duration is: ${groupByCommas(Math.floor(daysLeft))} days, ${Math.floor(hoursLeft)} hours, 
     ${Math.floor(minutesLeft)} minutes and ${Math.floor(secondsLeft)} seconds<br><br>
             
-            ${groupByCommas(secondsTotal * 1000)} millisecond(s)<br>
+            ${groupByCommas(millisecondsTotal)} millisecond(s)<br>
             ${groupByCommas(secondsTotal)} second(s)<br>
             ${groupByCommas(Math.floor(secondsTotal / 60))} minute(s)<br>
             ${groupByCommas(Math.floor(secondsTotal / (60*60)))} hour(s)<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60*24)))} day(s)<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*7)))} week(s)<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*30)))} month(s)<br>
-            ${groupByCommas(Math.floor(secondsTotal / (60*60*24*365)))} year(s) (+${Math.floor(secondsTotal / (60*60*24*365)) % 365} days of a common year)`;
-    };
+            ${groupByCommas(Math.floor(daysLeft))} day(s)<br>
+            ${groupByCommas(Math.floor(daysLeft / 7))} week(s)<br>
+            ${groupByCommas(Math.floor(daysLeft / 30))} month(s)<br>
+            ${groupByCommas(yearsTotal)} year(s) (+${yearsTotal % 365} days of a common year)`;
+    
+    timer()
+  };
   
   function todayUpdate(time){
     var today = new Date();
@@ -80,6 +83,10 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
     document.getElementById(time + "-day").value = today.getDate();
     document.getElementById(time + "-month").value = today.getMonth() + 1;
     document.getElementById(time + "-year").value = today.getFullYear();
+  }
+  
+   function timer() {
+      setTimeout(dateCalculator, 25);
   }
 
 </script>
