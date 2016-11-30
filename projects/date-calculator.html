@@ -54,14 +54,15 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
     
     var secondsTotal = Math.floor(Math.abs(start.getTime() - end.getTime()) / 1000);
     
-    var daysLeft = Math.floor(secondsTotal / (60*60*24));
-    var hoursLeft = daysLeft % 24;
-    var minutesLeft = hoursLeft % 60;
-    var secondsLeft = minutesLeft % 60;
+    var daysLeft = secondsTotal / (60*60*24);
+    console.log(daysLeft)
+    var hoursLeft = (daysLeft%1) * 24;
+    var minutesLeft = (hoursLeft%1) * 60;
+    var secondsLeft = (minutesLeft%1) * 60;
     
     document.getElementById("output").innerHTML = 
-    `<br>The duration is: ${groupByCommas(daysLeft)} days, ${groupByCommas(hoursLeft)} hours, 
-    ${groupByCommas(minutesLeft)} minutes and ${groupByCommas(secondsLeft)} seconds<br><br>
+    `<br>The duration is: ${groupByCommas(Math.floor(daysLeft))} days, ${Math.floor(hoursLeft)} hours, 
+    ${Math.floor(minutesLeft)} minutes and ${Math.floor(secondsLeft)} seconds<br><br>
             
             ${groupByCommas(secondsTotal * 1000)} millisecond(s)<br>
             ${groupByCommas(secondsTotal)} second(s)<br>
