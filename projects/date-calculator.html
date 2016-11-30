@@ -54,12 +54,13 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
     
     var millisecondsTotal = Math.abs(start.getTime() - end.getTime());
     var secondsTotal = Math.floor(millisecondsTotal / 1000);
-    var yearsTotal = Math.floor(daysLeft / 365)
     
     var daysLeft = secondsTotal / (60*60*24);
     var hoursLeft = (daysLeft%1) * 24;
     var minutesLeft = (hoursLeft%1) * 60;
     var secondsLeft = (minutesLeft%1) * 60;
+    
+    var yearsTotal = Math.floor(daysLeft / 365)
     
     document.getElementById("output").innerHTML = 
     `<br>The duration is: ${groupByCommas(Math.floor(daysLeft))} days, ${Math.floor(hoursLeft)} hours, 
