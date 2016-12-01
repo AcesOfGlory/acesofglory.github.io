@@ -66,8 +66,6 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
     var minutesLeft = (hoursLeft%1) * 60;
     var secondsLeft = (minutesLeft%1) * 60;
     
-    var yearsTotal = Math.floor(daysLeft / 365)
-    
     document.getElementById("output").innerHTML = 
     `<br>The duration is: ${groupByCommas(Math.floor(daysLeft))} days, ${Math.floor(hoursLeft)} hours, 
     ${Math.floor(minutesLeft)} minutes and ${Math.floor(secondsLeft)} seconds<br><br>
@@ -79,7 +77,7 @@ End Date: <input id="end-day" size=5 placeholder="dd" style="text-align:center;m
             ${groupByCommas(Math.floor(daysLeft))} day(s)<br>
             ${groupByCommas(Math.floor(daysLeft / 7))} week(s)<br>
             ${groupByCommas(Math.floor(daysLeft / 30))} month(s)<br>
-            ${groupByCommas(yearsTotal)} year(s) (+${yearsTotal % 365} days of a common year)`;
+            ${groupByCommas(Math.floor(daysLeft / 365))} year(s) (+${Math.floor(daysLeft) % 365} days of a common year)`;
     
     timer()
   };
