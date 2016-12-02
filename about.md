@@ -115,7 +115,6 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 - [Rosetta Code](http://rosettacode.org/wiki/Rosetta_Code)
 - [Shodan](https://shodan.me/books/)
 - [Github](https://github.com/)
-- 
 
 ## Webpages
 
@@ -154,6 +153,9 @@ My name is Sam Nayak and I am a 17 year old back-end developer. I am very passio
 - [Pathfinding Algorithms](http://qiao.github.io/PathFinding.js/visual/)
 - [Conway's Game of Life](http://pmav.eu/stuff/javascript-game-of-life-v3.1.1/)
 - [Cell Simulation](https://notagoat.github.io/Hunter.html)
+- [2048](https://gabrielecirulli.github.io/2048/)
+- [2048 Cupcake](http://0x0800.github.io/2048-CUPCAKES/)
+- [Hexagon Tetris](http://hextris.io/)
 
 - [Password Security](https://howsecureismypassword.net/)
 - [Simpsons Quotes](https://frinkiac.com/)
