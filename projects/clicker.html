@@ -25,12 +25,12 @@ published: true
 	}
 	
 	if (/cookies=\d+/.test(document.cookie)){
-		cookies = readCookie();
 		console.log(true)
-		console.log(document.cookie)
+		cookies = readCookie();
 	}
 	else{
 		cookies = 0;
+		console.log(false)
 		createCookie();
 	}
 	
@@ -43,8 +43,6 @@ published: true
 		cookies++;
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
 		updateCookie(cookies);
-		console.log(cookies)
-		console.log(document.cookie)
 	}
 
 
