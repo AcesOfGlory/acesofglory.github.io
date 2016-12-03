@@ -13,27 +13,26 @@ published: true
 <script type="text/javascript">
 	var cookies;
 	
-	function createCookie(highscore) {
-  	if (/cookies=\d+/.test(document.cookie)){
-      document.cookie.replace(/cookies=\d+/, "cookies="+cookies)
-    }
-    else{
-      document.cookie += "cookies="+cookies+";"
-    }
+	function updateCookie(cookies) {
+		document.cookie.replace(/cookies=\d+/, "cookies="+cookies);
   }
+	function createCookie(){
+		document.cookie += "cookies=0;";
+	}
   
   function readCookie(){
-    var cookieFind = parseInt(document.cookie.match(/cookies=(\d+)/)[1])
-    cookies = cookieFind
+    return parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
   }
-
-  try{
-    readCookie()
-  }
-  catch(error){
-    cookies = 0
-    createCookie(cookies)
-  }
+	
+	if (/cookies=\d+/.test(document.cookie)){
+		cookies = readCookie();
+	}
+	else{
+		cookies = 0;
+		createCookie();
+	}
+	
+	
 	document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
 	
 	
