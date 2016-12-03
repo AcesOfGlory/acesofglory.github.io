@@ -15,14 +15,14 @@ published: true
 	
 	function updateCookie(cookies) {
 		document.cookie.replace(/cookies=\d+/, "cookies="+cookies);
-  }
+	}
 	function createCookie(){
 		document.cookie = "cookies=0;";
 	}
   
-  function readCookie(){
-    return parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
-  }
+	function readCookie(){
+		return parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
+	}
 	
 	if (/cookies=\d+/.test(document.cookie)){
 		cookies = readCookie();
@@ -38,10 +38,10 @@ published: true
 
 
 	function clickCookie(){
-  	cookies++;
-  	document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
-		updateCookie(cookies);
-  }
+  		cookies++;
+  		document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
+			updateCookie(cookies);
+	}
 
 
 </script>
@@ -52,9 +52,9 @@ published: true
 
 	.button-style{
   	 	display: block;
-     	height: 250px;
-     	width: 250px;
-     	outline: 0;
+     		height: 250px;
+     		width: 250px;
+     		outline: 0;
 	}
 
 </style>
