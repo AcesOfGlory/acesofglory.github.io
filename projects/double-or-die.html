@@ -33,7 +33,12 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
   var highscore;
 
   function createCookie(highscore) {
-    document.cookie = "highscore="+highscore+";"
+    if (/highscore=\d+/.test(document.cookie)){
+      document.cookie.replace(/highscore=\d+/, "highscore="+highscore)
+    }
+    else{
+      document.cookie += "highscore="+highscore+";"
+    }
   }
   
   function readCookie(){
