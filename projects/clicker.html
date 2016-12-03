@@ -26,6 +26,8 @@ published: true
 	
 	if (/cookies=\d+/.test(document.cookie)){
 		cookies = readCookie();
+		console.log(True)
+		console.log(document.cookie)
 	}
 	else{
 		cookies = 0;
@@ -38,9 +40,11 @@ published: true
 
 
 	function clickCookie(){
-  		cookies++;
-  		document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
-			updateCookie(cookies);
+		cookies++;
+		document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
+		updateCookie(cookies);
+		console.log(cookies)
+		console.log(document.cookie)
 	}
 
 
