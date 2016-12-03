@@ -1,0 +1,32 @@
+---
+layout: page
+published: true
+---
+
+<input type="image" onclick="clickme();" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
+<div style="text-align: center" id="cookie-amount">Cookies = 0</div>
+
+
+<script type="text/javascript">
+
+	var cookies = 0;
+
+	function clickme(){
+   cookies++;
+   document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
+  }
+
+</script>
+
+
+
+<style type="text/css">
+
+	.button-style{
+    	display: block;
+    	margin: 0 auto;
+    	height: 250px;
+        width: 250px;
+    }
+
+</style>
