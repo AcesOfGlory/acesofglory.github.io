@@ -36,11 +36,12 @@ published: true
 	
   class Building {
 
-    constructor(name, cost, time=1) {
+    constructor(name, cost, increment, time=1) {
       this.group = "Building";
       this.amount = 0;
       this.name = name;
       this.cost = cost;
+			this.increment = increment
       this.time = time;
     }
   
@@ -62,9 +63,13 @@ published: true
   
   
   buildings.forEach(item => {
-    document.write("<div>");
-    document.write("<input type='button' onclick='buy(item)' value='" + `${item.name}: ${item.amount} (costs ${item.cost})` + "'/>");
-  })
+    var card = document.createElement("input");
+    card.type = "button";
+    card.onclick = buy(item);
+    card.value = `${item.name}: ${item.amount} (costs ${item.cost})`
+    document.body.appendChild(card);
+	}); 
+
 
 	function clickCookie(){
 		cookies++;
@@ -82,7 +87,7 @@ published: true
       if (item.group == "Building"){
         item.cost = Math.floor(item.cost * 1.3)
 
-        cps += item.gain/item.time;
+        cps += item.increment/item.time;
         
         document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
         document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`;
