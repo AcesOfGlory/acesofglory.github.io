@@ -6,34 +6,65 @@ published: true
 <figure>
 	<input type="image" onclick="clickCookie();" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
 	<figcaption id="cookie-amount">Cookies = 0</figcaption>
-	<figcaption id="cps">CPS = 0</figcaption>
+	<figcaption id="cps-amount">CPS = 0</figcaption>
 </figure>
 
 
 <script type="text/javascript">
 	var cookies;
+  var cps = 0;
 	var currentCookie;
 
   function createCookie(cookies) {
-    document.cookie = "cookies="+cookies+";"
+    document.cookie = "cookies="+cookies+";";
   }
   
   function readCookie(){
-    var cookieFind = parseInt(document.cookie.match(/cookies=(\d+)/)[1])
-		currentCookie = cookieFind
-    cookies= cookieFind
+    var cookieFind = parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
+		currentCookie = cookieFind;
+    cookies= cookieFind;
   }
 
   try{
-    readCookie()
+    readCookie();
   }
   catch(error){
-    cookies = 0
-    createCookie(cookies)
+    cookies = 0;
+    createCookie(cookies);
   }
-	document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
+	document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`;
 	
+  class Building {
 
+    constructor(name, cost, time=1) {
+      this.group = "Building";
+      this.amount = 0;
+      this.name = name;
+      this.cost = cost;
+      this.time = time;
+    }
+  
+  }
+  
+  const buildings = [
+    new Building("Cursor", 10, 0.25),
+    new Building("Grandma", 100, 1),
+    new Building("Farm", 500, 8),
+    new Building("Mine", 10000, 20),
+    new Building("Factory", 50000, 100),
+    new Building("Bank", 100000, 250),
+    new Building("Temple", 250000, 1000),
+    new Building("Wizard tower", 500000, 2500),
+    new Building("Shipment", 1000000, 7500),
+    new Building("Alchemy lab", 5000000, 50000),
+    new Building("Portal", 10000000, 150000)
+  ];
+  
+  
+  buildings.forEach(item => {
+    document.write("<div>");
+    document.write("<input type='button' onclick='buy(item)' value='" + `${item.name}: ${item.amount} (costs ${item.cost})` + "'/>");
+  })
 
 	function clickCookie(){
 		cookies++;
@@ -42,6 +73,22 @@ published: true
 			createCookie(cookies);
 		}
 	}
+  
+  function buy(item){
+    if (cookies >= item.cost){
+      item.amount++;
+      cookies -= item.cost;
+
+      if (item.group == "Building"){
+        item.cost = Math.floor(item.cost * 1.3)
+
+        cps += item.gain/item.time;
+        
+        document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
+        document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`;
+      }      
+    }              
+  }
 
 
 </script>
