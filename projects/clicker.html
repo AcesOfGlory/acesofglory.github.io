@@ -11,7 +11,7 @@ published: true
 
 
 <script type="text/javascript">
-	var cookies;
+	var cookies = 0;
 	
 	function updateCookie(cookies) {
 		document.cookie.replace(/cookies=\d+/, "cookies="+cookies);
@@ -21,6 +21,7 @@ published: true
 	}
   
 	function readCookie(){
+		console.log(document.cookie.match(/cookies=(\d+)/)[1])
 		return parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
 	}
 	
@@ -29,7 +30,6 @@ published: true
 		cookies = readCookie();
 	}
 	else{
-		cookies = 0;
 		console.log(false)
 		createCookie();
 	}
