@@ -11,38 +11,35 @@ published: true
 
 
 <script type="text/javascript">
-	var cookies = 0;
-	
-	function updateCookie(cookies) {
-		document.cookie.replace(/cookies=\d+/, "cookies="+cookies);
-	}
-	function createCookie(){
-		document.cookie = "cookies=0";
-	}
+	var cookies;
+	var currentCookie;
+
+  function createCookie(cookies) {
+    document.cookie = "cookies="+cookies+";"
+  }
   
-	function readCookie(){
-		console.log(document.cookie.match(/cookies=(\d+)/)[1])
-		return parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
-	}
-	
-	if (/cookies=\d+/.test(document.cookie)){
-		console.log(true)
-		cookies = readCookie();
-	}
-	else{
-		console.log(false)
-		createCookie();
-	}
-	
-	
-	document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
+  function readCookie(){
+    var cookieFind = parseInt(document.cookie.match(/cookies=(\d+)/)[1])
+		currentCookie = cookieFind
+    cookies= cookieFind
+  }
+
+  try{
+    readCookie()
+  }
+  catch(error){
+    cookies = 0
+    createCookie(cookies)
+  }
 	
 
 
 	function clickCookie(){
 		cookies++;
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
-		updateCookie(cookies);
+		if (cookies > currentCookie){
+			createCookie(cookies);
+		}
 	}
 
 
