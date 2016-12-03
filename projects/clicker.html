@@ -35,13 +35,12 @@ published: true
 	
 	document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
 	
-	
-	
+
 
 	function clickCookie(){
   	cookies++;
   	document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
-		createCookie(cookies);
+		updateCookies(cookies);
   }
 
 
