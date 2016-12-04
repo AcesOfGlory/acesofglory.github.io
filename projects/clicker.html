@@ -22,6 +22,8 @@ published: true
 	var cps = 0;
 	var hasBought = false;
 	var currentCookie;
+	
+	setInterval(autosave, 30000);
 
 	function createCookie(cookies) {
 		document.cookie = "cookies="+cookies+";";
@@ -85,9 +87,6 @@ published: true
 	function clickCookie(){
 		cookies++;
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
-		if (cookies > currentCookie){
-			createCookie(cookies);
-		}
 	}
 
 	function buy(item){
@@ -113,9 +112,16 @@ published: true
 	}
 	
 	function loop(){
-		cookies += cps / 100
+		cookies += (cps / 100);
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
 		setTimeout(loop, 10);		
+	}
+	
+	function autosave(){
+		if (cookies > currentCookie){
+			createCookie(cookies);
+		}
+		
 	}
 
 
