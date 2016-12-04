@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Cookie Clicker</h1>
-<small>Version 1.0.4</small>
+<small>Version 1.0.5</small>
 
 <div id="buildings-shop" class="button-column"></div>
 
@@ -72,11 +72,10 @@ published: true
 		var para = document.createElement("BR");
 		var card = document.createElement("input"); 
 		card.type = "button";
-		card.onclick = buy(item);
+		card.onclick = _ => buy(item);
 		card.value = `${item.name}: ${item.amount} (costs ${item.cost})`; 
 		document.getElementById("buildings-shop").appendChild(card);
-        document.getElementById("buildings-shop").appendChild(para);
-
+    document.getElementById("buildings-shop").appendChild(para);
 	}); 
 
 
