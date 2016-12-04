@@ -35,7 +35,7 @@ published: true
 	setTimeout(function() {
 	    now = new Date();
 	    var elapsedTime = (now.getTime() - before.getTime());
-	    if (elapsedTime > delay)
+	    if (elapsedTime > 1000)
 		cookies += (cps / 100) * Math.floor(elapsedTime/1000);
 	    before = new Date();    
 	}, 1000);
