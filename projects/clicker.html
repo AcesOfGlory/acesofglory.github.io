@@ -9,7 +9,7 @@ published: true
 <div id="buildings-shop" class="button-column">Buildings: <p></div>
 
 <div>
-	<input type="image" onclick="clickCookie();" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
+	<input type="image" onclick="clickCookie();" id="cookie-image" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
 </div>
 
 <p id="cookie-amount">Cookies = 0</p>
@@ -17,6 +17,7 @@ published: true
 
 
 <script type="text/javascript">
+	document.getElementById('cookie-image').ondragstart = function() { return false; };
 	var cookies;
 	var cps = 0;
 	var hasBought = false;
@@ -129,12 +130,11 @@ published: true
 		height: 250px;
 		width: 250px;
 		outline: 0;
-    float: left;
-		pointer-events: none;
+        	float: left;
 	}
 	
 	.button-column{
-        float: right;
+        	float: right;
 	}
 
 </style>
