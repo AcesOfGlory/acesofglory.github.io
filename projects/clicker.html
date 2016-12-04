@@ -25,20 +25,24 @@ published: true
 <script type="text/javascript">
 	document.getElementById('cookie-image').ondragstart = function() { return false; };
 	
-	var $div = $('div');
-	var a = 0;
-	setInterval(function() {
-			a++;
-			$div.stop(true,true).css("left", a);
-	}, 1000 / 30);
+	var now, before = new Date();
 	
 	var cookies;
 	var cps = 0;
 	var hasBought = false;
 	var currentCookie;
 	
+	setTimeout(function() {
+	    now = new Date();
+	    var elapsedTime = (now.getTime() - before.getTime());
+	    if (elapsedTime > delay)
+		cookies += (cps / 100) * Math.floor(elapsedTime/1000);
+	    before = new Date();    
+	}, 1000);
+	
 	setInterval(autosave, 30000);
 	setInterval(updateCookies, 2000);
+		
 
 	function createCookie(cookies) {
 		document.cookie = "cookies="+cookies+";";
