@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Cookie Clicker</h1>
-<small>Version 1.0.2</small>
+<small>Version 1.0.3</small>
 
 <figure>
 	<input type="image" onclick="clickCookie();" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
@@ -67,12 +67,16 @@ published: true
 
 	buildings.forEach(item => {
 		var div = document.createElement("DIV");
+		var para = document.createElement("P");
 		var card = document.createElement("input"); 
 		card.type = "button";
 		card.onclick = buy(item);
 		card.value = `${item.name}: ${item.amount} (costs ${item.cost})`; 
-		var newDiv = div.appendChild(card);
+		para.appendChild(card);
+		var newDiv = div.appendChild(para);
 		document.body.appendChild(newDiv);
+		
+		para.style.textAlign = "right";
 	}); 
 
 
