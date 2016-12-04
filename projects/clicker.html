@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Cookie Clicker</h1>
-<small>Version 1.0</small>
+<small>Version 1.0.1</small>
 
 <figure>
 	<input type="image" onclick="clickCookie();" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
@@ -24,7 +24,7 @@ published: true
   
   function readCookie(){
     var cookieFind = parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
-    currentCookie = cookieFind;
+		currentCookie = cookieFind;
     cookies= cookieFind;
   }
 
@@ -66,14 +66,12 @@ published: true
   
   
   buildings.forEach(item => {
-		document.write("<br>");
-    var card = document.createElement("input");
-		document.write("<br>");
+    var card = document.createElement("input"); 
     card.type = "button";
     card.onclick = buy(item);
-    card.value = `${item.name}: ${item.amount} (costs ${item.cost})`;
+    card.value = `${item.name}: ${item.amount} (costs ${item.cost})`; 
     document.body.appendChild(card);
-		document.write("<br>");
+    document.body.appendChild(document.createElement("DIV"));
 	}); 
 
 
