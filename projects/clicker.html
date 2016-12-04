@@ -73,6 +73,7 @@ published: true
 		var card = document.createElement("input"); 
 		card.type = "button";
 		card.onclick = _ => buy(item);
+		card.id = item.name
 		card.value = `${item.name}: ${item.amount} (costs ${item.cost})`; 
 		document.getElementById("buildings-shop").appendChild(card);
     document.getElementById("buildings-shop").appendChild(para);
@@ -88,19 +89,19 @@ published: true
 	}
 
 	function buy(item){
-		console.log(false)
 		if (cookies >= item.cost){
 			item.amount++;
 			cookies -= item.cost;
 
 			if (item.group == "Building"){
-				console.log(true)
 				item.cost = Math.floor(item.cost * 1.3);
 
 				cps += item.increment/item.time;
 
 				document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
 				document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`;
+				
+				document.getElementById(item.name).value = `${item.name}: ${item.amount} (costs ${item.cost})`;
 			}      
 		}              
 	}
