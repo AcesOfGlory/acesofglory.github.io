@@ -6,11 +6,14 @@ published: true
 <h1>Cookie Clicker</h1>
 <small>Version 1.0.3</small>
 
-<figure>
+<div id="buildings-shop" class="button-column"></div>
+
+<div>
 	<input type="image" onclick="clickCookie();" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
-	<figcaption id="cookie-amount">Cookies = 0</figcaption>
-	<figcaption id="cps-amount">CPS = 0</figcaption>
-</figure>
+</div>
+
+<p id="cookie-amount">Cookies = 0</p>
+<p id="cps-amount">CPS = 0</p>
 
 
 <script type="text/javascript">
@@ -66,17 +69,14 @@ published: true
 
 
 	buildings.forEach(item => {
-		var div = document.createElement("DIV");
-		var para = document.createElement("P");
+		var para = document.createElement("BR");
 		var card = document.createElement("input"); 
 		card.type = "button";
 		card.onclick = buy(item);
 		card.value = `${item.name}: ${item.amount} (costs ${item.cost})`; 
-		para.appendChild(card);
-		var newDiv = div.appendChild(para);
-		document.body.appendChild(newDiv);
-		
-		para.style.textAlign = "right";
+		document.getElementById("buildings-shop").appendChild(card);
+        document.getElementById("buildings-shop").appendChild(para);
+
 	}); 
 
 
@@ -109,13 +109,18 @@ published: true
 
 
 
+
 <style type="text/css">
 
 	.button-style{
-		display: block;
 		height: 250px;
 		width: 250px;
 		outline: 0;
+        float: left;
+	}
+	
+	.button-column{
+        float: right;
 	}
 
 </style>
