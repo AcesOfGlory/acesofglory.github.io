@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Fortune Cookie Clicker</h1>
-<small>Version 1.0.7</small>
+<small>Version 1.0.8</small>
 
 <title>Fortune Cookie Clicker | Sam Nayak</title>
 
@@ -127,7 +127,7 @@ published: true
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
 		now = new Date();
 		var elapsedTime = (now.getTime() - before.getTime());
-		if (elapsedTime > 1000)
+		if (elapsedTime > 10)
 			cookies += (cps / 100) * Math.floor(elapsedTime/1000);
 		before = new Date(); 
 		setTimeout(loop, 10);		
