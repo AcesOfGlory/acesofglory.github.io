@@ -21,7 +21,15 @@ published: true
 <script type="text/javascript">
 	document.getElementById('cookie-image').ondragstart = function() { return false; };
 	
-	var now, before = new Date();
+	var isActive;
+
+	window.onfocus = function () { 
+	  isActive = true; 
+	}; 
+
+	window.onblur = function () { 
+	  isActive = false; 
+	}; 
 	
 	var cookies;
 	var cps = 0;
@@ -123,13 +131,8 @@ published: true
 	}
 	
 	function loop(){
-		cookies += (cps / 100);
+		cookies += (window.isActive ? (cps / 100) : cps)		
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
-		now = new Date();
-		var elapsedTime = (now.getTime() - before.getTime());
-		if (elapsedTime > 10)
-			cookies += (cps / 100) * Math.floor(elapsedTime/1000);
-		before = new Date(); 
 		setTimeout(loop, 10);		
 	}
 	
