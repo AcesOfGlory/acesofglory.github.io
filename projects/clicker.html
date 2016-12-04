@@ -6,7 +6,7 @@ published: true
 <h1>Cookie Clicker</h1>
 <small>Version 1.0.5</small>
 
-<div id="buildings-shop" class="button-column"></div>
+<div id="buildings-shop" class="button-column">Buildings: <p></div>
 
 <div>
 	<input type="image" onclick="clickCookie();" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
@@ -19,6 +19,7 @@ published: true
 <script type="text/javascript">
 	var cookies;
 	var cps = 0;
+	var hasBought = false;
 	var currentCookie;
 
 	function createCookie(cookies) {
@@ -38,7 +39,7 @@ published: true
 		cookies = 0;
 		createCookie(cookies);
 	}
-	document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`;
+	document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
 
 	class Building {
 
@@ -82,13 +83,17 @@ published: true
 
 	function clickCookie(){
 		cookies++;
-		document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`;
+		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
 		if (cookies > currentCookie){
 			createCookie(cookies);
 		}
 	}
 
 	function buy(item){
+		if (!hasBought){
+			hasBought = true;
+			loop();
+		}
 		if (cookies >= item.cost){
 			item.amount++;
 			cookies -= item.cost;
@@ -99,11 +104,17 @@ published: true
 				cps += item.increment/item.time;
 
 				document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
-				document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`;
+				document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
 				
 				document.getElementById(item.name).value = `${item.name}: ${item.amount} (costs ${item.cost})`;
 			}      
 		}              
+	}
+	
+	function loop(){
+		cookies += cps / 100
+		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
+		setTimeout(loop, 10);		
 	}
 
 
@@ -118,7 +129,8 @@ published: true
 		height: 250px;
 		width: 250px;
 		outline: 0;
-        float: left;
+    float: left;
+		pointer-events: none;
 	}
 	
 	.button-column{
