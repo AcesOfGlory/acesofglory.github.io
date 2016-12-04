@@ -3,7 +3,7 @@ layout: page
 published: true
 ---
 
-<h1>Cookie Clicker</h1>
+<h1>Fortune Cookie Clicker</h1>
 <small>Version 1.0.5</small>
 
 <div id="buildings-shop" class="button-column">Buildings: <p></div>
@@ -46,7 +46,7 @@ published: true
 
 	class Building {
 
-		constructor(name, cost, increment, time=1) {
+		constructor(name, cost, increment=0, time=1) {
 			this.group = "Building";
 			this.amount = 0;
 			this.name = name;
@@ -69,6 +69,7 @@ published: true
 		new Building("Shipment", 1000000, 7500),
 		new Building("Alchemy lab", 5000000, 50000),
 		new Building("Portal", 10000000, 150000)
+		new Building("End game", 100000000000)
 	];
 
 
@@ -87,6 +88,7 @@ published: true
 	function clickCookie(){
 		cookies++;
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
+		document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
 	}
 
 	function buy(item){
@@ -95,6 +97,10 @@ published: true
 			loop();
 		}
 		if (cookies >= item.cost){
+			if (item.name === "End game"){
+				alert("Congratulations!");
+			}
+			
 			item.amount++;
 			cookies -= item.cost;
 
