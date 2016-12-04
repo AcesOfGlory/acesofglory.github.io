@@ -3,6 +3,9 @@ layout: page
 published: true
 ---
 
+<h1>Cookie Clicker</h1>
+<small>Version 1.0</small>
+
 <figure>
 	<input type="image" onclick="clickCookie();" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
 	<figcaption id="cookie-amount">Cookies = 0</figcaption>
@@ -41,7 +44,7 @@ published: true
       this.amount = 0;
       this.name = name;
       this.cost = cost;
-			this.increment = increment
+			this.increment = increment;
       this.time = time;
     }
   
@@ -66,14 +69,15 @@ published: true
     var card = document.createElement("input");
     card.type = "button";
     card.onclick = buy(item);
-    card.value = `${item.name}: ${item.amount} (costs ${item.cost})`
+    card.value = `${item.name}: ${item.amount} (costs ${item.cost})`;
     document.body.appendChild(card);
+		document.write("<br>");
 	}); 
 
 
 	function clickCookie(){
 		cookies++;
-		document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`
+		document.getElementById("cookie-amount").innerHTML = `Cookies = ${cookies}`;
 		if (cookies > currentCookie){
 			createCookie(cookies);
 		}
@@ -85,7 +89,7 @@ published: true
       cookies -= item.cost;
 
       if (item.group == "Building"){
-        item.cost = Math.floor(item.cost * 1.3)
+        item.cost = Math.floor(item.cost * 1.3);
 
         cps += item.increment/item.time;
         
