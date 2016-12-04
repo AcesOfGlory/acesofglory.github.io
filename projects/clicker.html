@@ -4,13 +4,9 @@ published: true
 ---
 
 <h1>Fortune Cookie Clicker</h1>
-<small>Version 1.0.6</small>
+<small>Version 1.0.7</small>
 
-<head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<title>Fortune Cookie Clicker | Sam Nayak</title>
-</head>
-
+<title>Fortune Cookie Clicker | Sam Nayak</title>
 
 <div id="buildings-shop" class="button-column">Buildings: <p></div>
 
@@ -31,14 +27,6 @@ published: true
 	var cps = 0;
 	var hasBought = false;
 	var currentCookie;
-	
-	setTimeout(function() {
-	    now = new Date();
-	    var elapsedTime = (now.getTime() - before.getTime());
-	    if (elapsedTime > 1000)
-		cookies += (cps / 100) * Math.floor(elapsedTime/1000);
-	    before = new Date();    
-	}, 1000);
 	
 	setInterval(autosave, 30000);
 	setInterval(updateCookies, 2000);
@@ -137,11 +125,16 @@ published: true
 	function loop(){
 		cookies += (cps / 100);
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
+		now = new Date();
+		var elapsedTime = (now.getTime() - before.getTime());
+		if (elapsedTime > 1000)
+			cookies += (cps / 100) * Math.floor(elapsedTime/1000);
+		before = new Date(); 
 		setTimeout(loop, 10);		
 	}
 	
 	function updateCookies(){
-		document.title = `${Math.floor(cookies)} Cookies | Fortune Cookie Clicker`
+		document.title = `${Math.floor(cookies)} Cookies - Fortune Cookie Clicker | Sam Nayak`
 		document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
 		
