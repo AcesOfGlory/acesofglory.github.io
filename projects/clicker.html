@@ -24,7 +24,7 @@ published: true
   
   function readCookie(){
     var cookieFind = parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
-		currentCookie = cookieFind;
+    currentCookie = cookieFind;
     cookies= cookieFind;
   }
 
@@ -66,7 +66,9 @@ published: true
   
   
   buildings.forEach(item => {
+		document.write("<br>");
     var card = document.createElement("input");
+		document.write("<br>");
     card.type = "button";
     card.onclick = buy(item);
     card.value = `${item.name}: ${item.amount} (costs ${item.cost})`;
