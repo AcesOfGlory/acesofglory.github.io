@@ -62,12 +62,12 @@ published: true
 	class Building {
 
 		constructor(name, cost, increment=0, time=1) {
-			this.group = "Building";
-			this.amount = 0;
-			this.name = name;
-			this.cost = cost;
-			this.increment = increment;
-			this.time = time;
+			this._group = "Building";
+			this._amount = 0;
+			this._name = name;
+			this._cost = cost;
+			this._increment = increment;
+			this._time = time;
 		}
 
 	}
@@ -93,8 +93,8 @@ published: true
 		var card = document.createElement("input"); 
 		card.type = "button";
 		card.onclick = _ => buy(item);
-		card.id = item.name
-		card.value = `${item.name}: ${item.amount} (costs ${item.cost})`; 
+		card.id = item._name
+		card.value = `${item._name}: ${item._amount} (costs ${item._cost})`; 
 		document.getElementById("buildings-shop").appendChild(card);
     document.getElementById("buildings-shop").appendChild(para);
 	}); 
@@ -110,22 +110,22 @@ published: true
 			hasBought = true;
 			loop();
 		}
-		if (cookies >= item.cost){
-			if (item.name === "End game"){
+		if (cookies >= item._cost){
+			if (item._name === "End game"){
 				alert("Congratulations!");
 			}
 			
-			item.amount++;
-			cookies -= item.cost;
+			item._amount++;
+			cookies -= item._cost;
 
-			if (item.group == "Building"){
-				item.cost = Math.floor(item.cost * 1.3);
+			if (item._group == "Building"){
+				item._cost = Math.floor(item._cost * 1.3);
 
-				cps += item.increment/item.time;
+				cps += item._increment/item._time;
 
 				updateCookies()
 				
-				document.getElementById(item.name).value = `${item.name}: ${item.amount} (costs ${item.cost})`;
+				document.getElementById(item._name).value = `${item._name}: ${item._amount} (costs ${item._cost})`;
 			}      
 		}              
 	}
