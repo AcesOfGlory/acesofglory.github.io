@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Cookie Clicker</h1>
-<small>Version 1.0.3</small>
+<small>Version 1.0.4</small>
 
 <div id="buildings-shop" class="button-column"></div>
 
@@ -89,11 +89,13 @@ published: true
 	}
 
 	function buy(item){
+		console.log(false)
 		if (cookies >= item.cost){
 			item.amount++;
 			cookies -= item.cost;
 
 			if (item.group == "Building"){
+				console.log(true)
 				item.cost = Math.floor(item.cost * 1.3);
 
 				cps += item.increment/item.time;
