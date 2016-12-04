@@ -4,7 +4,13 @@ published: true
 ---
 
 <h1>Fortune Cookie Clicker</h1>
-<small>Version 1.0.5</small>
+<small>Version 1.0.6</small>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<title>Fortune Cookie Clicker | Sam Nayak</title>
+</head>
+
 
 <div id="buildings-shop" class="button-column">Buildings: <p></div>
 
@@ -18,12 +24,21 @@ published: true
 
 <script type="text/javascript">
 	document.getElementById('cookie-image').ondragstart = function() { return false; };
+	
+	var $div = $('div');
+	var a = 0;
+	setInterval(function() {
+			a++;
+			$div.stop(true,true).css("left", a);
+	}, 1000 / 30);
+	
 	var cookies;
 	var cps = 0;
 	var hasBought = false;
 	var currentCookie;
 	
 	setInterval(autosave, 30000);
+	setInterval(updateCookies, 2000);
 
 	function createCookie(cookies) {
 		document.cookie = "cookies="+cookies+";";
@@ -42,7 +57,7 @@ published: true
 		cookies = 0;
 		createCookie(cookies);
 	}
-	document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
+	updateCookies();
 
 	class Building {
 
@@ -87,8 +102,7 @@ published: true
 
 	function clickCookie(){
 		cookies++;
-		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
-		document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
+		updateCookies()
 	}
 
 	function buy(item){
@@ -109,8 +123,7 @@ published: true
 
 				cps += item.increment/item.time;
 
-				document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
-				document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
+				ipdateCookies()
 				
 				document.getElementById(item.name).value = `${item.name}: ${item.amount} (costs ${item.cost})`;
 			}      
@@ -121,6 +134,13 @@ published: true
 		cookies += (cps / 100);
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
 		setTimeout(loop, 10);		
+	}
+	
+	function updateCookies(){
+		document.title = `${Math.floor(cookies)} Cookies | Fortune Cookie Clicker`
+		document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
+		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
+		
 	}
 	
 	function autosave(){
