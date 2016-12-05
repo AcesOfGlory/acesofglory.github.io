@@ -131,7 +131,8 @@ published: true
 	}
 	
 	function loop(){
-		cookies += (window.isActive ? (cps / 100) : cps)		
+		//cookies += (window.isActive ? (cps / 100) : cps)		
+		cookies += cps/100
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
 		setTimeout(loop, 10);		
 	}
