@@ -108,7 +108,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
     if (currentBot > highscoreBot){
       highscoreBot = currentBot;
       highscoreLog = Math.floor(Math.log2(highscoreBot));
-      document.getElementById("bot").innerHTML = `Highscore: ${highscoreBot} (2^${highscoreLog})`;
+      document.getElementById("bot").innerHTML = `Highscore: ${highscoreBot} (2<sup>${highscoreLog}</sup>)`;
     }
   }
 
