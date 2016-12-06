@@ -31,7 +31,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
 <h2>Double or Die Bot</h2>
 
 <button onclick="doubleOrDieBot()">Generate</button>
-
+<p>
 <center><div id="bot"></div></center>
 
 
@@ -107,7 +107,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
     if (currentBot > highscoreBot){
       highscoreBot = currentBot;
       highscoreLog = Math.floor(Math.log2(highscoreBot));
-      document.getElementById("bot").innerHTML = `Highscore: {highscoreBot} (2^{highscoreLog})`;
+      document.getElementById("bot").innerHTML = `Highscore: ${highscoreBot} (2^${highscoreLog})`;
     }
     doubleOrDieBot();
   }
