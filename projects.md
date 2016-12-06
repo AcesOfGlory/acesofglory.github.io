@@ -2,7 +2,6 @@
 layout: page
 title: Projects
 subtitle: A list of projects I've made
-published: true
 ---
 
 Have a look at my [Github](https://github.com/AcesOfGlory).
