@@ -98,18 +98,19 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
   var highscoreLog = Math.floor(Math.log2(highscoreBot));
   
   function doubleOrDieBot(){
-    var dieBot = Math.random() >= 0.8;
-    if (dieBot)
-      currentBot = 1;
-    else
-      currentBot <<= 1;
+    while (true){
+      var dieBot = Math.random() >= 0.8;
+      if (dieBot)
+        currentBot = 1;
+      else
+        currentBot <<= 1;
 
-    if (currentBot > highscoreBot){
-      highscoreBot = currentBot;
-      highscoreLog = Math.floor(Math.log2(highscoreBot));
-      document.getElementById("bot").innerHTML = `Highscore: ${highscoreBot} (2^${highscoreLog})`;
+      if (currentBot > highscoreBot){
+        highscoreBot = currentBot;
+        highscoreLog = Math.floor(Math.log2(highscoreBot));
+        document.getElementById("bot").innerHTML = `Highscore: ${highscoreBot} (2^${highscoreLog})`;
+      }
     }
-    doubleOrDieBot();
   }
 
 </script>
