@@ -28,11 +28,14 @@ def dice(minimum, maximum):
     return minimum + time.time() * 10000000 % (maximum - minimum + 2)
 ```
 This simple dice program (above) relies on time and therefore is practically a replica of Python's random module. This is no way to accurately map the result of SystemRandom function and is therefore considered better use when trying to implicate a random occurring event from real life.
+
 ```
 from random import randint, SystemRandom
 SystemRandom().randint(1, 6)              # Uses bytes in the operating system
 ```
+
 The above is more accurate than 
+
 ```
 from random import randint
 randint(1, 6)                                          # Uses time
