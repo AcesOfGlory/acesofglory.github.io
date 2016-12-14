@@ -8,6 +8,7 @@ tags:
   - algorithms
   - machine learning
   - applied computer science
+date: '2016-12-01'
 ---
 
 
