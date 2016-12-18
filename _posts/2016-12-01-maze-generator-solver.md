@@ -11,5 +11,21 @@ tags:
 date: '2016-12-01'
 ---
 
+# Keywords
+
+- Algorithm:  A step-by-step procedure for performing a calculation.
+
+
+# User Documentation
 
 *See project [here](https://acesofglory.github.io/projects/maze-generator)*
+
+
+
+
+# Technical Documentation
+
+
+
+
+
