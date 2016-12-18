@@ -47,7 +47,10 @@ published: true
 	step="0.001" oninput="updateCrossover(value)">
 <output for="fader" id="crossover">0.600</output>
 <p>
-
+	
+<h2 id ="output"></h2>
+<p>
+	
 <div id="timer"></div>
 <div id="initial"></div>
 <div id="final"></div>
@@ -77,6 +80,7 @@ published: true
 		
 		start(fitnessFunction, geneNumber, populationSize, generationNumber, mutationRate, crossoverRate);
 		
+		document.getElementById("output").innerHTML = "Output";
 		document.getElementById("timer").innerHTML = "m";
 		document.getElementById("initial").innerHTML = "m";
 		document.getElementById("final").innerHTML = "m";
