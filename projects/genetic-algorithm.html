@@ -5,6 +5,7 @@ published: true
 
 <h1>Genetic Algorithm</h1>
 <p>
+	
 <select id="fitness">
   <option value="ff1">Fitness Function 1</option>
   <option value="ff2">Fitness Function 2</option>
@@ -47,14 +48,22 @@ published: true
 <output for="fader" id="crossover">0.600</output>
 <p>
 
-
+<div id="timer"></div>
+<div id="initial"></div>
+<div id="final"></div>
+<div id="ideal"></div>
+<div id="best"></div>
 
 
 <script type="text/javascript">
 
   function randomise(){
-    return 
+    return;
   }
+	
+	function start(fitnessFunction, geneNumber, populationSize, generationNumber, mutationRate, crossoverRate){
+		return;
+	}
 	
 	function runProgram(){
 		const fitnessFunction = document.getElementById("fitness").value,
@@ -65,6 +74,15 @@ published: true
 					crossoverRate = document.getElementById("crossover").value
 		
 		console.log(fitnessFunction, geneNumber, populationSize, generationNumber, mutationRate, crossoverRate);
+		
+		start(fitnessFunction, geneNumber, populationSize, generationNumber, mutationRate, crossoverRate);
+		
+		document.getElementById("timer").innerHTML = "m";
+		document.getElementById("initial").innerHTML = "m";
+		document.getElementById("final").innerHTML = "m";
+		document.getElementById("ideal").innerHTML = "m";
+		document.getElementById("best").innerHTML = "m";
+		
 	}
   
   function updateGene(vol) {
