@@ -14,15 +14,62 @@ published: true
 <button onclick="randomise()">Randomise All</button>
 <button onclick="">Run</button>
 
+<p>
+<p>
+
+<label for="fader">Gene Number</label>
+<input type="range" min="1" max="100" value="32" id="fader" 
+	step="1" oninput="updateGene(value)">
+<output for="fader" id="gene">32</output><button onclick="">Random</button>
+<p>
+
+<label for="fader">Population Size</label>
+<input type="range" min="1" max="250" value="100" id="fader" 
+	step="1" oninput="updatePopulation(value)">
+<output for="fader" id="population">100</output>
+<p>
+
+<label for="fader">Generation Number</label>
+<input type="range" min="0" max="250" value="100" id="fader" 
+	step="1" oninput="updateGeneration(value)">
+<output for="fader" id="generation">100</output>
+<p>
+
+<label for="fader">Mutation Rate</label>
+<input type="range" min="0" max="1" value="0.020" id="fader" 
+	step="0.001" oninput="updateMutation(value)">
+<output for="fader" id="mutation">0.020</output>
+<p>
+
+<label for="fader">Crossover Rate</label>
+<input type="range" min="0" max="1" value="0.600" id="fader" 
+	step="0.001" oninput="updateCrossover(value)">
+<output for="fader" id="crossover">0.600</output>
+<p>
 
 
-<button onclick="">Random</button>
+
 
 <script type="text/javascript">
 
   function randomise(){
+    return 
+  }
   
-  
+  function updateGene(vol) {
+    document.querySelector('#gene').value = vol;
+  }
+  function updatePopulation(vol) {
+    document.querySelector('#population').value = vol;
+  }
+  function updateGeneration(vol) {
+    document.querySelector('#generation').value = vol;
+  }
+  function updateMutation(vol) {
+    document.querySelector('#mutation').value = vol;
+  }
+  function updateCrossover(vol) {
+    document.querySelector('#crossover').value = vol;
   }
 
 </script>
