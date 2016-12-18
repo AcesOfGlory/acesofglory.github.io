@@ -4,15 +4,15 @@ published: true
 ---
 
 <h1>Genetic Algorithm</h1>
-
-<select>
+<p>
+<select id="fitness">
   <option value="ff1">Fitness Function 1</option>
   <option value="ff2">Fitness Function 2</option>
   <option value="ff3">Fitness Function 3</option>
 </select>
 
 <button onclick="randomise()">Randomise All</button>
-<button onclick="">Run</button>
+<button onclick="runProgram()">Run</button>
 
 <p>
 <p>
@@ -20,7 +20,7 @@ published: true
 <label for="fader">Gene Number</label>
 <input type="range" min="1" max="100" value="32" id="fader" 
 	step="1" oninput="updateGene(value)">
-<output for="fader" id="gene">32</output><button onclick="">Random</button>
+<output for="fader" id="gene">32</output>
 <p>
 
 <label for="fader">Population Size</label>
@@ -55,6 +55,17 @@ published: true
   function randomise(){
     return 
   }
+	
+	function runProgram(){
+		const fitnessFunction = document.getElementById("fitness").value,
+					geneNumber = document.getElementById("gene").value,
+					populationSize = document.getElementById("population").value,
+					generationNumber = document.getElementById("generation").value,
+					mutationRate = document.getElementById("mutation").value,
+					crossoverRate = document.getElementById("crossover").value
+		
+		console.log(fitnessFunction, geneNumber, populationSize, generationNumber, mutationRate, crossoverRate);
+	}
   
   function updateGene(vol) {
     document.querySelector('#gene').value = vol;
