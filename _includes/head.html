@@ -1,5 +1,10 @@
 <head>
   <meta charset="utf-8" />
+  <script type="text/javascript">
+    var host = "www.samnayak.com";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+  </script>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
@@ -12,7 +17,7 @@
   {% endif %}
 
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-
+  
   {% if layout.common-ext-css %}
     {% for css in layout.common-ext-css %}
       <link rel="stylesheet" href="{{ css }}" />
