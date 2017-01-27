@@ -34,11 +34,10 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
   
   if(typeof(Storage) !== "undefined") {
     if (localStorage.highscore) {
-        highscore = Number(localStorage.highscore);
+      highscore = Number(localStorage.highscore);
     }
     else {
-        localStorage.highscore = 1;
-        highscore = 1;
+      highscore = 1;
     }
   }
   
@@ -47,7 +46,12 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
   }
 
   document.getElementById("highscore").innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
-
+  
+  function reset(){
+    highscore = 1;
+    localStorage.removeItem("highscore");
+    document.getElementById("highscore").innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
+  }
 
   function doubleOrDie(choice){
     const die = Math.random() >= 0.8;
