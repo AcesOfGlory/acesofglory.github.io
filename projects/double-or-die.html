@@ -31,48 +31,41 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
 <script type="text/javascript">
   var score = 1;
   var highscore;
-
-  function createCookie(highscore) {
-    document.cookie = "highscore="+highscore+";"
+  
+  if(typeof(Storage) !== "undefined") {
+    if (localStorage.highscore) {
+        highscore = Number(localStorage.highscore);
+    }
+    else {
+        localStorage.highscore = 1;
+        highscore = 1;
+    }
   }
   
-  function readCookie(){
-    var cookieFind = parseInt(document.cookie.match(/highscore=(\d+)/)[1])
-    highscore = cookieFind
+  else {
+    document.getElementById("output").innerHTML = "Sorry, your browser does not support web storage...";
   }
 
-  try{
-    readCookie()
-  }
-  catch(error){
-    highscore = 1
-    createCookie(highscore)
-  }
-  
-  document.querySelector('#highscore').innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
+  document.getElementById("highscore").innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
 
-  function reset(){
-    highscore = 1;
-    createCookie(highscore)
-    document.querySelector('#highscore').innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
-  }
+
   function doubleOrDie(choice){
     const die = Math.random() >= 0.8;
     choice(die);
   }
 
   function save(die){
-    var output = document.querySelector('#highscore');
+    var output = document.getElementById("highscore");
 
     if (score > highscore){
       highscore = score;
-      createCookie(highscore);
+      localStorage.highscore = highscore;
       output.innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
     }
     document.getElementById("output").innerHTML = `<p>You would have ${die ? 'lost' : 'won'} if you doubled`
 
     score = 1;
-    document.querySelector('#current-score').innerHTML = "Score = " + score;
+    document.getElementById("current-score").innerHTML = "Score = " + score;
   }
 
   function double(die){
@@ -82,7 +75,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
     else{
       score <<= 1;
     }
-    document.querySelector('#current-score').innerHTML = "Score = " + score;
+    document.getElementById("current-score").innerHTML = "Score = " + score;
     document.getElementById("output").innerHTML = ""
   }
  
@@ -107,7 +100,7 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
   
  function showhide(id) {
     var e = document.getElementById(id);
-    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+    e.style.display = (e.style.display == "block") ? "none" : "block";
  }
   
 </script>
