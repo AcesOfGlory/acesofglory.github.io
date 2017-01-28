@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Fortune Cookie Clicker</h1>
-<small>Version 1.0.13</small>
+<small>Version 1.0.14</small>
 
 <title>Fortune Cookie Clicker | Sam Nayak</title>
 
@@ -19,27 +19,7 @@ published: true
 
 
 <script type="text/javascript">
-	document.getElementById("cookie-image").ondragstart = function() { return false; };
 	
-	var cookies;
-	var cps = 0;
-	var hasBought = false;
-	var currentCookie;
-	
-	if(typeof(Storage) !== "undefined") {
-    if (localStorage.cookies) {
-      cookies = Number(localStorage.cookies);
-    }
-    else {
-      cookies = 0;
-    }
-  }
-  
-  updateCookies();
-	
-	setInterval(autosave, 30000);
-	setInterval(updateCookies, 2000);
-
 	class Building {
 
 		constructor(name, cost, increment=0, time=1) {
@@ -51,22 +31,43 @@ published: true
 			this._time = time;
 		}
 	}
-
-	const buildings = [
-		new Building("Cursor", 10, 0.25),
-		new Building("Grandma", 100, 1),
-		new Building("Farm", 500, 8),
-		new Building("Mine", 10000, 20),
-		new Building("Factory", 50000, 100),
-		new Building("Bank", 100000, 250),
-		new Building("Temple", 250000, 1000),
-		new Building("Wizard Tower", 500000, 2500),
-		new Building("Shipment", 1000000, 7500),
-		new Building("Alchemy Lab", 5000000, 50000),
-		new Building("Portal", 10000000, 150000),
-		new Building("End Game", 100000000000)
-	];
-
+	
+	document.getElementById("cookie-image").ondragstart = function() { return false; };
+	
+	var cookies;
+	var cps = 0;
+	var hasBought = false;
+	var currentCookie;
+	const buildings;
+	
+	if(typeof(Storage) !== "undefined") {
+    if (localStorage.cookies) {
+      cookies = Number(localStorage.cookies);
+			buildings = [
+				new Building("Cursor", 10, 0.25),
+				new Building("Grandma", 100, 1),
+				new Building("Farm", 500, 8),
+				new Building("Mine", 10000, 20),
+				new Building("Factory", 50000, 100),
+				new Building("Bank", 100000, 250),
+				new Building("Temple", 250000, 1000),
+				new Building("Wizard Tower", 500000, 2500),
+				new Building("Shipment", 1000000, 7500),
+				new Building("Alchemy Lab", 5000000, 50000),
+				new Building("Portal", 10000000, 150000),
+				new Building("End Game", 100000000000)
+			];
+    }
+    else {
+      cookies = 0;
+			buildings = localStorage.purchases; 
+    }
+  }
+  
+  updateCookies();
+	
+	setInterval(autosave, 30000);
+	setInterval(updateCookies, 2000);
 
 	buildings.forEach(item => {
 		var para = document.createElement("BR");
@@ -104,6 +105,7 @@ published: true
 				cps += item._increment/item._time;
 
 				updateCookies();
+				autosave();
 				
 				document.getElementById(item._name).value = `${item._name}: ${item._amount} (costs ${item._cost})`;
 			}      
@@ -127,7 +129,6 @@ published: true
 	function autosave(){
 		localStorage.cookies = cookies;
 		localStorage.purchases = buildings;
-		console.log(localStorage.purchases);
 	}
 
 
