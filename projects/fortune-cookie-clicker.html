@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Fortune Cookie Clicker</h1>
-<small>Version 1.0.12</small>
+<small>Version 1.0.13</small>
 
 <title>Fortune Cookie Clicker | Sam Nayak</title>
 
@@ -35,9 +35,6 @@ published: true
     }
   }
   
-  else {
-    document.getElementById("output").innerHTML = "Sorry, your browser does not support web storage...";
-  }
   updateCookies();
 	
 	setInterval(autosave, 30000);
@@ -63,11 +60,11 @@ published: true
 		new Building("Factory", 50000, 100),
 		new Building("Bank", 100000, 250),
 		new Building("Temple", 250000, 1000),
-		new Building("Wizard tower", 500000, 2500),
+		new Building("Wizard Tower", 500000, 2500),
 		new Building("Shipment", 1000000, 7500),
-		new Building("Alchemy lab", 5000000, 50000),
+		new Building("Alchemy Lab", 5000000, 50000),
 		new Building("Portal", 10000000, 150000),
-		new Building("End game", 100000000000)
+		new Building("End Game", 100000000000)
 	];
 
 
@@ -94,7 +91,7 @@ published: true
 			loop();
 		}
 		if (cookies >= item._cost){
-			if (item._name === "End game"){
+			if (item._name === "End Game"){
 				alert("Congratulations!");
 			}
 			
@@ -121,14 +118,16 @@ published: true
 	}
 	
 	function updateCookies(){
+		localStorage.cookies = cookies;
 		document.title = `${Math.floor(cookies)} Cookies - Fortune Cookie Clicker | Sam Nayak`
 		document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
-		localStorage.cookies = cookies;
 	}
 	
 	function autosave(){
 		localStorage.cookies = cookies;
+		localStorage.purchases = buildings;
+		console.log(localStorage.purchases);
 	}
 
 
@@ -141,11 +140,11 @@ published: true
 		height: 250px;
 		width: 250px;
 		outline: 0;
-        	float: left;
+    float: left;
 	}
 	
 	.button-column{
-        	float: right;
+  	float: right;
 	}
 
 </style>
