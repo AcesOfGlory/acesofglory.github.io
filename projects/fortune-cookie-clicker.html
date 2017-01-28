@@ -41,15 +41,16 @@ published: true
 	var buildings;
 	
 	if(typeof(Storage) !== "undefined") {
-    if (localStorage.cookies) {
-      cookies = Number(localStorage.cookies);
+		if (localStorage.cookies) {
+			cookies = Number(localStorage.cookies);
 			
-    }
-    else {
-      cookies = 0;
-    }
-		if (localStorage.purchases){
-			buildings = localStorage.purchases; 
+		}
+		else {
+			cookies = 0;
+		}
+		
+		if (localStorage.purchases && 5 == 6){
+			buildings = JSON.parse(localStorage.getItem("purchases"));
 		}
 		else {
 			buildings = [
@@ -67,13 +68,13 @@ published: true
 				new Building("End Game", 100000000000)
 			];	
 		}
-  }
+	}
   
   updateCookies();
 	
 	setInterval(autosave, 30000);
 	setInterval(updateCookies, 2000);
-
+	console.log(buildings);
 	buildings.forEach(item => {
 		var para = document.createElement("BR");
 		var card = document.createElement("input"); 
@@ -133,7 +134,7 @@ published: true
 	
 	function autosave(){
 		localStorage.cookies = cookies;
-		localStorage.purchases = buildings;
+		localStorage.setItem("purchases", JSON.stringify(buildings));
 	}
 
 
