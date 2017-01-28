@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Fortune Cookie Clicker</h1>
-<small>Version 1.0.10</small>
+<small>Version 1.0.11</small>
 
 <title>Fortune Cookie Clicker | Sam Nayak</title>
 
@@ -26,28 +26,21 @@ published: true
 	var hasBought = false;
 	var currentCookie;
 	
+	if(typeof(Storage) !== "undefined") {
+    if (localStorage.cookies) {
+      cookies = Number(localStorage.cookies);
+    }
+    else {
+      cookies = 0;
+    }
+  }
+  
+  else {
+    document.getElementById("output").innerHTML = "Sorry, your browser does not support web storage...";
+  }
+	
 	setInterval(autosave, 30000);
 	setInterval(updateCookies, 2000);
-		
-
-	function createCookie(cookies) {
-		document.cookie = "cookies="+cookies+";";
-	}
-
-	function readCookie(){
-		var cookieFind = parseInt(document.cookie.match(/cookies=(\d+)/)[1]);
-		currentCookie = cookieFind;
-		cookies= cookieFind;
-	}
-
-	try{
-		readCookie();
-	}
-	catch(error){
-		cookies = 0;
-		createCookie(cookies);
-	}
-	updateCookies();
 
 	class Building {
 
@@ -59,7 +52,6 @@ published: true
 			this._increment = increment;
 			this._time = time;
 		}
-
 	}
 
 	const buildings = [
@@ -135,8 +127,7 @@ published: true
 	}
 	
 	function autosave(){
-		createCookie(cookies);
-		
+		localStorage.cookies = cookies;
 	}
 
 
