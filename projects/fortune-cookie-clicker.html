@@ -4,14 +4,14 @@ published: true
 ---
 
 <h1>Fortune Cookie Clicker</h1>
-<small>Version 1.0.11</small>
+<small>Version 1.0.12</small>
 
 <title>Fortune Cookie Clicker | Sam Nayak</title>
 
 <div id="buildings-shop" class="button-column">Buildings: <p></div>
 
 <div>
-	<input type="image" onclick="clickCookie();" id="cookie-image" class="button-style" src="http://www.clipartkid.com/images/365/fortune-cookie-clip-art-at-clker-com-vector-clip-art-online-royalty-4Qy7Am-clipart.png" />
+	<input type="image" onclick="clickCookie();" id="cookie-image" class="button-style" src="/img/fortune-cookie-image.png"/>
 </div>
 
 <p id="cookie-amount">Cookies = 0</p>
@@ -19,7 +19,7 @@ published: true
 
 
 <script type="text/javascript">
-	document.getElementById('cookie-image').ondragstart = function() { return false; };
+	document.getElementById("cookie-image").ondragstart = function() { return false; };
 	
 	var cookies;
 	var cps = 0;
@@ -84,7 +84,7 @@ published: true
 
 	function clickCookie(){
 		cookies++;
-		updateCookies()
+		updateCookies();
 	}
 
 	function buy(item){
@@ -105,7 +105,7 @@ published: true
 
 				cps += item._increment/item._time;
 
-				updateCookies()
+				updateCookies();
 				
 				document.getElementById(item._name).value = `${item._name}: ${item._amount} (costs ${item._cost})`;
 			}      
@@ -123,7 +123,7 @@ published: true
 		document.title = `${Math.floor(cookies)} Cookies - Fortune Cookie Clicker | Sam Nayak`
 		document.getElementById("cps-amount").innerHTML = `CPS = ${cps}`;
 		document.getElementById("cookie-amount").innerHTML = `Cookies = ${Math.floor(cookies)}`;
-		
+		localStorage.cookies = cookies;
 	}
 	
 	function autosave(){
@@ -132,8 +132,6 @@ published: true
 
 
 </script>
-
-
 
 
 <style type="text/css">
