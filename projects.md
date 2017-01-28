@@ -7,7 +7,7 @@ subtitle: A list of projects I've made
 Have a look at my [Github](https://github.com/AcesOfGlory).
 
 - [Genetic Algorithm Simulator](/projects/genetic-algorithm) - post [here](https://acesofglory.github.io/13-11-2016-genetic-algorithm/)
-- [Maze Generator & Solver](/projects/maze-generator) - post [here](https://acesofglory.github.io/13-11-2016-maze-generator-solver/)
+- [Maze Generator & Solver](/projects/maze-generator) - post [here](https://www.samnayak.com/01-12-2016-maze-generator-solver/)
 - [Coordinates Validator](/projects/coordinates)
 - [IP Validator](/projects/ip)
 - [Caesar Cipher](/projects/caesar-cipher)
@@ -22,7 +22,7 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
 - [Rock, Paper, Scissors](/projects/rock-paper-scissors)
 - [Blackjack](/projects/blackjack)
 - [Fifteen Puzzle](/projects/fifteen-puzzle)
-- [Fortune Cookie Clicker](/projects/clicker)
+- [Fortune Cookie Clicker](/projects/fortune-cookie-clicker)
 - [Double or Die](/projects/double-or-die)
 - [Hangman](/projects/hangman)
 - [Unit Converter](/projects/unit-converter)
