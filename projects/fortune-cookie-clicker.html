@@ -38,6 +38,7 @@ published: true
   else {
     document.getElementById("output").innerHTML = "Sorry, your browser does not support web storage...";
   }
+  updateCookies();
 	
 	setInterval(autosave, 30000);
 	setInterval(updateCookies, 2000);
