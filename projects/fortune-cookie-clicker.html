@@ -4,7 +4,7 @@ published: true
 ---
 
 <h1>Fortune Cookie Clicker</h1>
-<small>Version 1.0.14</small>
+<small>Version 1.0.15</small>
 
 <title>Fortune Cookie Clicker | Sam Nayak</title>
 
@@ -38,11 +38,20 @@ published: true
 	var cps = 0;
 	var hasBought = false;
 	var currentCookie;
-	const buildings;
+	var buildings;
 	
 	if(typeof(Storage) !== "undefined") {
     if (localStorage.cookies) {
       cookies = Number(localStorage.cookies);
+			
+    }
+    else {
+      cookies = 0;
+    }
+		if (localStorage.purchases){
+			buildings = localStorage.purchases; 
+		}
+		else {
 			buildings = [
 				new Building("Cursor", 10, 0.25),
 				new Building("Grandma", 100, 1),
@@ -56,12 +65,8 @@ published: true
 				new Building("Alchemy Lab", 5000000, 50000),
 				new Building("Portal", 10000000, 150000),
 				new Building("End Game", 100000000000)
-			];
-    }
-    else {
-      cookies = 0;
-			buildings = localStorage.purchases; 
-    }
+			];	
+		}
   }
   
   updateCookies();
