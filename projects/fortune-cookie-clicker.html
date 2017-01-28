@@ -42,13 +42,15 @@ published: true
 	
 	if(typeof(Storage) !== "undefined") {
 		if (localStorage.cookies) {
-			cookies = Number(localStorage.cookies);
-			cps = Number(localStorage.cps);
+			cookies = Number(localStorage.cookies);	
 		}
 		else {
-			cookies = 0;
-			cps = 0;
+			cookies = 0;	
 		}
+		if (localStorage.cps)
+			cps = Number(localStorage.cps);
+		else
+			cps = 0;
 		
 		if (localStorage.purchases && 5 == 6){
 			buildings = JSON.parse(localStorage.getItem("purchases"));
