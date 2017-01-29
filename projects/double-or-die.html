@@ -64,8 +64,8 @@ You have a 1/5 chance to die each time you try to double your score. You can sav
     if (score > highscore){
       highscore = score;
       localStorage.highscore = highscore;
-      output.innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
     }
+    output.innerHTML = `Highscore = ${highscore} (2<sup>${Math.log(highscore)/Math.log(2)}</sup>)`;
     document.getElementById("output").innerHTML = `<p>You would have ${die ? 'lost' : 'won'} if you doubled`
 
     score = 1;
