@@ -50,7 +50,7 @@ Have a look at my [Github](https://github.com/AcesOfGlory).
     for(var i=0; i<l.length; i++) {
       arr.push(l[i].href);
     }
-    arr = arr.filter(x => /https:\/\/acesofglory.github.io\/projects\/\w+/.test(x))
+    arr = arr.filter(x => /https:\/\/www.samnayak.com\/projects\/\w+/.test(x))
     var random = Math.floor(Math.random() * arr.length)
     window.open(arr[random])
   }
