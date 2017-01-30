@@ -8,18 +8,29 @@ published: true
 <h1>Maze Generator & Solver</h1>
 <p>
 
-<h3>Algorithm</h3>
+<h2>Settings</h2>
 
+
+Height: <input type="number" min="1" max="200" name="height" value="20"><br>
+Width <input type="number" min="1" max="200" name="width" value="20"><br>
+  
+<p>
+  
+<h3>Algorithm</h3>
+<p>
+  
 <div id="algorithm">
-	<input type="radio" name="algorithm" value="a*" checked />
-	<label>A*</label> <br>
+  <input type="radio" name="algorithm" value="a*" checked />
+  <label>A*</label><br>
    
-	<input type="radio" name="algorithm" value="dijkstra"/>
-	<label>Dijkstra's</label> <br>
+  <input type="radio" name="algorithm" value="dijkstra"/>
+  <label>Dijkstra's</label> <br>
 	
-	<input type="radio" name="algorithm" value="prim"/>
-	<label>Prim's</label> <br>
+  <input type="radio" name="algorithm" value="prim"/>
+  <label>Prim's</label> <br>
 </div>
+
+
 
 <button onclick="generateMaze()">Generate</button>
 <button onclick="solveMaze()">Solve</button>
