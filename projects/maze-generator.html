@@ -3,8 +3,23 @@ layout: page
 published: true
 ---
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <h1>Maze Generator & Solver</h1>
 <p>
+
+<h3>Algorithm</h3>
+
+<div id="algorithm">
+	<input type="radio" name="algorithm" value="a*" checked />
+	<label>A*</label> <br>
+   
+	<input type="radio" name="algorithm" value="dijkstra"/>
+	<label>Dijkstra's</label> <br>
+	
+	<input type="radio" name="algorithm" value="prim"/>
+	<label>Prim's</label> <br>
+</div>
 
 <button onclick="generateMaze()">Generate</button>
 <button onclick="solveMaze()">Solve</button>
@@ -12,11 +27,11 @@ published: true
 <script type="text/javascript">
 
   function generateMaze(){
-    return;
+    return false;
   }
   
   function solveMaze(){
-    return;
+    return false;
   }
   
 
