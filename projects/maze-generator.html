@@ -1,5 +1,5 @@
 ---
-layout: project
+layout: minimal
 published: true
 ---
 
@@ -36,12 +36,17 @@ published: true
         <input id="sizeYTextbox" size="1" value="100">
       </p>
       <p>
-        Algorithm:<br>
-        <label><input type="radio" name="algorithm" id="depthFirstSearchAlgorithmButton" checked>Depth-First Search</label><br>
-        <label><input type="radio" name="algorithm" id="primAlgorithmButton">Prim</label><br>
-        <label><input type="radio" name="algorithm" id="kruskalAlgorithmButton">Kruskal</label><br>
-        <label><input type="radio" name="algorithm" id="ivyAlgorithmButton">Ivy</label><br>
-        <label><input type="radio" name="algorithm" id="depthFirstIvyAlgorithmButton">Depth-First Ivy</label><br>
+        Generation Algorithm:<br>
+        <label><input type="radio" name="generation-algorithm" id="depthFirstSearchAlgorithmButton" checked>Depth-First Search</label><br>
+        <label><input type="radio" name="generation-algorithm" id="primAlgorithmButton">Prim</label><br>
+        <label><input type="radio" name="generation-algorithm" id="kruskalAlgorithmButton">Kruskal</label><br>
+        <label><input type="radio" name="generation-algorithm" id="ivyAlgorithmButton">Ivy</label><br>
+        <label><input type="radio" name="generation-algorithm" id="depthFirstIvyAlgorithmButton">Depth-First Ivy</label><br>
+      </p>
+      <p>
+        Solution Algorithm:<br>
+        <label><input type="radio" name="solution-algorithm" id="aStarAlgorithm" checked>A*</label><br>
+        <label><input type="radio" name="solution-algorithm" id="dijkstasAlgorithm">Dijkstra's</label><br>
       </p>
       <p>
         <button id="generationGoButton">Go</button>
