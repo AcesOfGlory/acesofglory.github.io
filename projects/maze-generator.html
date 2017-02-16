@@ -5,45 +5,76 @@ published: true
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<h1>Maze Generator & Solver</h1>
-<p>
+<html>
+  <head>
+    <script src="util.js"></script>
+    <script src="maze.js"></script>
+    <script src="mazerenderer.js"></script>
+    <script src="kruskal.js"></script>
+    <script src="prim.js"></script>
+    <script src="depthfirstsearch.js"></script>
+    <script src="ivy.js"></script>
+    <script src="depthfirstivy.js"></script>
+    <script src="longestpathfinder.js"></script>
+    <script src="dijkstra.js"></script>
+    <style>
+      .numberTextbox {
+        width: 30px;
+        text-align: right;
+      }
+      .rowEven {
+        background-color: #eeeeff;
+      }
+      .rowOdd {
+        background-color: #ffffff;
+      }
+      .indent {
+        padding-left: 2em;
+      }
+      fieldset {
+        margin-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="padding-left:375px;">
+      <div style="overflow-y:auto; position:fixed; top:0; height:100%; margin-left:-375px; left:375px; width:375px;">
+        <fieldset><legend>Maze Generation</legend>
+          <p>
+            Topology:<br>
+            <label><input type="radio" name="topology" id="rectangleTopologyButton" checked>Rectangle</label><br>
+            <label><input type="radio" name="topology" id="outdoorTopologyButton">Rectangle with Outdoors</label><br>
+            <label><input type="radio" name="topology" id="cylinderTopologyButton">Cylinder</label><br>
+            <label><input type="radio" name="topology" id="torusTopologyButton">Torus</label><br>
+            <label><input type="radio" name="topology" id="mobiusTopologyButton">Möbius</label><br>
+          </p>
+          <p>
+            Size:
+            <input id="sizeXTextbox" size="1" value="100"> x
+            <input id="sizeYTextbox" size="1" value="100">
+          </p>
+          <p>
+            Algorithm:<br>
+            <label><input type="radio" name="algorithm" id="depthFirstSearchAlgorithmButton" checked>Depth-First Search</label><br>
+            <label><input type="radio" name="algorithm" id="primAlgorithmButton">Prim</label><br>
+            <label><input type="radio" name="algorithm" id="kruskalAlgorithmButton">Kruskal</label><br>
+            <label><input type="radio" name="algorithm" id="ivyAlgorithmButton">Ivy</label><br>
+            <label><input type="radio" name="algorithm" id="depthFirstIvyAlgorithmButton">Depth-First Ivy</label><br>
+          </p>
+          <p>
+            <button id="generationGoButton">Go</button>
+            <button id="generationStepButton">Step</button>
+            <button id="generationResetButton">Reset</button>
+          </p>
+        </fieldset>
 
-<h2>Settings</h2>
+      </div>
 
+      <div style="overflow-x:auto; overflow-y:auto; width:100%; height:100%;">
+        <canvas id="mazeCanvas" height=160 width=160></canvas>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
 
-Height: <input type="number" min="1" max="200" name="height" value="20"><br>
-Width <input type="number" min="1" max="200" name="width" value="20"><br>
-  
-<p>
-  
-<h3>Algorithm</h3>
-<p>
-  
-<div id="algorithm">
-  <input type="radio" name="algorithm" value="a*" checked />
-  <label>A*</label><br>
-   
-  <input type="radio" name="algorithm" value="dijkstra"/>
-  <label>Dijkstra's</label> <br>
-	
-  <input type="radio" name="algorithm" value="prim"/>
-  <label>Prim's</label> <br>
-</div>
-
-
-
-<button onclick="generateMaze()">Generate</button>
-<button onclick="solveMaze()">Solve</button>
-
-<script type="text/javascript">
-
-  function generateMaze(){
-    return false;
-  }
-  
-  function solveMaze(){
-    return false;
-  }
-  
-
-</script>
