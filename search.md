@@ -1,8 +1,10 @@
 ---
 layout: default
-title: Search
-subtitle: Feeling lost? Look for things using Google Search.
+title: Search | Sam Nayak
 ---
+
+<h1>Search</h1>
+Feeling lost? Look for things using Google Search.
 
 <script type="text/javascript">
   (function() {
