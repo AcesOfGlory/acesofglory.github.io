@@ -4,9 +4,9 @@ title: Search
 subtitle: Feeling lost? Look for things using Google Search.
 ---
 
-<script>
+<script type="text/javascript">
   (function() {
-    var cx = '014150256298900832872:vgapa4pygte';
+    var cx = '014150256298900832872:s8rvmeouysq';
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
     gcse.async = true;
