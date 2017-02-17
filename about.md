@@ -4,7 +4,7 @@ title: About
 published: true
 ---
 
-My name is Sam Nayak and I am a 17 year old back-end developer. I am very passionate about Computer Science...
+My name is Sam Nayak and I am an 18 year old software developer. 
 
 
 # Development Tools
