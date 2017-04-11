@@ -21,13 +21,7 @@ published: true
 <body>
 <div style="padding-left:375px;">
   <div style="overflow-y:auto; position:fixed; height:100%; margin-right:-375px; right:375px; width:375px;">
-    <fieldset><legend>Maze Generation</legend>
-      <p>
-        Topology:<br>
-        <label><input type="radio" name="topology" id="rectangleTopologyButton" checked>Rectangle</label><br>
-        <label><input type="radio" name="topology" id="outdoorTopologyButton">Rectangle with Outdoors</label><br>
-        <label><input type="radio" name="topology" id="torusTopologyButton">Torus</label><br>
-      </p>
+    <fieldset><legend>Sudoku Generation</legend>
       <p>
         Size:
         <input id="sizeXTextbox" size="1" value="100"> x
@@ -41,7 +35,7 @@ published: true
       </p>
       <p>
         Solution Algorithm:<br>
-        <label><input type="radio" name="solution-algorithm" id="aStarAlgorithm" checked>A*</label><br>
+        <label><input type="radio" name="solution-algorithm" id="backtracking" checked>Backtracking (Brute Force)</label><br>
         <label><input type="radio" name="solution-algorithm" id="dijkstasAlgorithm">Dijkstra's</label><br>
       </p>
       <p>
