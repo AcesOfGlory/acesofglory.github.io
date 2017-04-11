@@ -8,7 +8,7 @@ tags:
   - algorithms
   - machine learning
   - applied computer science
-date: '2016-12-01'
+date: 2016-7-01
 ---
 
 # Keywords
@@ -24,8 +24,3 @@ date: '2016-12-01'
 
 
 # Technical Documentation
-
-
-
-
-
