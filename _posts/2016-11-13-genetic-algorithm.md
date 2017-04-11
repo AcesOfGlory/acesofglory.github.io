@@ -8,7 +8,7 @@ tags:
   - algorithms
   - machine learning
   - applied computer science
-date: '2016-11-13'
+date: 2016-4-13
 ---
 
 Evolutionary computation is the field relating algorithmic problem solving to biological evolution. These reductionist algorithms were inspired by biological evolution and consequently decompose the complex problem into much simpler and more manageable stages, which are easier to comprehend. Evolutionary algorithms are a branch of machine learning since the algorithm is metaheuristic and therefore will improve and ‘evolve’ from the previous generations.
