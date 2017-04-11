@@ -8,7 +8,7 @@ tags:
   - algorithms
   - machine learning
   - applied computer science
-date: '2016-10-13'
+date: 2016-2-13
 ---
 
 Random occurrence is implicated in real life, however is extremely difficult to implicate in machines. Computers follow a specific algorithm to generate randomness and therefore is dependant on the environment. We have not discovered how random occurrence works in natural events, which means these algorithms work by using specific factors in the system. These factors are such things as time; binary; weather, and operating system program bytes . The Mersenne Twister is an algorithm used to generate random numbers in Python, it does this by looking at the milliseconds in time and generating a number based on that. This has therefore coined the name "Pseudo-Random Number Generator" (PRNG) instead of "Random Number Generator" because it is not completely "random" since they rely on these factors and therefore are semantics - true randomness is independent.
