@@ -3,54 +3,214 @@ layout: minimal
 published: true
 ---
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!--
-<head>
-  <script src="util.js"></script>
-  <script src="maze.js"></script>
-  <script src="mazerenderer.js"></script>
-  <script src="kruskal.js"></script>
-  <script src="prim.js"></script>
-  <script src="depthfirstsearch.js"></script>
-  <script src="ivy.js"></script>
-  <script src="depthfirstivy.js"></script>
-  <script src="longestpathfinder.js"></script>
-  <script src="dijkstra.js"></script>
-</head>
--->
-<body>
-<div style="padding-left:375px;">
-  <div style="overflow-y:auto; position:fixed; height:100%; margin-right:-375px; right:375px; width:375px;">
-    <fieldset><legend>Sudoku Generation</legend>
-      <p>
-        Size:
-        <input id="sizeXTextbox" size="1" value="100"> x
-        <input id="sizeYTextbox" size="1" value="100">
-      </p>
-      <p>
-        Generation Algorithm:<br>
-        <label><input type="radio" name="generation-algorithm" id="depthFirstSearchAlgorithmButton" checked>Depth-First Search</label><br>
-        <label><input type="radio" name="generation-algorithm" id="primAlgorithmButton">Prim</label><br>
-        <label><input type="radio" name="generation-algorithm" id="depthFirstIvyAlgorithmButton">Depth-First Ivy</label><br>
-      </p>
-      <p>
-        Solution Algorithm:<br>
-        <label><input type="radio" name="solution-algorithm" id="backtracking" checked>Backtracking (Brute Force)</label><br>
-        <label><input type="radio" name="solution-algorithm" id="dijkstasAlgorithm">Dijkstra's</label><br>
-      </p>
-      <p>
-        <button id="generationGoButton">Go</button>
-        <button id="generationStepButton">Step</button>
-        <button id="generationResetButton">Reset</button>
-      </p>
-    </fieldset>
+<html>
 
-  </div>
+<h1><time>00:00:00</time></h1>
+<button id="start" onclick="timer()">Start</button>
+<button id="validate">Validate</button>
+<button id="restart">New</button>
 
-  <div style="overflow-x:auto; overflow-y:auto; width:100%; height:100%;">
-    <canvas id="mazeCanvas" height=160 width=160></canvas>
-  </div>
-</div>
-<script src="main.js"></script>
-</body>
+<table>
+   <tr> <td id='1x1'> <td id='1x2'> <td id='1x3'> <td id='1x4'> <td id='1x5'> <td id='1x6'> <td id='1x7'> <td id='1x8'> <td id='1x9'>
+   <tr> <td id='2x1'> <td id='2x2'> <td id='2x3'> <td id='2x4'> <td id='2x5'> <td id='2x6'> <td id='2x7'> <td id='2x8'> <td id='2x9'>
+   <tr> <td id='3x1'> <td id='3x2'> <td id='3x3'> <td id='3x4'> <td id='3x5'> <td id='3x6'> <td id='3x7'> <td id='3x8'> <td id='3x9'>
+  <colgroup><col><col><col>
+  <tbody>
+   <tr> <td id='4x1'> <td id='4x2'> <td id='4x3'> <td id='4x4'> <td id='4x5'> <td id='4x6'> <td id='4x7'> <td id='4x8'> <td id='4x9'>
+   <tr> <td id='5x1'> <td id='5x2'> <td id='5x3'> <td id='5x4'> <td id='5x5'> <td id='5x6'> <td id='5x7'> <td id='5x8'> <td id='5x9'>
+   <tr> <td id='6x1'> <td id='6x2'> <td id='6x3'> <td id='6x4'> <td id='6x5'> <td id='6x6'> <td id='6x7'> <td id='6x8'> <td id='6x9'>
+  <colgroup><col><col><col>
+  <tbody>
+   <tr> <td id='7x1'> <td id='7x2'> <td id='7x3'> <td id='7x4'> <td id='7x5'> <td id='7x6'> <td id='7x7'> <td id='7x8'> <td id='7x9'>
+   <tr> <td id='8x1'> <td id='8x2'> <td id='8x3'> <td id='8x4'> <td id='8x5'> <td id='8x6'> <td id='8x7'> <td id='8x8'> <td id='8x9'>
+   <tr> <td id='9x1'> <td id='9x2'> <td id='9x3'> <td id='9x4'> <td id='9x5'> <td id='9x6'> <td id='9x7'> <td id='9x8'> <td id='9x9'>
+</table>
+</html>
 
+
+<style type="text/css">
+table {
+   border-collapse: collapse;
+   font-family: Calibri, sans-serif;
+}
+colgroup, tbody {
+  border: solid medium;
+}
+td {
+  border: solid thin;
+  height: 40px; width: 40px;
+  text-align: center; padding: 0;
+}
+</style>
+
+<script type="text/javascript">
+
+
+function getSudoku(){
+  var matrix = [];
+  for (var i = 1; i <= 9; i++){
+    var row = [];
+    for (var j = 1; j <= 9; j++){
+      const cur = document.getElementById(i+"x"+j).innerHTML;
+      if (cur == 0)
+        return false;
+      row.push(cur);
+    }
+    matrix.push(row);
+  }
+  return matrix;
+}
+
+function transformBoard(board){
+  if (Array.isArray(board))
+    return board;
+
+  else if (typeof(board) === "string"){
+    var matrix = board.split(/\s+/g);
+    var sudoku = [];
+    for (var i = 0; i < matrix.length; i++)
+      sudoku.push([...matrix[i]]);
+
+    return sudoku;
+  }
+}
+
+function createSudoku(board){
+  for (var i = 1; i <= 9; i++){
+    for (var j = 1; j <= 9; j++){
+      if (board[i-1][j-1] != 0){
+        const element = document.getElementById(i+"x"+j)
+        element.innerHTML = board[i-1][j-1];
+        element.onclick = x => highlightSquare(element);
+      }
+    }
+  }
+}
+
+function highlightSquare(element){
+  //alert(element.id)
+  element.focus()
+}
+
+function m(e,inputObj){
+		document.getElementById('hintDiv').style.display='none';
+		if(!inputObj)inputObj = this;
+		if(inputObj.style.backgroundColor)return;
+		if(gameFinished)return;
+		inputObj.className='sudokuSquareHighlighted';
+		if(higlightedCell && higlightedCell!=inputObj)higlightedCell.className='sudokuSquare';
+		higlightedCell = inputObj;
+		if(document.all)inputObj.focus();
+
+	}
+
+const SOLVED = `132579468
+               498261375
+               756384219
+               643158792
+               521793846
+               987426531
+               214935687
+               365817924
+               879642135`;
+
+const BOARD = [[9, 0, 0, 0, 8, 0, 0, 0, 1],
+ [0, 0, 0, 4, 0, 6, 0, 0, 0],
+ [0, 0, 5, 0, 7, 0, 3, 0, 0],
+ [0, 6, 0, 0, 0, 0, 0, 4, 0],
+ [4, 0, 1, 0, 6, 0, 5, 0, 8],
+ [0, 9, 0, 0, 0, 0, 0, 2, 0],
+ [0, 0, 7, 0, 3, 0, 2, 0, 0],
+ [0, 0, 0, 7, 0, 5, 0, 0, 0],
+ [1, 0, 0, 0, 4, 0, 0, 0, 7]];
+
+
+const newBoard = transformBoard(SOLVED);
+
+
+//document.write(getSudoku());
+
+function isDuplicate(board){
+  return board.every(x => new Set(x).size == 9);
+}
+
+function validSolution(board){
+    const boxes = validateBoxes(board);
+    const cols = validateColumns(board);
+    const rows = isDuplicate(board);
+    return boxes && cols && rows;
+}
+
+function validateColumns(board){
+  var column = [];
+  for(var i = 0; i < 9; i++){
+    var temp = [];
+    for(var j = 0; j < 9; j++){
+      temp.push(board[j][i]);
+    }
+    column.push(temp);
+  }
+  return isDuplicate(column);
+}
+
+function validateBoxes(board){
+  var sudoku = [];
+  for (var i = 0; i < 9; i += 3){
+    for (var j = 0; j < 9; j += 3){
+      var nums = [...board[i].slice(j, j+3), ...board[i+1].slice(j, j+3), ...board[i+2].slice(j, j+3)];
+      sudoku.push(nums);
+    }
+  }
+  return isDuplicate(sudoku);
+}
+
+
+
+  var h1 = document.getElementsByTagName('h1')[0],
+      start = document.getElementById('start'),
+      stop = document.getElementById('stop'),
+      clear = document.getElementById('clear'),
+      seconds = 0, minutes = 0, hours = 0,
+      t;
+
+  function add() {
+      seconds++;
+      if (seconds >= 60) {
+          seconds = 0;
+          minutes++;
+          if (minutes >= 60) {
+              minutes = 0;
+              hours++;
+          }
+      }
+
+      h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+      timer();
+  }
+  function timer() {
+      t = setTimeout(add, 1000);
+      createSudoku(newBoard);
+      start.onclick = null;
+  }
+
+  function valid(){
+    const cur = getSudoku();
+    if (cur){
+      const isCompleted = validSolution(cur);
+      if (isCompleted){
+        clearTimeout(t);
+      }
+    }
+  }
+
+  function newGame(){
+    h1.textContent = "00:00:00";
+    seconds = 0; minutes = 0; hours = 0;
+  }
+
+  validate.onclick = valid;
+  restart.onclick = newGame;
+
+
+</script>
