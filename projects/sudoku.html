@@ -20,8 +20,12 @@ published: true
 
 
 <div style="padding-left:375px;">
-  <div style="overflow-y:auto; position:fixed; height:100%; margin-right:-375px; right:375px; width:375px; top:50px;" id="draggable" class="ui-widget-content">
-    <fieldset><legend>Sudoku Generation</legend>
+  <div style="position:fixed; height:100%; margin-right:-375px; right:375px; width:325px; top:50px;" id="draggable" class="ui-widget-content">
+    <fieldset><legend>Sudoku Options</legend>
+      See documentation <a href="https://www.samnayak.com/15-09-2016-sudoku/">here</a>
+      <br>1. No duplicates of the numbers 1-9 horizontally</br>
+  		<br>2. No duplicates of the numbers 1-9 vertically</br>
+  		<br>3. No duplicates of the numbers 1-9 in the 3x3 cell groups</br>
       <p>
         Size:
         <input id="inputHeight" size="1" value="50"> x
@@ -77,14 +81,23 @@ td {
   height: 50px; width: 50px;
   text-align: center; padding: 0;
 }
+
 </style>
 
 <script type="text/javascript">
 
 var currentObj;
+var previousObj;
 
 function initialise(e){
   currentObj = this;
+  currentObj.style.backgroundColor='#317082';
+  if (previousObj !== undefined)
+    previousObj = currentObj;
+  else {
+    previousObj.style.backgroundColor = ''
+  }
+
   if(document.all)
     document.body.onkeydown = insertNumber;
   else
@@ -98,8 +111,11 @@ function insertNumber(e){
     code = e.which;
 
   var theChar = String.fromCharCode(code);
-  if (/[1-9]/.test(theChar))
+  if (/[1-9]/.test(theChar)){
     currentObj.innerHTML = theChar;
+    //currentObj.style.backgroundColor = '';
+  }
+  previousObj = currentObj;
 }
 
 function getSudoku(){
@@ -135,10 +151,13 @@ function createSudoku(board){
   for (var i = 1; i <= 9; i++){
     for (var j = 1; j <= 9; j++){
       const element = document.getElementById(i+"x"+j)
-      if (/[1-9]/.test(board[i-1][j-1]))
+      if (/[1-9]/.test(board[i-1][j-1])){
         element.innerHTML = board[i-1][j-1];
-      else
+        element.style.backgroundColor='#DDD';
+      }
+      else{
         element.innerHTML = "";
+      }
     }
   }
 }
@@ -244,6 +263,16 @@ const testSu = [[9, 0, 0, 0, 8, 0, 0, 0, 1],
  [0, 0, 7, 0, 3, 0, 2, 0, 0],
  [0, 0, 0, 7, 0, 5, 0, 0, 0],
  [1, 0, 0, 0, 4, 0, 0, 0, 7]];
+
+const solved = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
+               [4, 9, 8, 2, 6, 1, 3, 7, 5],
+               [7, 5, 6, 3, 8, 4, 2, 1, 9],
+               [6, 4, 3, 1, 5, 8, 7, 9, 2],
+               [5, 2, 1, 7, 9, 3, 8, 4, 6],
+               [9, 8, 7, 4, 2, 6, 5, 3, 1],
+               [2, 1, 4, 9, 3, 5, 6, 8, 7],
+               [3, 6, 5, 8, 1, 7, 9, 2, 4],
+               [8, 7, 9, 6, 4, 2, 1, 5, 3]];
 
 
 const newBoard = transformBoard(testSu);
