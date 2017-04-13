@@ -29,9 +29,8 @@ published: true
       </p>
       <p>
         Generation Algorithm:<br>
-        <label><input type="radio" name="generation-algorithm" id="depthFirstSearchAlgorithmButton" checked>Depth-First Search</label><br>
-        <label><input type="radio" name="generation-algorithm" id="primAlgorithmButton">Prim</label><br>
-        <label><input type="radio" name="generation-algorithm" id="depthFirstIvyAlgorithmButton">Depth-First Ivy</label><br>
+        <label><input type="radio" name="generation-algorithm" id="seed" checked>Random Seed</label><br/>
+        <label><input type="radio" name="generation-algorithm" id="random">Random Generation</label><br/>
       </p>
       <p>
         Solution Algorithm:<br>
@@ -40,10 +39,10 @@ published: true
       </p>
       <h1><time>00:00:00</time></h1>
       <button id="start" onclick="startGame()">Start</button>
-      <button id="validate">Validate</button>
-      <button id="restart">Reset</button>
+      <button onclick="valid()">Validate</button>
+      <button onclick="restart()">Restart</button>
+      <button onclick="showSolution()">Show Solution</button>
     </fieldset>
-
   </div>
 </div>
 
@@ -65,8 +64,6 @@ published: true
    <tr> <td id='9x1'> <td id='9x2'> <td id='9x3'> <td id='9x4'> <td id='9x5'> <td id='9x6'> <td id='9x7'> <td id='9x8'> <td id='9x9'>
 </table>
 
-</div>
-
 <style type="text/css">
 table {
    border-collapse: collapse;
@@ -84,6 +81,26 @@ td {
 
 <script type="text/javascript">
 
+var currentObj;
+
+function initialise(e){
+  currentObj = this;
+  if(document.all)
+    document.body.onkeydown = insertNumber;
+  else
+  	document.documentElement.onkeydown = insertNumber;
+}
+
+function insertNumber(e){
+  if (e.keyCode)
+    code = e.keyCode;
+  else if (e.which)
+    code = e.which;
+
+  var theChar = String.fromCharCode(code);
+  if (/[1-9]/.test(theChar))
+    currentObj.innerHTML = theChar;
+}
 
 function getSudoku(){
   var matrix = [];
@@ -91,7 +108,7 @@ function getSudoku(){
     var row = [];
     for (var j = 1; j <= 9; j++){
       const cur = document.getElementById(i+"x"+j).innerHTML;
-      if (cur == 0)
+      if (!/[1-9]/.test(cur))
         return false;
       row.push(cur);
     }
@@ -117,57 +134,14 @@ function transformBoard(board){
 function createSudoku(board){
   for (var i = 1; i <= 9; i++){
     for (var j = 1; j <= 9; j++){
-      if (board[i-1][j-1] != 0){
-        const element = document.getElementById(i+"x"+j)
+      const element = document.getElementById(i+"x"+j)
+      if (/[1-9]/.test(board[i-1][j-1]))
         element.innerHTML = board[i-1][j-1];
-        element.onclick = x => highlightSquare(element);
-      }
+      else
+        element.innerHTML = "";
     }
   }
 }
-
-function highlightSquare(element){
-  //alert(element.id)
-  element.focus()
-}
-
-function m(e,inputObj){
-		document.getElementById('hintDiv').style.display='none';
-		if(!inputObj)inputObj = this;
-		if(inputObj.style.backgroundColor)return;
-		if(gameFinished)return;
-		inputObj.className='sudokuSquareHighlighted';
-		if(higlightedCell && higlightedCell!=inputObj)higlightedCell.className='sudokuSquare';
-		higlightedCell = inputObj;
-		if(document.all)inputObj.focus();
-
-	}
-
-const SOLVED = `132579468
-               498261375
-               756384219
-               643158792
-               521793846
-               987426531
-               214935687
-               365817924
-               879642135`;
-
-const BOARD = [[9, 0, 0, 0, 8, 0, 0, 0, 1],
- [0, 0, 0, 4, 0, 6, 0, 0, 0],
- [0, 0, 5, 0, 7, 0, 3, 0, 0],
- [0, 6, 0, 0, 0, 0, 0, 4, 0],
- [4, 0, 1, 0, 6, 0, 5, 0, 8],
- [0, 9, 0, 0, 0, 0, 0, 2, 0],
- [0, 0, 7, 0, 3, 0, 2, 0, 0],
- [0, 0, 0, 7, 0, 5, 0, 0, 0],
- [1, 0, 0, 0, 4, 0, 0, 0, 7]];
-
-
-const newBoard = transformBoard(SOLVED);
-
-
-//document.write(getSudoku());
 
 function isDuplicate(board){
   return board.every(x => new Set(x).size == 9);
@@ -221,58 +195,105 @@ document.getElementById("inputWidth").addEventListener("input", () => {
 
 
 
-  var h1 = document.getElementsByTagName('h1')[0],
-      start = document.getElementById('start'),
-      stop = document.getElementById('stop'),
-      clear = document.getElementById('clear'),
-      seconds = 0, minutes = 0, hours = 0,
-      t;
+var h1 = document.getElementsByTagName('h1')[0],
+    start = document.getElementById('start'),
+    stop = document.getElementById('stop'),
+    clear = document.getElementById('clear'),
+    seconds = 0, minutes = 0, hours = 0,
+    t;
 
-  function add() {
-    seconds++;
-    if (seconds >= 60) {
-      seconds = 0;
-      minutes++;
-      if (minutes >= 60) {
-        minutes = 0;
-        hours++;
-      }
-    }
-
-      h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-
-      timer();
-  }
-
-
-  function startGame(){
-    timer();
-    createSudoku(newBoard);
-    start.onclick = null;
-  }
-
-  function timer() {
-    t = setTimeout(add, 1000);
-  }
-
-  function valid(){
-    const cur = getSudoku();
-    if (cur){
-      const isCompleted = validSolution(cur);
-      if (isCompleted){
-        clearTimeout(t);
-        alert("Well done!");
-      }
+function add() {
+  seconds++;
+  if (seconds >= 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes >= 60) {
+      minutes = 0;
+      hours++;
     }
   }
 
-  function newGame(){
-    h1.textContent = "00:00:00";
-    seconds = 0; minutes = 0; hours = 0;
+  h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+  timer();
+}
+
+var read = new XMLHttpRequest();
+//read.open('GET', 'test_sudoku.txt', false);
+//read.send();
+//const BOARD = read.responseText;
+
+
+const BOARD = `132579468
+               498261375
+               756384219
+               643158792
+               521793846
+               987426531
+               214935687
+               365817924
+               879642135`;
+
+
+const testSu = [[9, 0, 0, 0, 8, 0, 0, 0, 1],
+ [0, 0, 0, 4, 0, 6, 0, 0, 0],
+ [0, 0, 5, 0, 7, 0, 3, 0, 0],
+ [0, 6, 0, 0, 0, 0, 0, 4, 0],
+ [4, 0, 1, 0, 6, 0, 5, 0, 8],
+ [0, 9, 0, 0, 0, 0, 0, 2, 0],
+ [0, 0, 7, 0, 3, 0, 2, 0, 0],
+ [0, 0, 0, 7, 0, 5, 0, 0, 0],
+ [1, 0, 0, 0, 4, 0, 0, 0, 7]];
+
+
+const newBoard = transformBoard(testSu);
+
+
+function startGame(){
+  timer();
+  createSudoku(newBoard);
+
+  var span = document.getElementsByTagName("td");
+
+  for (var i = 0; i < span.length; i++){
+    if (!span[i].innerHTML.trim())
+      span[i].onclick = initialise;
+    else
+      span[i].onclick = null;
   }
 
-  validate.onclick = valid;
-  restart.onclick = newGame;
+  start.onclick = null;
+}
 
+function timer() {
+  t = setTimeout(add, 1000);
+}
+
+function valid(){
+  const cur = getSudoku();
+  if (cur){
+    const isCompleted = validSolution(cur);
+    if (isCompleted){
+      clearTimeout(t);
+      alert("That's right. Well done!");
+    }
+    else{
+      alert("That's wrong. Try again.");
+    }
+  }
+  else{
+    alert("That's wrong. Try again.");
+  }
+}
+
+function restart(){
+  h1.textContent = "00:00:00";
+  seconds = 0; minutes = 0; hours = 0;
+  createSudoku(newBoard);
+}
+
+function showSolution(){
+  return 5;
+}
 
 </script>
