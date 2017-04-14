@@ -21,7 +21,7 @@ td {
   border: solid thin;
   height: 60px; width: 60px;
   text-align: center; padding: 0;
-  font-size: 150%;
+  font-size: 18px;
 }
 #draggable {
   width: 150px; height: 150px; padding: 0.5em;
@@ -44,9 +44,6 @@ td {
   <div style="position:fixed; margin-right:-375px; right:375px; height:75%; width:350px" id="draggable" class="ui-widget-content">
     <fieldset><legend>Sudoku Options</legend>
       See documentation <a href="https://www.samnayak.com/15-09-2016-sudoku/">here</a>
-      <br>1. No duplicates of the numbers 1-9 horizontally</br>
-  		2. No duplicates of the numbers 1-9 vertically
-  		<br>3. No duplicates of the numbers 1-9 in the 3x3 cell groups</br>
       <p>
         Size:
         <input id="inputHeight" type="number" min="20" max="70" value="60"> x
@@ -116,14 +113,14 @@ if(typeof(Storage) !== "undefined") {
 }
 
 function showStatistics(){
-  alert(`Attempts: ${attempts}
-         Correct Solutions: ${correctSolutions}`);
+  alert(`Attempts: ${attempts}\n`
+      + `Correct Solutions: ${correctSolutions}`);
 }
 
 function showRules(){
-  alert(`1. No duplicates of the numbers 1-9 horizontally
-         2. No duplicates of the numbers 1-9 vertically
-         3. No duplicates of the numbers 1-9 in the 3x3 cell groups`);
+  alert(`1. No duplicates of the numbers 1-9 horizontally\n`
+      + `2. No duplicates of the numbers 1-9 vertically\n`
+      + `3. No duplicates of the numbers 1-9 in the 3x3 cell groups`);
 }
 
 var currentObj;
@@ -152,10 +149,12 @@ function insertNumber(e){
   else if (e.which)
     code = e.which;
 
+  if (code === 8){
+    currentObj.innerHTML = "";
+  }
   var theChar = String.fromCharCode(code);
   if (/[1-9]/.test(theChar)){
     currentObj.innerHTML = theChar;
-    //currentObj.style.backgroundColor = '';
   }
 }
 
@@ -188,33 +187,40 @@ function transformBoard(board){
   }
 }
 
-function createSudoku(board){
+function createSudoku(board, isReset=false){
   board = transformBoard(board);
+  var hiddenBoard = [];
 
   const getDifficulty = document.getElementsByName("difficulty-setting");
-  const difficulty = getDifficulty[0].checked ? 0.30 : getDifficulty[1].checked ? 0.25 : getDifficulty[2].checked ? 0.20 : 0.5;
+  const difficulty = getDifficulty[0].checked ? 0.35 : getDifficulty[1].checked ? 0.3 : getDifficulty[2].checked ? 0.25 : 0.5;
 
   for (var i = 1; i <= 9; i++){
+    var temp = [];
     for (var j = 1; j <= 9; j++){
       const element = document.getElementById(i+"x"+j)
       if (Math.random() <= difficulty && element.style.backgroundColor!='#DDD'){
+        temp.push(board[i-1][j-1])
         element.innerHTML = board[i-1][j-1];
         element.style.backgroundColor='#DDD';
       }
       else{
+        temp.push(0)
         element.innerHTML = "";
         element.style.backgroundColor = "";
       }
     }
+    hiddenBoard.push(temp);
   }
+  return hiddenBoard;
 }
 var isRevealed = false;
-function revealNumbers(board){
+function revealNumbers(board, finalBoard){
   for (var i = 1; i <= 9; i++){
     for (var j = 1; j <= 9; j++){
       const element = document.getElementById(i+"x"+j)
-      element.innerHTML = board[i-1][j-1];
-      element.style.backgroundColor='#DDD';
+      element.innerHTML = finalBoard[i-1][j-1];
+      if (board[i-1][j-1] !== 0)
+        element.style.backgroundColor='#DDD';
     }
   }
   isRevealed = true;
@@ -409,7 +415,9 @@ function generateSudoku(matrix){
 }
 
 var finalBoard;
+var hiddenBoard;
 function newGame(){
+  hiddenBoard = undefined;
   var getGen = document.getElementsByName("generation-algorithm");
   if (getGen[0].checked){
     finalBoard = generateSudoku(solved);
@@ -434,7 +442,7 @@ function newGame(){
   resetClock();
   clearTimeout(t);
   timer();
-  createSudoku(finalBoard);
+  hiddenBoard = createSudoku(finalBoard);
 
   var span = document.getElementsByTagName("td");
 
@@ -486,8 +494,8 @@ function resetClock(){
 
 function showSolution(){
   clearTimeout(t);
-  const solution = getSolution(newBoard);
-  revealNumbers(solution);
+  const solution = getSolution(finalBoard);
+  revealNumbers(hiddenBoard, finalBoard);
 }
 
 </script>
