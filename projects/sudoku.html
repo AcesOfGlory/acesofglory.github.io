@@ -99,29 +99,27 @@ td {
 <script type="text/javascript">
 
 if (typeof(Storage) !== "undefined") {
-  if (localStorage.correctSolutions) {
-    var correctSolutions = +localStorage.correctSolutions;
-    var attempts = +localStorage.attempts;
-  }
-  else {
-    var correctSolutions = 0;
-    var attempts = 0;
-  }
-}
-else {
-  var correctSolutions = 0;
-  var attempts = 0;
+  var correctSolutions = localStorage.correctSolutions ? +localStorage.correctSolutions : 0;
+  var attempts = localStorage.attempts ? +localStorage.attempts : 0;
+  var givenUp = localStorage.givenUp ? +localStorage.givenUp : 0;
+  var shortestTime = localStorage.shortestTime ? +localStorage.shortestTime : null;
 }
 
 function showStatistics(){
-  alert(`Attempts: ${attempts}\n`
-      + `Correct Solutions: ${correctSolutions}`);
+  alert(`Statistics\n------------\n\n`
+      + `Attempts: ${attempts}\n`
+      + `Correct Solutions: ${correctSolutions}\n`
+      + `Given Up: ${givenUp}\n`
+      + `Shortest Time: ${shortestTime}`
+    );
 }
 
 function showRules(){
-  alert(`1. No duplicates of the numbers 1-9 horizontally\n`
+  alert(`Rules\n-------\n\n`
+      + `1. No duplicates of the numbers 1-9 horizontally\n`
       + `2. No duplicates of the numbers 1-9 vertically\n`
-      + `3. No duplicates of the numbers 1-9 in the 3x3 cell groups`);
+      + `3. No duplicates of the numbers 1-9 in the 3x3 cell groups`
+    );
 }
 
 var currentObj;
@@ -350,7 +348,7 @@ var h1 = document.getElementsByTagName('h1')[0],
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
     clear = document.getElementById('clear'),
-    seconds = 0, minutes = 0, hours = 0,
+    seconds = 0, minutes = 0, hours = 0, totalTime = 0,
     t;
 
 function add() {
@@ -365,7 +363,7 @@ function add() {
   }
 
   h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-
+  totalTime += seconds;
   timer();
 }
 
@@ -490,6 +488,11 @@ function valid(){
       clearTimeout(t);
       alert("That's right. Well done!");
       localStorage.correctSolutions = ++correctSolutions;
+
+      if (shortestTime === null || totalTime < shortestTime){
+        shorestTime = totalTime;
+        localStorage.shortestTime = totalTime;
+      }
     }
     else{
       alert("That's wrong. Try again.");
@@ -509,11 +512,12 @@ function restart(){
 function resetClock(){
   if (!isGenerated) return false;
   h1.textContent = "00:00:00";
-  seconds = 0; minutes = 0; hours = 0;
+  seconds = 0; minutes = 0; hours = 0, totalTime = 0;
 }
 
 function showSolution(){
   if (!isGenerated) return false;
+  localStorage.givenUp = ++givenUp;
   clearTimeout(t);
   const solution = getSolution(finalBoard);
   revealNumbers(hiddenBoard, finalBoard);
