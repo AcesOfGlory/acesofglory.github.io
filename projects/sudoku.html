@@ -437,8 +437,7 @@ function newGame(){
         return false;
     }
   }
-  attempts++;
-  localStorage.attempts = attempts;
+  localStorage.attempts = ++attempts;
 
   resetClock();
   clearTimeout(t);
@@ -471,8 +470,7 @@ function valid(){
     if (isCompleted){
       clearTimeout(t);
       alert("That's right. Well done!");
-      correctSolutions++;
-      localStorage.correctSolutions = correctSolutions;
+      localStorage.correctSolutions = ++correctSolutions;
     }
     else{
       alert("That's wrong. Try again.");
