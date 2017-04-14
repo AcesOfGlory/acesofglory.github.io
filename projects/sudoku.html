@@ -10,10 +10,26 @@ TODO
 - Seeded Algorithm using text files
 -->
 
+<style type="text/css">
+table {
+   border-collapse: collapse;
+   font-family: Calibri, sans-serif;
+}
+colgroup, tbody {
+  border: solid medium;
+}
+td {
+  border: solid thin;
+  height: 50px; width: 50px;
+  text-align: center; padding: 0;
+}
+#draggable {
+  width: 150px; height: 150px; padding: 0.5em;
+}
+
+</style>
+
 <head>
-  <style>
-  #draggable { width: 150px; height: 150px; padding: 0.5em; }
-  </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
@@ -25,7 +41,7 @@ TODO
 
 
 <div style="padding-left:375px;">
-  <div style="position:fixed; margin-right:-375px; right:375px; height:75%; width:325px; top:50px;" id="draggable" class="ui-widget-content">
+  <div style="position:fixed; margin-right:-375px; right:375px; height:75%; width:350px; top:50px;" id="draggable" class="ui-widget-content">
     <fieldset><legend>Sudoku Options</legend>
       See documentation <a href="https://www.samnayak.com/15-09-2016-sudoku/">here</a>
       <br>1. No duplicates of the numbers 1-9 horizontally</br>
@@ -33,24 +49,35 @@ TODO
   		<br>3. No duplicates of the numbers 1-9 in the 3x3 cell groups</br>
       <p>
         Size:
-        <input id="inputHeight" size="1" value="50"> x
-        <input id="inputWidth" size="1" value="50">
+        <input id="inputHeight" type="number" min="20" max="70" value="50"> x
+        <input id="inputWidth" type="number" min="20" max="70" value="50">
+
       </p>
       <p>
         Generation Algorithm:<br>
-        <label><input type="radio" name="generation-algorithm" id="seed" checked>Random Seed</label><br/>
+        <label><input type="radio" name="generation-algorithm" id="rseed" checked>Random Seed</label><br/>
         <label><input type="radio" name="generation-algorithm" id="random">Random Generation</label><br/>
+        <label><input type="radio" name="generation-algorithm" id="iseed">Input Seed:  </label>
+        <input id="inputSeed" type="number" style="width:75;"><br/>
       </p>
       <p>
         Solution Algorithm:<br>
         <label><input type="radio" name="solution-algorithm" id="backtracking" checked>Backtracking (Brute Force)</label><br>
-        <label><input type="radio" name="solution-algorithm" id="dijkstasAlgorithm">Dijkstra's</label><br>
+        <label><input type="radio" name="solution-algorithm" id="intersection">Intersection Removal</label><br>
+      </p>
+      <p>
+        Difficulty:<br>
+        <label><input type="radio" name="difficulty-setting">Easy</label><br>
+        <label><input type="radio" name="difficulty-setting" checked>Medium</label><br>
+        <label><input type="radio" name="difficulty-setting">Hard</label><br>
       </p>
       <h1><time>00:00:00</time></h1>
-      <button id="start" onclick="startGame()">Start</button>
+      <button id="start" onclick="newGame()">New Game</button>
       <button onclick="valid()">Validate</button>
       <button onclick="restart()">Restart</button>
       <button onclick="showSolution()">Show Solution</button>
+      <button onclick="showStatistics()">Show Statistics</button>
+      <button onclick="showRules()">Show Rules</button>
     </fieldset>
   </div>
 </div>
@@ -73,35 +100,42 @@ TODO
    <tr> <td id='9x1'> <td id='9x2'> <td id='9x3'> <td id='9x4'> <td id='9x5'> <td id='9x6'> <td id='9x7'> <td id='9x8'> <td id='9x9'>
 </table>
 
-<style type="text/css">
-table {
-   border-collapse: collapse;
-   font-family: Calibri, sans-serif;
-}
-colgroup, tbody {
-  border: solid medium;
-}
-td {
-  border: solid thin;
-  height: 50px; width: 50px;
-  text-align: center; padding: 0;
-}
-
-</style>
+</div>
 
 <script type="text/javascript">
+
+if(typeof(Storage) !== "undefined") {
+  if (localStorage.correctSolutions) {
+    var correctSolutions = localStorage.correctSolutions
+    var attempts = localStorage.attempts;
+  }
+  else {
+    var correctSolutions = 0;
+    var attempts = 0;
+  }
+}
+
+function showStatistics(){
+  alert("");
+}
+
+function showRules(){
+  alert("");
+}
 
 var currentObj;
 var previousObj;
 
 function initialise(e){
   currentObj = this;
-  currentObj.style.backgroundColor='#317082';
+  currentObj.style.backgroundColor='#ADD8E6';
+
   if (previousObj === undefined)
     previousObj = currentObj;
   else {
     previousObj.style.backgroundColor = ''
   }
+  previousObj = currentObj;
 
   if(document.all)
     document.body.onkeydown = insertNumber;
@@ -120,7 +154,6 @@ function insertNumber(e){
     currentObj.innerHTML = theChar;
     //currentObj.style.backgroundColor = '';
   }
-  previousObj = currentObj;
 }
 
 function getSudoku(){
@@ -153,18 +186,35 @@ function transformBoard(board){
 }
 
 function createSudoku(board){
+  board = transformBoard(board);
+
+  const getDifficulty = document.getElementsByName("difficulty-setting");
+  const difficulty = getDifficulty[0].checked ? 0.30 : getDifficulty[1].checked ? 0.25 : getDifficulty[2].checked ? 0.20 : 0.5;
+
   for (var i = 1; i <= 9; i++){
     for (var j = 1; j <= 9; j++){
       const element = document.getElementById(i+"x"+j)
-      if (/[1-9]/.test(board[i-1][j-1])){
+      if (Math.random() <= difficulty && element.style.backgroundColor!='#DDD'){
         element.innerHTML = board[i-1][j-1];
         element.style.backgroundColor='#DDD';
       }
       else{
         element.innerHTML = "";
+        element.style.backgroundColor = "";
       }
     }
   }
+}
+var isRevealed = false;
+function revealNumbers(board){
+  for (var i = 1; i <= 9; i++){
+    for (var j = 1; j <= 9; j++){
+      const element = document.getElementById(i+"x"+j)
+      element.innerHTML = board[i-1][j-1];
+      element.style.backgroundColor='#DDD';
+    }
+  }
+  isRevealed = true;
 }
 
 function isDuplicate(board){
@@ -201,17 +251,73 @@ function validateBoxes(board){
   return isDuplicate(sudoku);
 }
 
+
+function getSolution(puzzle) {
+    const findNext = (line, col) => {
+        while (line <= 8) {
+            while (++col <= 8) {
+                if (puzzle[line][col] === 0)
+                    return [line, col];
+            }
+            line++;
+            col = -1;
+        }
+        return undefined;
+    };
+
+    const valid = (line, col, i) => {
+        for (var k = 0; k < 9; k++) {
+            if (puzzle[line][k] === i || puzzle[k][col] === i)
+                return false;
+        }
+
+        var blockY = line - line % 3;
+        var blockX = col - col % 3;
+        for (var k = 0; k < 3; k++) {
+            for (var j = 0; j < 3; j++) {
+                if (puzzle[blockY + k][blockX + j] === i)
+                    return false;
+            }
+        }
+
+        return true;
+    };
+
+    const DFS = (line, col) => {
+        for (var i = 1; i <= 9; i++) {
+            if (valid(line, col, i)) {
+                puzzle[line][col] = i;
+                var pos = findNext(line, col);
+                if (pos === undefined || DFS(pos[0], pos[1]))
+                    return true;
+                puzzle[line][col] = 0;
+            }
+        }
+        return false;
+    };
+
+    var pos = findNext(0, -1);
+    if (pos !== undefined)
+        DFS(pos[0], pos[1]);
+    return puzzle;
+}
+
+
+
+
+
+
 var changeDimensions = document.getElementsByTagName("td");
 
 document.getElementById("inputHeight").addEventListener("input", () => {
-  const elementHeight = document.getElementById("inputHeight").value
+  const elementHeight = document.getElementById("inputHeight").value;
   for(var i = 0; i < changeDimensions.length; i++) {
     changeDimensions[i].style.height = elementHeight + "px";
   }
 }, false);
 
 document.getElementById("inputWidth").addEventListener("input", () => {
-  const elementWidth = document.getElementById("inputWidth").value
+  const elementWidth = document.getElementById("inputWidth").value;
   for(var i = 0; i < changeDimensions.length; i++) {
     changeDimensions[i].style.width = elementWidth + "px";
   }
@@ -242,22 +348,6 @@ function add() {
   timer();
 }
 
-var read = new XMLHttpRequest();
-//read.open('GET', 'test_sudoku.txt', false);
-//read.send();
-//const BOARD = read.responseText;
-
-
-const BOARD = `132579468
-               498261375
-               756384219
-               643158792
-               521793846
-               987426531
-               214935687
-               365817924
-               879642135`;
-
 
 const testSu = [[9, 0, 0, 0, 8, 0, 0, 0, 1],
  [0, 0, 0, 4, 0, 6, 0, 0, 0],
@@ -280,12 +370,73 @@ const solved = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
                [8, 7, 9, 6, 4, 2, 1, 5, 3]];
 
 
-const newBoard = transformBoard(testSu);
+function generateSudoku(matrix){
+  matrix = transformBoard(matrix);
 
+	for(var no=0;no<9;no+=3){
+		for(var no2=0;no2<3;no2++){
+			row1 = Math.floor(Math.random()*3);
+			row2 = Math.floor(Math.random()*3);
+			while(row2==row1){
+				row2 = Math.floor(Math.random()*3);
+			}
+			row1 = row1 + no;
+			row2 = row2 + no;
+			var tmpMatrix = new Array();
+			tmpMatrix = matrix[row1];
+			matrix[row1] = matrix[row2];
+			matrix[row2] = tmpMatrix;
+		}
+	}
 
-function startGame(){
+	for(var no=0;no<9;no+=3){
+		for(var no2=0;no2<3;no2++){
+			col1 = Math.floor(Math.random()*3);
+			col2 = Math.floor(Math.random()*3);
+			while(col2==col1){
+				col2 = Math.floor(Math.random()*3);
+			}
+			col1 = col1 + no;
+			col2 = col2 + no;
+
+			var tmpMatrix = new Array();
+			for(var no3=0;no3<matrix.length;no3++){
+				tmpMatrixValue = matrix[no3][col1];
+				matrix[no3][col1] = matrix[no3][col2];
+				matrix[no3][col2] = tmpMatrixValue;
+			}
+		}
+	}
+  return matrix;
+}
+
+var finalBoard;
+function newGame(){
+  var getGen = document.getElementsByName("generation-algorithm");
+  if (getGen[0].checked){
+    finalBoard = generateSudoku(solved);
+  }
+  else {
+    var read = new XMLHttpRequest();
+    //read.open('GET', 'test_sudoku.txt', false);
+    //read.send();
+    //const BOARD = read.responseText;
+    if (getGen[1].checked){
+      var rand = Math.floor(Math.random() * 1000) + 1; //max and min seeds
+    }
+    else if (getGen[2].checked){
+      var getSeed = document.getElementById("inputSeed").value;
+      if (!getSeed)
+        return false;
+    }
+  }
+  attempts++;
+  localStorage.attempts = attempts;
+
+  resetClock();
+  clearTimeout(t);
   timer();
-  createSudoku(newBoard);
+  createSudoku(finalBoard);
 
   var span = document.getElementsByTagName("td");
 
@@ -295,8 +446,6 @@ function startGame(){
     else
       span[i].onclick = null;
   }
-
-  start.onclick = null;
 }
 
 function timer() {
@@ -304,12 +453,19 @@ function timer() {
 }
 
 function valid(){
+
+  if (isRevealed){
+    return false;
+  }
+
   const cur = getSudoku();
   if (cur){
     const isCompleted = validSolution(cur);
     if (isCompleted){
       clearTimeout(t);
       alert("That's right. Well done!");
+      correctSolutions++;
+      localStorage.correctSolutions = correctSolutions;
     }
     else{
       alert("That's wrong. Try again.");
@@ -321,13 +477,19 @@ function valid(){
 }
 
 function restart(){
+  resetClock();
+  createSudoku(finalBoard);
+}
+
+function resetClock(){
   h1.textContent = "00:00:00";
   seconds = 0; minutes = 0; hours = 0;
-  createSudoku(newBoard);
 }
 
 function showSolution(){
-  return 5;
+  clearTimeout(t);
+  const solution = getSolution(newBoard);
+  revealNumbers(solution);
 }
 
 </script>
