@@ -116,11 +116,14 @@ if(typeof(Storage) !== "undefined") {
 }
 
 function showStatistics(){
-  alert("");
+  alert(`Attempts: ${attempts}
+         Correct Solutions: ${correctSolutions}`);
 }
 
 function showRules(){
-  alert("");
+  alert(`1. No duplicates of the numbers 1-9 horizontally
+         2. No duplicates of the numbers 1-9 vertically
+         3. No duplicates of the numbers 1-9 in the 3x3 cell groups`);
 }
 
 var currentObj;
