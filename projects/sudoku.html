@@ -5,8 +5,6 @@ published: true
 
 <!--
 TODO
-- Generation Algorithm
-- Solution Algorithm
 - Seeded Algorithm using text files
 -->
 
@@ -38,7 +36,6 @@ td {
   } );
   </script>
 </head>
-
 
 <div style="padding-left:375px;">
   <div style="position:fixed; margin-right:-375px; right:375px; height:75%; width:350px" id="draggable" class="ui-widget-content">
@@ -101,15 +98,19 @@ td {
 
 <script type="text/javascript">
 
-if(typeof(Storage) !== "undefined") {
+if (typeof(Storage) !== "undefined") {
   if (localStorage.correctSolutions) {
-    var correctSolutions = localStorage.correctSolutions
-    var attempts = localStorage.attempts;
+    var correctSolutions = +localStorage.correctSolutions;
+    var attempts = +localStorage.attempts;
   }
   else {
     var correctSolutions = 0;
     var attempts = 0;
   }
+}
+else {
+  var correctSolutions = 0;
+  var attempts = 0;
 }
 
 function showStatistics(){
