@@ -3,10 +3,14 @@ layout: minimal
 published: true
 ---
 
+<!--
+TODO
+- Generation Algorithm
+- Solution Algorithm
+- Seeded Algorithm using text files
+-->
+
 <head>
-  <title>Sudoku | Sam Nayak</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <style>
   #draggable { width: 150px; height: 150px; padding: 0.5em; }
   </style>
@@ -93,7 +97,7 @@ var previousObj;
 function initialise(e){
   currentObj = this;
   currentObj.style.backgroundColor='#317082';
-  if (previousObj !== undefined)
+  if (previousObj === undefined)
     previousObj = currentObj;
   else {
     previousObj.style.backgroundColor = ''
