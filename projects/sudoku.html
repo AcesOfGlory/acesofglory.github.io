@@ -199,6 +199,18 @@ function createSudoku(board, isReset=false){
     var temp = [];
     for (var j = 1; j <= 9; j++){
       const element = document.getElementById(i+"x"+j)
+      if (isReset){
+        if (board[i-1][j-1] === 0){
+          element.innerHTML = "";
+          element.style.backgroundColor = "";
+        }
+        else{
+          element.innerHTML = board[i-1][j-1];
+          element.style.backgroundColor='#DDD';
+        }
+        continue;
+      }
+
       if (Math.random() <= difficulty && element.style.backgroundColor!='#DDD'){
         temp.push(board[i-1][j-1])
         element.innerHTML = board[i-1][j-1];
@@ -316,14 +328,18 @@ var changeDimensions = document.getElementsByTagName("td");
 
 document.getElementById("inputHeight").addEventListener("input", () => {
   const elementHeight = document.getElementById("inputHeight").value;
-  for(var i = 0; i < changeDimensions.length; i++) {
+  if (elementHeight < 19 || elementHeight > 70)
+    return false;
+  for (var i = 0; i < changeDimensions.length; i++) {
     changeDimensions[i].style.height = elementHeight + "px";
   }
 }, false);
 
 document.getElementById("inputWidth").addEventListener("input", () => {
   const elementWidth = document.getElementById("inputWidth").value;
-  for(var i = 0; i < changeDimensions.length; i++) {
+  if (elementWidth < 19 || elementWidth > 70)
+    return false;
+  for (var i = 0; i < changeDimensions.length; i++) {
     changeDimensions[i].style.width = elementWidth + "px";
   }
 }, false);
@@ -415,10 +431,14 @@ function generateSudoku(matrix){
   return matrix;
 }
 
+var isGenerated = false;
 var finalBoard;
 var hiddenBoard;
+
 function newGame(){
   hiddenBoard = undefined;
+  isGenerated = true;
+
   var getGen = document.getElementsByName("generation-algorithm");
   if (getGen[0].checked){
     finalBoard = generateSudoku(solved);
@@ -460,9 +480,8 @@ function timer() {
 
 function valid(){
 
-  if (isRevealed){
-    return false;
-  }
+  if (isRevealed) return false;
+  if (!isGenerated) return false;
 
   const cur = getSudoku();
   if (cur){
@@ -482,16 +501,19 @@ function valid(){
 }
 
 function restart(){
+  if (!isGenerated) return false;
   resetClock();
-  createSudoku(finalBoard);
+  createSudoku(hiddenBoard, true);
 }
 
 function resetClock(){
+  if (!isGenerated) return false;
   h1.textContent = "00:00:00";
   seconds = 0; minutes = 0; hours = 0;
 }
 
 function showSolution(){
+  if (!isGenerated) return false;
   clearTimeout(t);
   const solution = getSolution(finalBoard);
   revealNumbers(hiddenBoard, finalBoard);
