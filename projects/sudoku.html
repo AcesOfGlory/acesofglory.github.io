@@ -33,7 +33,7 @@ td {
 </head>
 
 <div style="padding-left:375px;">
-  <div style="position:fixed; margin-right:-375px; right:375px; height:75%; width:350px" id="draggable" class="ui-widget-content">
+  <div style="position:fixed; margin-right:-375px; right:375px; height:75%; top:30px; width:350px;" id="draggable" class="ui-widget-content">
     <fieldset><legend>Sudoku Options</legend>
       See documentation <a href="https://www.samnayak.com/15-09-2016-sudoku/">here</a>
       <p>
@@ -48,6 +48,7 @@ td {
         <!--<label><input type="radio" name="generation-algorithm" id="rseed">Random Seed</label><br/>
         <label><input type="radio" name="generation-algorithm" id="iseed">Input Seed:  </label>
         <input id="inputSeed" type="number" style="width:75;"><br/>-->
+        <label><input type="radio" name="generation-algorithm" id="manual">Manual Input</label>
       </p>
       <p>
         Solution Algorithm:<br>
@@ -157,10 +158,10 @@ function getSudoku(){
   for (var i = 1; i <= 9; i++){
     var row = [];
     for (var j = 1; j <= 9; j++){
-      const cur = document.getElementById(i+"x"+j).innerHTML;
+      var cur = document.getElementById(i+"x"+j).innerHTML;
       if (!/[1-9]/.test(cur))
-        return false;
-      row.push(cur);
+        cur = 0;
+      row.push(+cur);
     }
     matrix.push(row);
   }
@@ -220,13 +221,13 @@ function createSudoku(board, isReset=false){
   return hiddenBoard;
 }
 var isRevealed = false;
-function revealNumbers(board, finalBoard){
+function revealNumbers(hiddenBoard, finalBoard){
   for (var i = 1; i <= 9; i++){
     for (var j = 1; j <= 9; j++){
       const element = document.getElementById(i+"x"+j)
       element.innerHTML = finalBoard[i-1][j-1];
-      if (board[i-1][j-1] !== 0)
-        element.style.backgroundColor='#DDD';
+      if (hiddenBoard[i-1][j-1] !== 0)
+        element.style.backgroundColor = '#DDD';
     }
   }
   isRevealed = true;
@@ -374,14 +375,24 @@ const testSu = [[9, 0, 0, 0, 8, 0, 0, 0, 1],
  [1, 0, 0, 0, 4, 0, 0, 0, 7]];
 
 const solved = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
-               [4, 9, 8, 2, 6, 1, 3, 7, 5],
-               [7, 5, 6, 3, 8, 4, 2, 1, 9],
-               [6, 4, 3, 1, 5, 8, 7, 9, 2],
-               [5, 2, 1, 7, 9, 3, 8, 4, 6],
-               [9, 8, 7, 4, 2, 6, 5, 3, 1],
-               [2, 1, 4, 9, 3, 5, 6, 8, 7],
-               [3, 6, 5, 8, 1, 7, 9, 2, 4],
-               [8, 7, 9, 6, 4, 2, 1, 5, 3]];
+                [4, 9, 8, 2, 6, 1, 3, 7, 5],
+                [7, 5, 6, 3, 8, 4, 2, 1, 9],
+                [6, 4, 3, 1, 5, 8, 7, 9, 2],
+                [5, 2, 1, 7, 9, 3, 8, 4, 6],
+                [9, 8, 7, 4, 2, 6, 5, 3, 1],
+                [2, 1, 4, 9, 3, 5, 6, 8, 7],
+                [3, 6, 5, 8, 1, 7, 9, 2, 4],
+                [8, 7, 9, 6, 4, 2, 1, 5, 3]];
+
+var testing = [[8, 0, 2, 6, 3, 0, 0, 4, 0],
+               [0, 3, 9, 0, 0, 0, 0, 0, 0],
+               [5, 7, 0, 0, 1, 0, 2, 3, 0],
+               [0, 0, 0, 3, 2, 0, 5, 1, 0],
+               [0, 0, 5, 1, 0, 4, 6, 0, 0],
+               [0, 6, 1, 0, 8, 5, 0, 0, 0],
+               [0, 8, 4, 0, 7, 0, 0, 2, 9],
+               [0, 0, 0, 0, 0, 0, 8, 7, 0],
+               [0, 9, 0, 0, 4, 3, 1, 0, 6]];
 
 
 function generateSudoku(matrix){
@@ -428,31 +439,37 @@ var isGenerated = false;
 var finalBoard;
 var hiddenBoard;
 
+
 function newGame(){
   hiddenBoard = undefined;
   isGenerated = true;
   hasGivenUp = false;
 
+  resetClock();
+  clearTimeout(t);
+
   var span = document.getElementsByTagName("td");
-
-  for (var i = 0; i < span.length; i++){
-    if (!span[i].innerHTML.trim())
-      span[i].onclick = initialise;
-    else
-      span[i].onclick = null;
-  }
-
   var getGen = document.getElementsByName("generation-algorithm");
+
   if (getGen[0].checked){
     finalBoard = generateSudoku(solved);
   }
+  if (getGen[1].checked){
+    for (var i = 0; i < span.length; i++){
+      span[i].onclick = initialise;
+      span[i].innerHTML = "";
+      span[i].style.backgroundColor = "";
+    }
+    return false;
+  }
+  /*
   else {
     var read = new XMLHttpRequest();
 
-    if (getGen[1].checked){
+    if (getGen[2].checked){
       var getSeed = Math.floor(Math.random() * 5) + 1;
     }
-    else if (getGen[2].checked){
+    else if (getGen[3].checked){
       var getSeed = document.getElementById("inputSeed").value;
       if (!getSeed) return false;
     }
@@ -460,21 +477,19 @@ function newGame(){
     //read.send();
     //finalBoard = read.responseText;
   }
+  */
   localStorage.attempts = ++attempts;
 
-  resetClock();
-  clearTimeout(t);
   timer();
-  hiddenBoard = createSudoku(finalBoard);
-
-  var span = document.getElementsByTagName("td");
 
   for (var i = 0; i < span.length; i++){
     if (!span[i].innerHTML.trim())
       span[i].onclick = initialise;
     else
       span[i].onclick = null;
+    span[i].style.backgroundColor == "";
   }
+  hiddenBoard = createSudoku(finalBoard);
 }
 
 function timer() {
@@ -486,21 +501,15 @@ function valid(){
   if (isRevealed) return false;
   if (!isGenerated) return false;
 
-  const cur = getSudoku();
-  if (cur){
-    const isCompleted = validSolution(cur);
-    if (isCompleted){
-      clearTimeout(t);
-      alert("That's right. Well done!");
-      localStorage.correctSolutions = ++correctSolutions;
+  const isCompleted = validSolution(getSudoku());
+  if (isCompleted){
+    clearTimeout(t);
+    alert("That's right. Well done!");
+    localStorage.correctSolutions = ++correctSolutions;
 
-      if (shortestTime === null || totalTime < shortestTime){
-        shorestTime = totalTime;
-        localStorage.shortestTime = totalTime;
-      }
-    }
-    else{
-      alert("That's wrong. Try again.");
+    if (shortestTime === null || totalTime < shortestTime){
+      shorestTime = totalTime;
+      localStorage.shortestTime = totalTime;
     }
   }
   else{
@@ -523,16 +532,27 @@ function resetClock(){
 
 function showSolution(){
   if (!isGenerated) return false;
-  localStorage.givenUp = ++givenUp;
-  clearTimeout(t);
-  isRevealed = false;
-  const solution = getSolution(finalBoard);
-  revealNumbers(hiddenBoard, finalBoard);
+  if (document.getElementsByName("generation-algorithm")[1].checked){
+    hiddenBoard = getSudoku();
+    hiddenCustomBoard = getSudoku();
 
-  var span = document.getElementsByTagName("td");
+    var finalCustomBoard = getSolution(hiddenCustomBoard);
 
-  for (var i = 0; i < span.length; i++)
-      span[i].onclick = null;
+    revealNumbers(hiddenBoard, finalCustomBoard);
+  }
+  else {
+    localStorage.givenUp = ++givenUp;
+    clearTimeout(t);
+    isRevealed = false;
+    const solution = getSolution(finalBoard);
+    revealNumbers(hiddenBoard, finalBoard);
+
+    var span = document.getElementsByTagName("td");
+
+    for (var i = 0; i < span.length; i++)
+        span[i].onclick = null;
+  }
+
 }
 
 </script>
