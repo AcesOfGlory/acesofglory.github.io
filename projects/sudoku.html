@@ -130,6 +130,11 @@ function initialise(e){
   else {
     previousObj.style.backgroundColor = ''
   }
+  
+  if (previousObj.id == currentObj.id)
+    currentObj.style.backgroundColor='#ADD8E6';
+
+
   previousObj = currentObj;
 
   if(document.all)
@@ -485,7 +490,6 @@ function newGame(){
   hiddenBoard = createSudoku(finalBoard);
 
   for (var i = 0; i < span.length; i++){
-    console.log(span[i].innerHTML)
     if (!/[1-9]/.test(span[i].innerHTML))
       span[i].onclick = initialise;
     else
