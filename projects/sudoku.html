@@ -149,25 +149,22 @@ function insertNumber(e){
     code = e.which;
 
   if (37 >= code || code <= 40){
-    var position = currentObj.id;
+    var [i, _, j] = currentObj.id;
+    var move;
 
-    if (code == 39){
-      var nextObject = document.getElementById(`${position[0]}x${+position[2] + 1}`);
-    }
-    else if (code == 37){
-      var nextObject = document.getElementById(`${position[0]}x${+position[2] - 1}`);
-    }
-    else if (code == 40){
-      var nextObject = document.getElementById(`${+position[0] + 1}x${position[2]}`);
-    }
-    else{
-      var nextObject = document.getElementById(`${+position[0] - 1}x${position[2]}`);
-    }
+    if (code == 39)
+      move = `${i}x${+j + 1}`;
+    else if (code == 37)
+      move = `${i}x${+j - 1}`;
+    else if (code == 40)
+      move = `${+i + 1}x${j}`;
+    else
+      move = `${+i - 1}x${j}`;
 
-    if (nextObject.style.backgroundColor) return false;
+    var nextObject = document.getElementById(move);
+    if (!nextObject || nextObject.style.backgroundColor) return false;
 
     currentObj = nextObject;
-
     currentObj.style.backgroundColor = "#ADD8E6"
     previousObj.style.backgroundColor = "";
     previousObj = currentObj;
