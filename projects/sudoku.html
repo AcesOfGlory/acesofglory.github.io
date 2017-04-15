@@ -3,11 +3,6 @@ layout: minimal
 published: true
 ---
 
-<!--
-TODO
-- Seeded Algorithm using text files
--->
-
 <style type="text/css">
 table {
    border-collapse: collapse;
@@ -43,21 +38,21 @@ td {
       See documentation <a href="https://www.samnayak.com/15-09-2016-sudoku/">here</a>
       <p>
         Size:
-        <input id="inputHeight" type="number" min="20" max="70" value="60"> x
-        <input id="inputWidth" type="number" min="20" max="70" value="60">
+        <input id="inputHeight" type="number" min="20" max="70" value="60" style="width:35;"> x
+        <input id="inputWidth" type="number" min="20" max="70" value="60" style="width:35;">
 
       </p>
       <p>
         Generation Algorithm:<br>
         <label><input type="radio" name="generation-algorithm" id="random" checked>Random Generation</label><br/>
-        <label><input type="radio" name="generation-algorithm" id="rseed">Random Seed</label><br/>
+        <!--<label><input type="radio" name="generation-algorithm" id="rseed">Random Seed</label><br/>
         <label><input type="radio" name="generation-algorithm" id="iseed">Input Seed:  </label>
-        <input id="inputSeed" type="number" style="width:75;"><br/>
+        <input id="inputSeed" type="number" style="width:75;"><br/>-->
       </p>
       <p>
         Solution Algorithm:<br>
         <label><input type="radio" name="solution-algorithm" id="backtracking" checked>Backtracking (Brute Force)</label><br>
-        <label><input type="radio" name="solution-algorithm" id="intersection">Intersection Removal</label><br>
+        <!--<label><input type="radio" name="solution-algorithm" id="intersection">Intersection Removal</label><br>-->
       </p>
       <p>
         Difficulty:<br>
@@ -436,6 +431,16 @@ var hiddenBoard;
 function newGame(){
   hiddenBoard = undefined;
   isGenerated = true;
+  hasGivenUp = false;
+
+  var span = document.getElementsByTagName("td");
+
+  for (var i = 0; i < span.length; i++){
+    if (!span[i].innerHTML.trim())
+      span[i].onclick = initialise;
+    else
+      span[i].onclick = null;
+  }
 
   var getGen = document.getElementsByName("generation-algorithm");
   if (getGen[0].checked){
@@ -451,9 +456,9 @@ function newGame(){
       var getSeed = document.getElementById("inputSeed").value;
       if (!getSeed) return false;
     }
-    read.open("GET", `/seeds/seed${getSeed}.txt`, false);
-    read.send();
-    finalBoard = read.responseText;
+    //read.open("GET", `/seeds/seed${getSeed}.txt`, false);
+    //read.send();
+    //finalBoard = read.responseText;
   }
   localStorage.attempts = ++attempts;
 
@@ -505,6 +510,7 @@ function valid(){
 
 function restart(){
   if (!isGenerated) return false;
+  if (isRevealed) return false;
   resetClock();
   createSudoku(hiddenBoard, true);
 }
@@ -519,8 +525,14 @@ function showSolution(){
   if (!isGenerated) return false;
   localStorage.givenUp = ++givenUp;
   clearTimeout(t);
+  isRevealed = false;
   const solution = getSolution(finalBoard);
   revealNumbers(hiddenBoard, finalBoard);
+
+  var span = document.getElementsByTagName("td");
+
+  for (var i = 0; i < span.length; i++)
+      span[i].onclick = null;
 }
 
 </script>
