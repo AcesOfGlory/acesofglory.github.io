@@ -482,14 +482,16 @@ function newGame(){
 
   timer();
 
+  hiddenBoard = createSudoku(finalBoard);
+
   for (var i = 0; i < span.length; i++){
-    if (!span[i].innerHTML.trim())
+    console.log(span[i].innerHTML)
+    if (!/[1-9]/.test(span[i].innerHTML))
       span[i].onclick = initialise;
     else
       span[i].onclick = null;
     span[i].style.backgroundColor == "";
   }
-  hiddenBoard = createSudoku(finalBoard);
 }
 
 function timer() {
