@@ -156,58 +156,59 @@ function insertNumber(e){
   if (code == 8)
     currentObj.innerHTML = ""
 
-  var [i, _, j] = currentObj.id;
-  var i = +i, j = +j
-  var nextObject;
+  if (code >= 37 && code <= 40){
+    var [i, _, j] = currentObj.id;
+    var i = +i, j = +j
+    var nextObject;
 
-  if (code == 39){
-    nextObject = document.getElementById(`${i}x${j + 1}`);
-    if (j < 8){
-      if(nextObject.style.backgroundColor){
-				while (j <= 8 && nextObject.style.backgroundColor)
-					nextObject = document.getElementById(`${i}x${++j}`);
+    if (code == 39){
+      nextObject = document.getElementById(`${i}x${j + 1}`);
+      if (j < 8){
+        if(nextObject.style.backgroundColor){
+					while (j <= 8 && nextObject.style.backgroundColor)
+						nextObject = document.getElementById(`${i}x${++j}`);
+        }
       }
     }
-  }
-  else if (code == 37){
-    nextObject = document.getElementById(`${i}x${j - 1}`);
-    if (j > 0){
-      if(nextObject.style.backgroundColor){
-        while (j >= 0 && nextObject.style.backgroundColor)
-          nextObject = document.getElementById(`${i}x${--j}`);
+    else if (code == 37){
+      nextObject = document.getElementById(`${i}x${j - 1}`);
+      if (j > 0){
+        if(nextObject.style.backgroundColor){
+          while (j >= 0 && nextObject.style.backgroundColor)
+            nextObject = document.getElementById(`${i}x${--j}`);
+        }
       }
     }
-  }
-  else if (code == 40){
-    nextObject = document.getElementById(`${i + 1}x${j}`);
-    if (i < 8){
-      if(nextObject.style.backgroundColor){
-        while (i <= 8 && nextObject.style.backgroundColor)
-          nextObject = document.getElementById(`${++i}x${j}`);
+    else if (code == 40){
+      nextObject = document.getElementById(`${i + 1}x${j}`);
+      if (i < 8){
+        if(nextObject.style.backgroundColor){
+          while (i <= 8 && nextObject.style.backgroundColor)
+            nextObject = document.getElementById(`${++i}x${j}`);
+        }
       }
     }
-  }
-  else{
-    nextObject = document.getElementById(`${i - 1}x${j}`);
-    if (i > 0){
-      if(nextObject.style.backgroundColor){
-        while (i >= 0 && nextObject.style.backgroundColor)
-          nextObject = document.getElementById(`${--i}x${j}`);
+    else{
+      nextObject = document.getElementById(`${i - 1}x${j}`);
+      if (i > 0){
+        if(nextObject.style.backgroundColor){
+          while (i >= 0 && nextObject.style.backgroundColor)
+            nextObject = document.getElementById(`${--i}x${j}`);
+        }
       }
     }
-  }
 
-  if (!nextObject || nextObject.style.backgroundColor) return false;
+    if (!nextObject || nextObject.style.backgroundColor) return false;
 
-  currentObj = nextObject;
-  currentObj.style.backgroundColor = HIGHLIGHT_COLOUR
-  previousObj.style.backgroundColor = "";
-  previousObj = currentObj;
+    currentObj = nextObject;
+    currentObj.style.backgroundColor = HIGHLIGHT_COLOUR
+    previousObj.style.backgroundColor = "";
+    previousObj = currentObj;
+  }
 
   var theChar = String.fromCharCode(code);
-  if (/[1-9]/.test(theChar)){
+  if (/[1-9]/.test(theChar))
     currentObj.innerHTML = theChar;
-  }
 }
 
 function getSudoku(){
