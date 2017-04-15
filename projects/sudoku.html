@@ -148,7 +148,10 @@ function insertNumber(e){
   else if (e.which)
     code = e.which;
 
-  if (37 >= code || code <= 40){
+  if (code == 8)
+    currentObj.innerHTML = ""
+
+  if (code >= 37 && code <= 40){
     var [i, _, j] = currentObj.id;
     var move;
 
@@ -170,9 +173,6 @@ function insertNumber(e){
     previousObj = currentObj;
   }
 
-  if (code == 8){
-    currentObj.innerHTML = "";
-  }
   var theChar = String.fromCharCode(code);
   if (/[1-9]/.test(theChar)){
     currentObj.innerHTML = theChar;
