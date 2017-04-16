@@ -32,18 +32,8 @@ td {
 
 </style>
 
-<head>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
-  <script>
-  $( function() {
-    $( "#draggable" ).draggable();
-  } );
-  </script>
-</head>
 
-<div id="draggable" class="ui-widget-content">
+<div id="draggable">
   <fieldset><legend>Sudoku Options</legend>
     See documentation <a href="https://www.samnayak.com/15-09-2016-sudoku/">here</a>
     <p>
@@ -123,25 +113,6 @@ function showRules(){
     );
 }
 
-var changeDimensions = document.getElementsByTagName("td");
-
-document.getElementById("inputHeight").addEventListener("input", () => {
-  const elementHeight = +document.getElementById("inputHeight").value;
-  if (elementHeight < 10 || elementHeight > 80) return false;
-
-  for (var i = 0; i < changeDimensions.length; i++) {
-    changeDimensions[i].style.height = elementHeight + "px";
-  }
-}, false);
-
-document.getElementById("inputWidth").addEventListener("input", () => {
-  const elementWidth = +document.getElementById("inputWidth").value;
-  if (elementWidth < 10 || elementWidth > 80) return false;
-
-  for (var i = 0; i < changeDimensions.length; i++) {
-    changeDimensions[i].style.width = elementWidth + "px";
-  }
-}, false);
 
 
 var currentObj;
