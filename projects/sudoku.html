@@ -57,7 +57,6 @@ td {
       <label><input type="radio" name="difficulty-setting" checked>Medium</label><br>
       <label><input type="radio" name="difficulty-setting">Hard</label><br>
     </p>
-    <h1><time>00:00:00</time></h1>
 
     <a href="#" onclick="newGame();return false">New Game</a>
     <input type="button" onclick="valid();return false" value="Validate"/>
@@ -88,30 +87,6 @@ td {
 
 const HIGHLIGHT_COLOUR = "#ADD8E6";
 const FIXED_NUMBER_COLOUR = "#DDDDDD";
-
-if (typeof(Storage) !== "undefined") {
-  var correctSolutions = localStorage.correctSolutions ? +localStorage.correctSolutions : 0;
-  var attempts = localStorage.attempts ? +localStorage.attempts : 0;
-  var givenUp = localStorage.givenUp ? +localStorage.givenUp : 0;
-  var shortestTime = localStorage.shortestTime ? +localStorage.shortestTime : null;
-}
-
-function showStatistics(){
-  alert(`Statistics\n------------\n\n`
-      + `Attempts: ${attempts}\n`
-      + `Correct Solutions: ${correctSolutions}\n`
-      + `Given Up: ${givenUp}\n`
-      + `Shortest Time: ${shortestTime}`
-    );
-}
-
-function showRules(){
-  alert(`Rules\n-------\n\n`
-      + `1. No duplicates of the numbers 1-9 horizontally\n`
-      + `2. No duplicates of the numbers 1-9 vertically\n`
-      + `3. No duplicates of the numbers 1-9 in the 3x3 cell groups`
-    );
-}
 
 
 
@@ -385,29 +360,6 @@ function getSolution(puzzle) {
 }
 
 
-var h1 = document.getElementsByTagName("h1")[0],
-    start = document.getElementById("start"),
-    stop = document.getElementById("stop"),
-    clear = document.getElementById("clear"),
-    seconds = 0, minutes = 0, hours = 0, totalTime = 0,
-    t;
-
-function add() {
-  seconds++;
-  if (seconds >= 60) {
-    seconds = 0;
-    minutes++;
-    if (minutes >= 60) {
-      minutes = 0;
-      hours++;
-    }
-  }
-
-  h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-  totalTime += seconds;
-  timer();
-}
-
 
 const testSu = [[9, 0, 0, 0, 8, 0, 0, 0, 1],
  [0, 0, 0, 4, 0, 6, 0, 0, 0],
@@ -476,9 +428,6 @@ function newGame(){
   hasGivenUp = false;
   isRevealed = false;
 
-  resetClock();
-  clearTimeout(t);
-
   var span = document.getElementsByTagName("td");
   var getGen = document.getElementsByName("generation-algorithm");
 
@@ -495,12 +444,7 @@ function newGame(){
   }
 
   localStorage.attempts = ++attempts;
-  timer();
   hiddenBoard = createSudoku(finalBoard);
-}
-
-function timer() {
-  t = setTimeout(add, 1000);
 }
 
 function valid(){
@@ -509,14 +453,8 @@ function valid(){
 
   const isCompleted = validSolution(getSudoku());
   if (isCompleted){
-    clearTimeout(t);
     alert("That's right. Well done!");
-    localStorage.correctSolutions = ++correctSolutions;
 
-    if (shortestTime === null || totalTime < shortestTime){
-      shorestTime = totalTime;
-      localStorage.shortestTime = totalTime;
-    }
   }
   else{
     alert("That's wrong. Try again.");
@@ -530,15 +468,9 @@ function restart(){
     isRevealed = false;
 
   if (isRevealed) return false;
-  resetClock();
   createSudoku(hiddenBoard, true);
 }
 
-function resetClock(){
-  if (!isGenerated) return false;
-  h1.textContent = "00:00:00";
-  seconds = 0; minutes = 0; hours = 0, totalTime = 0;
-}
 
 function showSolution(){
   if (!isGenerated) return false;
@@ -550,8 +482,6 @@ function showSolution(){
     revealNumbers(hiddenBoard, finalCustomBoard);
   }
   else {
-    localStorage.givenUp = ++givenUp;
-    clearTimeout(t);
     isRevealed = false;
     revealNumbers(hiddenBoard, finalBoard);
   }
