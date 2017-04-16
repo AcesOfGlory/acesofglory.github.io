@@ -25,6 +25,7 @@ td {
 <head>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
   <script>
   $( function() {
     $( "#draggable" ).draggable();
@@ -38,8 +39,8 @@ td {
       See documentation <a href="https://www.samnayak.com/15-09-2016-sudoku/">here</a>
       <p>
         Size:
-        <input id="inputHeight" type="number" min="20" max="70" value="60" style="width:35;"> x
-        <input id="inputWidth" type="number" min="20" max="70" value="60" style="width:35;">
+        <input id="inputHeight" type="number" min="10" max="80" value="60" style="width:35;"> x
+        <input id="inputWidth" type="number" min="10" max="80" value="60" style="width:35;">
 
       </p>
       <p>
@@ -72,7 +73,7 @@ td {
   </div>
 </div>
 
-<div style="padding-left:225px;padding-top:30px;">
+<div style="padding-left:350px;padding-top:30px;">
 
 <table>
    <tr> <td id="1x1"> <td id="1x2"> <td id="1x3"> <td id="1x4"> <td id="1x5"> <td id="1x6"> <td id="1x7"> <td id="1x8"> <td id="1x9">
@@ -120,6 +121,27 @@ function showRules(){
       + `3. No duplicates of the numbers 1-9 in the 3x3 cell groups`
     );
 }
+
+var changeDimensions = document.getElementsByTagName("td");
+
+document.getElementById("inputHeight").addEventListener("input", () => {
+  const elementHeight = +document.getElementById("inputHeight").value;
+  if (elementHeight < 10 || elementHeight > 80) return false;
+
+  for (var i = 0; i < changeDimensions.length; i++) {
+    changeDimensions[i].style.height = elementHeight + "px";
+  }
+}, false);
+
+document.getElementById("inputWidth").addEventListener("input", () => {
+  const elementWidth = +document.getElementById("inputWidth").value;
+  if (elementWidth < 10 || elementWidth > 80) return false;
+
+  for (var i = 0; i < changeDimensions.length; i++) {
+    changeDimensions[i].style.width = elementWidth + "px";
+  }
+}, false);
+
 
 var currentObj;
 var previousObj;
@@ -254,13 +276,13 @@ function createSudoku(board, isReset=false){
       if (isReset){
         if (board[i-1][j-1] === 0){
           element.innerHTML = "";
-          element.onclick = initialise;
           element.style.backgroundColor = "";
+          element.onclick = initialise;
         }
         else{
           element.innerHTML = board[i-1][j-1];
-          element.onclick = null;
           element.style.backgroundColor = FIXED_NUMBER_COLOUR;
+          element.onclick = null;
         }
         continue;
       }
@@ -378,27 +400,6 @@ function getSolution(puzzle) {
     return puzzle;
 }
 
-var changeDimensions = document.getElementsByTagName("td");
-
-document.getElementById("inputHeight").addEventListener("input", () => {
-  const elementHeight = document.getElementById("inputHeight").value;
-  if (elementHeight < 19 || elementHeight > 70)
-    return false;
-  for (var i = 0; i < changeDimensions.length; i++) {
-    changeDimensions[i].style.height = elementHeight + "px";
-  }
-}, false);
-
-document.getElementById("inputWidth").addEventListener("input", () => {
-  const elementWidth = document.getElementById("inputWidth").value;
-  if (elementWidth < 19 || elementWidth > 70)
-    return false;
-  for (var i = 0; i < changeDimensions.length; i++) {
-    changeDimensions[i].style.width = elementWidth + "px";
-  }
-}, false);
-
-
 
 var h1 = document.getElementsByTagName("h1")[0],
     start = document.getElementById("start"),
@@ -444,16 +445,6 @@ const solved = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
                 [3, 6, 5, 8, 1, 7, 9, 2, 4],
                 [8, 7, 9, 6, 4, 2, 1, 5, 3]];
 
-var testing = [[8, 0, 2, 6, 3, 0, 0, 4, 0],
-               [0, 3, 9, 0, 0, 0, 0, 0, 0],
-               [5, 7, 0, 0, 1, 0, 2, 3, 0],
-               [0, 0, 0, 3, 2, 0, 5, 1, 0],
-               [0, 0, 5, 1, 0, 4, 6, 0, 0],
-               [0, 6, 1, 0, 8, 5, 0, 0, 0],
-               [0, 8, 4, 0, 7, 0, 0, 2, 9],
-               [0, 0, 0, 0, 0, 0, 8, 7, 0],
-               [0, 9, 0, 0, 4, 3, 1, 0, 6]];
-
 
 function generateSudoku(matrix){
   matrix = transformBoard(matrix);
@@ -467,15 +458,10 @@ function generateSudoku(matrix){
 			}
 			row1 += i;
 			row2 += i;
-			var tmpMatrix = [];
-			tmpMatrix = matrix[row1];
+			var temp = matrix[row1];
 			matrix[row1] = matrix[row2];
-			matrix[row2] = tmpMatrix;
-		}
-	}
+			matrix[row2] = temp;
 
-	for (var i = 0; i < 9; i += 3){
-		for (var j = 0; j < 3; j++){
 			col1 = Math.floor(Math.random()*3);
 			col2 = Math.floor(Math.random()*3);
 			while (col2 == col1){
@@ -484,11 +470,11 @@ function generateSudoku(matrix){
 			col1 += i;
 			col2 += i;
 
-			var tmpMatrix = [];
+			temp = [];
 			for (var x = 0; x < matrix.length; x++){
-				tmpMatrixValue = matrix[x][col1];
+				tempValue = matrix[x][col1];
 				matrix[x][col1] = matrix[x][col2];
-				matrix[x][col2] = tmpMatrixValue;
+				matrix[x][col2] = tempValue;
 			}
 		}
 	}
@@ -504,7 +490,7 @@ function newGame(){
   hiddenBoard = undefined;
   isGenerated = true;
   hasGivenUp = false;
-
+  isRevealed = false;
 
   resetClock();
   clearTimeout(t);
@@ -599,7 +585,6 @@ function showSolution(){
   if (document.getElementsByName("generation-algorithm")[1].checked){
     hiddenBoard = getSudoku();
     var hiddenCustomBoard = getSudoku();
-
     var finalCustomBoard = getSolution(hiddenCustomBoard);
 
     revealNumbers(hiddenBoard, finalCustomBoard);
@@ -608,7 +593,6 @@ function showSolution(){
     localStorage.givenUp = ++givenUp;
     clearTimeout(t);
     isRevealed = false;
-    const solution = getSolution(finalBoard);
     revealNumbers(hiddenBoard, finalBoard);
   }
   var span = document.getElementsByTagName("td");
