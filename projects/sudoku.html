@@ -150,6 +150,8 @@ function initialise(e){
   currentObj = this;
   currentObj.style.backgroundColor = HIGHLIGHT_COLOUR;
 
+  if (currentObj.style.backgroundColor == "rgb(221, 221, 221)") return false;
+
   if (previousObj === undefined)
     previousObj = currentObj;
   else {
@@ -168,6 +170,8 @@ function initialise(e){
 }
 
 function insertNumber(e){
+  if (isRevealed) return false;
+
   if (e.keyCode)
     code = e.keyCode;
   else if (e.which)
@@ -303,6 +307,7 @@ function createSudoku(board, isReset=false){
   return hiddenBoard;
 }
 var isRevealed = false;
+
 function revealNumbers(hiddenBoard, finalBoard){
   for (var i = 1; i <= 9; i++){
     for (var j = 1; j <= 9; j++){
@@ -310,6 +315,8 @@ function revealNumbers(hiddenBoard, finalBoard){
       element.innerHTML = finalBoard[i-1][j-1];
       if (hiddenBoard[i-1][j-1] !== 0)
         element.style.backgroundColor = FIXED_NUMBER_COLOUR;
+      else
+        element.style.backgroundColor = "";
     }
   }
   isRevealed = true;
