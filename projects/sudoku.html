@@ -141,18 +141,16 @@ document.getElementById("inputHeight").addEventListener("input", () => {
   const elementHeight = +document.getElementById("inputHeight").value;
   if (elementHeight < 10 || elementHeight > 80) return false;
 
-  for (var i = 0; i < changeDimensions.length; i++) {
+  for (var i = 0; i < changeDimensions.length; i++)
     changeDimensions[i].style.height = elementHeight + "px";
-  }
 }, false);
 
 document.getElementById("inputWidth").addEventListener("input", () => {
   const elementWidth = +document.getElementById("inputWidth").value;
   if (elementWidth < 10 || elementWidth > 80) return false;
 
-  for (var i = 0; i < changeDimensions.length; i++) {
+  for (var i = 0; i < changeDimensions.length; i++)
     changeDimensions[i].style.width = elementWidth + "px";
-  }
 }, false);
 
 
@@ -271,6 +269,7 @@ function createSudoku(board, isReset=false){
     var temp = [];
     for (var j = 1; j <= 9; j++){
       var element = document.getElementById(i+"x"+j);
+
       if (isReset){
         if (board[i-1][j-1] === 0){
           element.innerHTML = "";
@@ -352,53 +351,56 @@ function validSolution(board){
 }
 
 function getSolution(puzzle) {
-    const findNext = (line, col) => {
-        while (line <= 8) {
-            while (++col <= 8) {
-                if (puzzle[line][col] === 0)
-                    return [line, col];
-            }
-            line++;
-            col = -1;
-        }
-        return undefined;
-    };
-
-    const valid = (line, col, i) => {
-        for (var k = 0; k < 9; k++) {
-            if (puzzle[line][k] === i || puzzle[k][col] === i)
-                return false;
-        }
-
-        var blockY = line - line % 3;
-        var blockX = col - col % 3;
-        for (var k = 0; k < 3; k++) {
-            for (var j = 0; j < 3; j++) {
-                if (puzzle[blockY + k][blockX + j] === i)
+    const solve = matrix => {
+        var i, j, b, k;
+        for (i = 0; i <= 8; i++) {
+            for (j = 0; j <= 8; j++) {
+                //check for legitimate values
+                if (!matrix[i][j]) {
+                    for (k = 1; k <= 9; k++) {
+                        if (insert(matrix, i, j, k)) {
+                            matrix[i][j] = k;
+                            b = solve(matrix);
+                            console.log(true)
+                            if (b) {
+                                return matrix;
+                            }
+                            matrix[i][j] = 0;
+                        }
+                    }
                     return false;
+                }
             }
         }
-
         return true;
-    };
+    }
 
-    const DFS = (line, col) => {
-        for (var i = 1; i <= 9; i++) {
-            if (valid(line, col, i)) {
-                puzzle[line][col] = i;
-                var pos = findNext(line, col);
-                if (pos === undefined || DFS(pos[0], pos[1]))
-                    return true;
-                puzzle[line][col] = 0;
+    const insert = (matrix, i, j, k) => {
+        //check column and rows
+        var a, b;
+        for (a = 0; a <= 8; a++) {
+            if (a != i && matrix[a][j] == k) {
+                return false;
             }
         }
-        return false;
-    };
-
-    var pos = findNext(0, -1);
-    if (pos !== undefined)
-        DFS(pos[0], pos[1]);
-    return puzzle;
+        for (a = 0; a <= 8; a++) {
+            if (a != j && matrix[i][a] == k) {
+                return false;
+            }
+        }
+        //check the 3 by 3 squares
+        var y = Math.floor((i / 3)) * 3,
+            x = Math.floor((j / 3)) * 3;
+        for (a = 0; a < 3; a++) {
+            for (b = 0; b < 3; b++) {
+                if (a != i && b != j && matrix[y + a][x + b] == k) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    return solve(puzzle);
 }
 
 
@@ -507,11 +509,13 @@ function validate(){
   if (isCompleted){
     clearTimeout(timeLoop);
     alert("That's right. Well done!");
-    localStorage.correctSolutions = ++correctSolutions;
+    if (document.getElementsByName("generation-algorithm")[0].checked){
+      localStorage.correctSolutions = ++correctSolutions;
 
-    if (shortestTime === null || totalTime < shortestTime){
-      shorestTime = totalTime;
-      localStorage.shortestTime = totalTime;
+      if (shortestTime === null || totalTime < shortestTime){
+        shorestTime = totalTime;
+        localStorage.shortestTime = totalTime;
+      }
     }
   }
   else{
@@ -523,12 +527,14 @@ function restart(){
   if (!isGenerated) return false;
 
   var isCustom = document.getElementsByName("generation-algorithm")[1].checked;
-  if (isCustom)
+  if (isCustom){
     isRevealed = false;
+    hiddenBoard = getSudoku();
+  }
 
+  createSudoku(hiddenBoard, true);
   if (isRevealed) return false;
   resetClock();
-  createSudoku(hiddenBoard, true);
 }
 
 function showSolution(){
@@ -551,5 +557,6 @@ function showSolution(){
   for (var i = 0; i < squareElement.length; i++)
     squareElement[i].onclick = null;
 }
+
 
 </script>
