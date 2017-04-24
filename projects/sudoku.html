@@ -177,72 +177,63 @@ function initialise(e){
 function insertNumber(e){
   if (isRevealed) return false;
 
-  if (previousObj.style.backgroundColor == "rgb(221, 221, 221)") return false;
-
   if (e.keyCode)
     code = e.keyCode;
-  else if (e.which)
+  else if (e.which){
     code = e.which;
+  }
 
-  if (code == 8)
+  if (code == 8 || code == 46)
     currentObj.innerHTML = ""
 
   if (code >= 37 && code <= 40){
-    var [i, _, j] = currentObj.id,
-        i = +i, j = +j,
-        nextObject;
+    var i = +currentObj.id[0], j = +currentObj.id[2],
+        nextObj;
 
     if (code == 39){
-      nextObject = document.getElementById(`${i}x${j + 1}`);
+      nextObj = document.getElementById(`${i}x${j + 1}`);
       if (j < 8){
-        if(nextObject.style.backgroundColor){
-					while (j <= 8 && nextObject.style.backgroundColor)
-						nextObject = document.getElementById(`${i}x${++j}`);
-        }
+		    while (j <= 8 && nextObj && nextObj.style.backgroundColor)
+			    nextObj = document.getElementById(`${i}x${++j}`);
       }
     }
     else if (code == 37){
-      nextObject = document.getElementById(`${i}x${j - 1}`);
+      nextObj = document.getElementById(`${i}x${j - 1}`);
       if (j > 0){
-        if(nextObject.style.backgroundColor){
-          while (j >= 0 && nextObject.style.backgroundColor)
-            nextObject = document.getElementById(`${i}x${--j}`);
-        }
+        while (j >= 0 && nextObj && nextObj.style.backgroundColor)
+          nextObj = document.getElementById(`${i}x${--j}`);
       }
     }
     else if (code == 40){
-      nextObject = document.getElementById(`${i + 1}x${j}`);
+      nextObj = document.getElementById(`${i + 1}x${j}`);
       if (i < 8){
-        if(nextObject.style.backgroundColor){
-          while (i <= 8 && nextObject.style.backgroundColor)
-            nextObject = document.getElementById(`${++i}x${j}`);
-        }
+        while (i <= 8 && nextObj && nextObj.style.backgroundColor)
+          nextObj = document.getElementById(`${++i}x${j}`);
       }
     }
     else{
-      nextObject = document.getElementById(`${i - 1}x${j}`);
+      nextObj = document.getElementById(`${i - 1}x${j}`);
       if (i > 0){
-        if(nextObject.style.backgroundColor){
-          while (i >= 0 && nextObject.style.backgroundColor)
-            nextObject = document.getElementById(`${--i}x${j}`);
-        }
+        while (i >= 0 && nextObj && nextObj.style.backgroundColor)
+          nextObj = document.getElementById(`${--i}x${j}`);
       }
     }
 
-    if (!nextObject || nextObject.style.backgroundColor) return false;
+    if (!nextObj || nextObj.style.backgroundColor) return false;
 
-    currentObj = nextObject;
-    currentObj.style.backgroundColor = HIGHLIGHT_COLOUR
+    currentObj = nextObj;
+    currentObj.style.backgroundColor = HIGHLIGHT_COLOUR;
     previousObj.style.backgroundColor = "";
     previousObj = currentObj;
   }
+
   var theChar = String.fromCharCode(code)
   if ((code >= 49 && code <= 57))
     currentObj.innerHTML = theChar;
   else if (code >= 97 && code <= 105)
     currentObj.innerHTML = String.fromCharCode(code - 48);
 }
-  
+
 
 function getSudoku(){
   var matrix = [],
@@ -352,59 +343,64 @@ function validSolution(board){
   return isDuplicate(board) && validateColumns(board) && validateBoxes(board);
 }
 
-function getSolution(puzzle) {
-    const solve = matrix => {
-        var i, j, b, k;
-        for (i = 0; i <= 8; i++) {
-            for (j = 0; j <= 8; j++) {
-                //check for legitimate values
-                if (!matrix[i][j]) {
-                    for (k = 1; k <= 9; k++) {
-                        if (insert(matrix, i, j, k)) {
-                            matrix[i][j] = k;
-                            b = solve(matrix);
-                            console.log(true)
-                            if (b) {
-                                return matrix;
-                            }
-                            matrix[i][j] = 0;
-                        }
-                    }
-                    return false;
-                }
-            }
-        }
+function getSolution(sudoku) {
+  const checkRow = (sudoku, row, value) => {
+    for (var i = 0; i < 9; i++){
+      if (sudoku[row][i] == value)
+        return false;
+    }
+    return true;
+  }
+
+  const checkColumn = (sudoku, col, value) => {
+    for (var j = 0; j < 9; j++){
+      if (sudoku[j][col] == value)
+        return false;
+    }
+    return true;
+  }
+
+  const checkBox = (sudoku, row, col, value) => {
+    var colDifference = (col - col % 3),
+        rowDifference = (row - row % 3);
+
+    for (var i = 0; i < 3; i++){
+      for (var j = 0; j < 3; j++){
+        if (sudoku[rowDifference+i][colDifference+j] == value)
+          return false;
+      }
+    }
+    return true;
+  }
+
+  const sudokuSolver = (sudoku, row=0, column=0) => {
+    if (row == 9) {
+      row = 0;
+      if (++column == 9)
         return true;
     }
 
-    const insert = (matrix, i, j, k) => {
-        //check column and rows
-        var a, b;
-        for (a = 0; a <= 8; a++) {
-            if (a != i && matrix[a][j] == k) {
-                return false;
-            }
-        }
-        for (a = 0; a <= 8; a++) {
-            if (a != j && matrix[i][a] == k) {
-                return false;
-            }
-        }
-        //check the 3 by 3 squares
-        var y = Math.floor((i / 3)) * 3,
-            x = Math.floor((j / 3)) * 3;
-        for (a = 0; a < 3; a++) {
-            for (b = 0; b < 3; b++) {
-                if (a != i && b != j && matrix[y + a][x + b] == k) {
-                    return false;
-                }
-            }
-        }
-        return true;
+    if (sudoku[row][column] > 0)
+      return sudokuSolver(sudoku, row+1, column);
+
+    for (var n = 1; n <= 9; n++) {
+      const isCorrect = checkRow(sudoku, row, n) &&
+                        checkColumn(sudoku, column, n) &&
+                        checkBox(sudoku, row, column, n);
+
+      if (isCorrect) {
+        sudoku[row][column] = n;
+        if (sudokuSolver(sudoku, row+1, column))
+          return true;
+      }
     }
-    return solve(puzzle);
+    sudoku[row][column] = 0;
+    return false;
+  }
+
+
+  return sudokuSolver(sudoku) ? sudoku : null;
 }
-
 
 const getDisplay = time => time > 9 ? time : "0" + time;
 
@@ -559,6 +555,5 @@ function showSolution(){
   for (var i = 0; i < squareElement.length; i++)
     squareElement[i].onclick = null;
 }
-
 
 </script>
