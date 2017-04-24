@@ -236,11 +236,13 @@ function insertNumber(e){
     previousObj.style.backgroundColor = "";
     previousObj = currentObj;
   }
-
-  var theChar = String.fromCharCode(code);
-  if (/[1-9]/.test(theChar))
+  var theChar = String.fromCharCode(code)
+  if ((code >= 49 && code <= 57))
     currentObj.innerHTML = theChar;
+  else if (code >= 97 && code <= 105)
+    currentObj.innerHTML = String.fromCharCode(code - 48);
 }
+  
 
 function getSudoku(){
   var matrix = [],
