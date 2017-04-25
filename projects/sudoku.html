@@ -364,8 +364,8 @@ function getSolution(sudoku) {
   }
 
   const checkBox = (sudoku, row, col, value) => {
-    var colDifference = (col - col % 3),
-        rowDifference = (row - row % 3);
+    const colDifference = (col - col % 3),
+          rowDifference = (row - row % 3);
 
     for (var i = 0; i < 3; i++){
       for (var j = 0; j < 3; j++){
@@ -387,9 +387,9 @@ function getSolution(sudoku) {
       return sudokuSolver(sudoku, row+1, column);
 
     for (var n = 1; n <= 9; n++) {
-      const isCorrect = checkRow(sudoku, row, n) &&
-                        checkColumn(sudoku, column, n) &&
-                        checkBox(sudoku, row, column, n);
+      const isCorrect = checkRow(sudoku, row, n)
+                     && checkColumn(sudoku, column, n)
+                     && checkBox(sudoku, row, column, n);
 
       if (isCorrect) {
         sudoku[row][column] = n;
@@ -439,25 +439,25 @@ function resetClock(){
 function generateSudoku(matrix){
 	for (var i = 0; i < 9; i += 3){
 		for (let _ = 0; _ < 3; _++){
-			let row1 = Math.floor(Math.random()*3);
-			let row2 = Math.floor(Math.random()*3);
+			let row1 = Math.floor(Math.random()*3),
+			    row2 = Math.floor(Math.random()*3),
+          col1 = Math.floor(Math.random()*3),
+			    col2 = Math.floor(Math.random()*3);
+
 			while (row1 == row2)
 				row2 = Math.floor(Math.random()*3);
 
-			row1 += i;
-			row2 += i;
-
-			let temp = matrix[row1];
-			matrix[row1] = matrix[row2];
-			matrix[row2] = temp;
-
-			let col1 = Math.floor(Math.random()*3);
-			let col2 = Math.floor(Math.random()*3);
-			while (col1 == col2)
+      while (col1 == col2)
 				col2 = Math.floor(Math.random()*3);
 
-			col1 += i;
+			row1 += i;
+			row2 += i;
+      col1 += i;
 			col2 += i;
+
+      let temp = matrix[row1];
+			matrix[row1] = matrix[row2];
+			matrix[row2] = temp;
 
 			temp = [];
 			for (let x = 0; x < matrix.length; x++){
@@ -558,6 +558,5 @@ function showSolution(){
   for (var i = 0; i < squareElement.length; i++)
     squareElement[i].onclick = null;
 }
-
 
 </script>
