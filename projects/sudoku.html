@@ -186,40 +186,42 @@ function insertNumber(e){
   if (code == 8 || code == 46)
     currentObj.innerHTML = ""
 
-  if (code >= 37 && code <= 40){
-    var i = +currentObj.id[0], j = +currentObj.id[2],
-        nextObj;
 
-    if (code == 39){
-      nextObj = document.getElementById(`${i}x${j + 1}`);
-      if (j < 8){
-		    while (j <= 8 && nextObj && nextObj.style.backgroundColor)
-			    nextObj = document.getElementById(`${i}x${++j}`);
-      }
-    }
-    else if (code == 37){
-      nextObj = document.getElementById(`${i}x${j - 1}`);
-      if (j > 0){
-        while (j >= 0 && nextObj && nextObj.style.backgroundColor)
-          nextObj = document.getElementById(`${i}x${--j}`);
-      }
-    }
-    else if (code == 40){
-      nextObj = document.getElementById(`${i + 1}x${j}`);
-      if (i < 8){
-        while (i <= 8 && nextObj && nextObj.style.backgroundColor)
-          nextObj = document.getElementById(`${++i}x${j}`);
-      }
-    }
-    else{
-      nextObj = document.getElementById(`${i - 1}x${j}`);
-      if (i > 0){
-        while (i >= 0 && nextObj && nextObj.style.backgroundColor)
-          nextObj = document.getElementById(`${--i}x${j}`);
-      }
-    }
+  var i = +currentObj.id[0], j = +currentObj.id[2],
+      nextObj;
 
-    if (!nextObj || nextObj.style.backgroundColor) return false;
+  if (code == 39 || code == 68){
+    nextObj = document.getElementById(`${i}x${j + 1}`);
+    if (j < 8){
+	    while (j <= 8 && nextObj && nextObj.style.backgroundColor)
+		    nextObj = document.getElementById(`${i}x${++j}`);
+    }
+  }
+  else if (code == 37 || code == 65){
+    nextObj = document.getElementById(`${i}x${j - 1}`);
+    if (j > 0){
+      while (j >= 0 && nextObj && nextObj.style.backgroundColor)
+        nextObj = document.getElementById(`${i}x${--j}`);
+    }
+  }
+  else if (code == 40 || code == 83){
+    nextObj = document.getElementById(`${i + 1}x${j}`);
+    if (i < 8){
+      while (i <= 8 && nextObj && nextObj.style.backgroundColor)
+        nextObj = document.getElementById(`${++i}x${j}`);
+    }
+  }
+  else if (code == 38 || code == 87){
+    nextObj = document.getElementById(`${i - 1}x${j}`);
+    if (i > 0){
+      while (i >= 0 && nextObj && nextObj.style.backgroundColor)
+        nextObj = document.getElementById(`${--i}x${j}`);
+    }
+  }
+
+  if (nextObj){
+
+    if (nextObj.style.backgroundColor) return false;
 
     currentObj = nextObj;
     currentObj.style.backgroundColor = HIGHLIGHT_COLOUR;
@@ -228,6 +230,7 @@ function insertNumber(e){
   }
 
   var theChar = String.fromCharCode(code)
+
   if ((code >= 49 && code <= 57))
     currentObj.innerHTML = theChar;
   else if (code >= 97 && code <= 105)
@@ -555,5 +558,6 @@ function showSolution(){
   for (var i = 0; i < squareElement.length; i++)
     squareElement[i].onclick = null;
 }
+
 
 </script>
