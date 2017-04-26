@@ -91,7 +91,8 @@ td {
 </table>
 
 <script type="text/javascript">
-
+alert(true);
+	
 const HIGHLIGHT_COLOUR = "#ADD8E6",
       FIXED_NUMBER_COLOUR = "#DDDDDD",
       SOLVED_SUDOKU = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
@@ -172,6 +173,10 @@ function initialise(e){
   previousObj = currentObj;
 
 	document.documentElement.onkeydown = insertNumber;
+
+  $(function () {
+      $("#" + currentObj.id).focus();
+  });
 }
 
 function insertNumber(e){
@@ -549,7 +554,6 @@ function showSolution(){
   else {
     localStorage.givenUp = ++givenUp;
     clearTimeout(timeLoop);
-    isRevealed = false;
     revealNumbers(hiddenBoard, finalBoard);
   }
   var squareElement = document.getElementsByTagName("td");
