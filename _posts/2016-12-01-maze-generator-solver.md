@@ -1,6 +1,6 @@
 ---
 layout: post
-published: true
+published: false
 title: Maze Generator & Solver
 subtitle: A-Level Project
 tags:
