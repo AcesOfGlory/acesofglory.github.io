@@ -302,7 +302,7 @@ function createSudoku(board, isReset=false){
 function revealNumbers(hiddenBoard, finalBoard){
   for (var i = 1; i <= 9; i++){
     for (var j = 1; j <= 9; j++){
-      const element = document.getElementById(i+"x"+j)
+      var element = document.getElementById(i+"x"+j);
       element.innerHTML = finalBoard[i-1][j-1];
       if (hiddenBoard[i-1][j-1] !== 0)
         element.style.backgroundColor = FIXED_NUMBER_COLOUR;
@@ -527,14 +527,13 @@ function validate(){
 function restart(){
   if (!isGenerated) return false;
 
-  var isCustom = document.getElementsByName("generation-algorithm")[1].checked;
-  if (isCustom){
+  if (document.getElementsByName("generation-algorithm")[1].checked){
     isRevealed = false;
     hiddenBoard = getSudoku();
   }
 
-  createSudoku(hiddenBoard, true);
   if (isRevealed) return false;
+  createSudoku(hiddenBoard, true);
   resetClock();
 }
 
