@@ -76,6 +76,7 @@ function revealNumbers(hiddenBoard, finalBoard){
 
 function initialise(e){
   currentObj = this;
+
   if (previousObj && previousObj.style.backgroundColor == "rgb(221, 221, 221)")
     previousObj = currentObj;
 
@@ -97,6 +98,8 @@ function initialise(e){
 
 function insertNumber(e){
   if (isRevealed) return false;
+  if (currentObj.style.backgroundColor == "rgb(221, 221, 221)") return false;
+  currentObj.style.backgroundColor = HIGHLIGHT_COLOUR;
 
   if (e.keyCode)
     code = e.keyCode;
@@ -107,43 +110,39 @@ function insertNumber(e){
   if (code == 8 || code == 46)
     currentObj.innerHTML = ""
 
-
   var i = +currentObj.id[0], j = +currentObj.id[2],
       nextObj;
 
-  if (code == 39 || code == 68){
+  if (code == 39 || code == 68){     // Right
     nextObj = document.getElementById(`${i}x${j + 1}`);
-    if (j < 8){
-	    while (j <= 8 && nextObj && nextObj.style.backgroundColor)
+    if (j <= 9){
+	    while (j <= 9 && nextObj && nextObj.style.backgroundColor)
 		    nextObj = document.getElementById(`${i}x${++j}`);
     }
   }
-  else if (code == 37 || code == 65){
+  else if (code == 37 || code == 65){ // Left
     nextObj = document.getElementById(`${i}x${j - 1}`);
-    if (j > 0){
-      while (j >= 0 && nextObj && nextObj.style.backgroundColor)
+    if (j >= 1){
+      while (j >= 1 && nextObj && nextObj.style.backgroundColor)
         nextObj = document.getElementById(`${i}x${--j}`);
     }
   }
-  else if (code == 40 || code == 83){
+  else if (code == 40 || code == 83){  // Down
     nextObj = document.getElementById(`${i + 1}x${j}`);
-    if (i < 8){
-      while (i <= 8 && nextObj && nextObj.style.backgroundColor)
+    if (i <= 9){
+      while (i <= 9 && nextObj && nextObj.style.backgroundColor)
         nextObj = document.getElementById(`${++i}x${j}`);
     }
   }
-  else if (code == 38 || code == 87){
+  else if (code == 38 || code == 87){ // Up
     nextObj = document.getElementById(`${i - 1}x${j}`);
-    if (i > 0){
-      while (i >= 0 && nextObj && nextObj.style.backgroundColor)
+    if (i >= 1){
+      while (i >= 1 && nextObj && nextObj.style.backgroundColor)
         nextObj = document.getElementById(`${--i}x${j}`);
     }
   }
 
   if (nextObj){
-
-    if (nextObj.style.backgroundColor) return false;
-
     currentObj = nextObj;
     currentObj.style.backgroundColor = HIGHLIGHT_COLOUR;
     previousObj.style.backgroundColor = "";
