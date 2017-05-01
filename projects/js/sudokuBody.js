@@ -293,4 +293,4 @@ function showSolution(){
 
   for (var i = 0; i < squareElement.length; i++)
     squareElement[i].onclick = null;
-}
+} 
