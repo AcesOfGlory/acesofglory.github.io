@@ -173,10 +173,3 @@ function generateSudoku(matrix){
 	}
   return matrix;
 }
-
-module.exports = {
-    validSolution: validSolution,
-    generateSudoku: generateSudoku,
-    getSolution: getSolution,
-    createHiddenBoard: createHiddenBoard
-};
