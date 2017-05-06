@@ -5,6 +5,16 @@ const HIGHLIGHT_COLOUR = "#ADD8E6",
         "Medium": [0.4, 40],
         "Hard": [0.3, 30]
       },
+      TO_NUM = {
+        'K': 11, 'Y': 25, 'H': 8, 'E': 5, 'B': 2, 'X': 24, 'P': 16, 'W': 23, 'N': 14, 'I': 9,
+        'J': 10, 'U': 21, 'A': 1, 'Q': 17, 'T': 20, 'V': 22, 'C': 3, 'M': 13, 'Z': 26,
+        'F': 6, 'L': 12, 'G': 7, 'R': 18, 'S': 19, 'O': 15, 'D': 4
+      },
+      TO_CHAR = {
+        1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E', 6: 'F', 7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K', 12: 'L',
+        13: 'M', 14: 'N', 15: 'O', 16: 'P', 17: 'Q', 18: 'R', 19: 'S', 20: 'T', 21: 'U', 22: 'V', 23: 'W',
+        24: 'X', 25: 'Y', 26: 'Z'
+      },
       SOLVED_SUDOKU = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
                        [4, 9, 8, 2, 6, 1, 3, 7, 5],
                        [7, 5, 6, 3, 8, 4, 2, 1, 9],
@@ -18,7 +28,8 @@ const HIGHLIGHT_COLOUR = "#ADD8E6",
 var seconds = 0, minutes = 0, hours = 0, totalTime = 0, timeLoop,
     isRevealed = false,
     isGenerated = false,
-    currentObj, previousObj;
+    currentObj, previousObj,
+    type;
 
 if (typeof(Storage) !== "undefined") {
   var correctSolutions = localStorage.correctSolutions ? +localStorage.correctSolutions : 0,
