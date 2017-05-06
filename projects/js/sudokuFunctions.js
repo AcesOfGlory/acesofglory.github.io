@@ -66,10 +66,12 @@ function validSolution(board){
 
   const validateColumns = board => {
     var column = [];
-    for(var i = 0; i < 9; i++){
+    for (var i = 0; i < 9; i++){
       var temp = [];
-      for(var j = 0; j < 9; j++){
-        temp.push(board[j][i]);
+      for (var j = 0; j < 9; j++){
+        let cur = board[j][i];
+        if (cur === 0) return false;
+        temp.push(cur);
       }
       column.push(temp);
     }
