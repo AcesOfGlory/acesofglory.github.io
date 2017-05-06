@@ -129,6 +129,12 @@ function insertNumber(e){
   if (code == 8 || code == 46)
     currentObj.innerHTML = ""
 
+  if (code == 27){
+    currentObj.style.backgroundColor = "";
+    currentObj = null;
+    return false;
+  }
+
   var i = +currentObj.id[0], j = +currentObj.id[2],
       nextObj;
 
