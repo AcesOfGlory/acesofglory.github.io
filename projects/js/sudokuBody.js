@@ -235,10 +235,11 @@ function resetClock(){
   seconds = 0, minutes = 0, hours = 0, totalTime = 0;
 }
 
-function stopBoard(){
+function endGame(){
   var squareElement = document.getElementsByTagName("td");
   for (var i = 0; i < squareElement.length; i++)
     squareElement[i].onclick = null;
+  currentObj = null;
 }
 
 
@@ -294,7 +295,7 @@ function validate(){
         localStorage.shortestTime = totalTime;
       }
     }
-    stopBoard();
+    endGame();
 
   }
   else{
@@ -334,5 +335,5 @@ function showSolution(){
     clearTimeout(timeLoop);
     revealNumbers(hiddenBoard, finalBoard);
   }
-  stopBoard();
+  endGame();
 }
