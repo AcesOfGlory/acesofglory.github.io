@@ -36,7 +36,13 @@ function createSudoku(board, isReset=false){
           element.onclick = initialise;
         }
         else{
-          element.innerHTML = board[i-1][j-1];
+          let temp;
+          if (type == "numbers")
+            temp = board[i-1][j-1];
+          else if (type == "letters")
+            temp = TO_CHAR[board[i-1][j-1]];
+
+          element.innerHTML = temp;
           element.style.backgroundColor = FIXED_NUMBER_COLOUR;
           element.onclick = null;
         }
@@ -44,7 +50,13 @@ function createSudoku(board, isReset=false){
       }
 
       if (hidden[i-1][j-1] !== 0){
-        element.innerHTML = hidden[i-1][j-1];
+        let temp;
+        if (type == "numbers")
+          temp = board[i-1][j-1];
+        else if (type == "letters")
+          temp = TO_CHAR[board[i-1][j-1]];
+
+        element.innerHTML = temp;
         element.style.backgroundColor = FIXED_NUMBER_COLOUR;
         element.onclick = null;
       }
@@ -63,7 +75,14 @@ function revealNumbers(hiddenBoard, finalBoard){
   for (var i = 1; i <= 9; i++){
     for (var j = 1; j <= 9; j++){
       var element = document.getElementById(i+"x"+j);
-      element.innerHTML = finalBoard[i-1][j-1];
+      let temp;
+      if (type == "numbers")
+        temp = finalBoard[i-1][j-1];
+      else if (type == "letters")
+        temp = TO_CHAR[finalBoard[i-1][j-1]];
+
+      element.innerHTML = temp;
+
       if (hiddenBoard[i-1][j-1] !== 0)
         element.style.backgroundColor = FIXED_NUMBER_COLOUR;
       else
@@ -113,28 +132,29 @@ function insertNumber(e){
   var i = +currentObj.id[0], j = +currentObj.id[2],
       nextObj;
 
-  if (code == 39 || code == 68){     // Right
+
+  if (code == 39 || (code == 68 && type == "numbers")){     // Right
     nextObj = document.getElementById(`${i}x${j + 1}`);
     if (j <= 9){
 	    while (j <= 9 && nextObj && nextObj.style.backgroundColor)
 		    nextObj = document.getElementById(`${i}x${++j}`);
     }
   }
-  else if (code == 37 || code == 65){ // Left
+  else if (code == 37 || (code == 65 && type == "numbers")){ // Left
     nextObj = document.getElementById(`${i}x${j - 1}`);
     if (j >= 1){
       while (j >= 1 && nextObj && nextObj.style.backgroundColor)
         nextObj = document.getElementById(`${i}x${--j}`);
     }
   }
-  else if (code == 40 || code == 83){  // Down
+  else if (code == 40 || (code == 83 && type == "numbers")){  // Down
     nextObj = document.getElementById(`${i + 1}x${j}`);
     if (i <= 9){
       while (i <= 9 && nextObj && nextObj.style.backgroundColor)
         nextObj = document.getElementById(`${++i}x${j}`);
     }
   }
-  else if (code == 38 || code == 87){ // Up
+  else if (code == 38 || (code == 87 && type == "numbers")){ // Up
     nextObj = document.getElementById(`${i - 1}x${j}`);
     if (i >= 1){
       while (i >= 1 && nextObj && nextObj.style.backgroundColor)
@@ -149,12 +169,18 @@ function insertNumber(e){
     previousObj = currentObj;
   }
 
-  var theChar = String.fromCharCode(code)
+  var theChar = String.fromCharCode(code);
 
-  if ((code >= 49 && code <= 57))
-    currentObj.innerHTML = theChar;
-  else if (code >= 97 && code <= 105)
-    currentObj.innerHTML = String.fromCharCode(code - 48);
+  if (type === "numbers"){
+    if (code >= 49 && code <= 57)
+      currentObj.innerHTML = theChar;
+    else if (code >= 97 && code <= 105)
+      currentObj.innerHTML = String.fromCharCode(code - 48);
+  }
+  else if (type == "letters"){
+    if (/[a-i]/i.test(theChar))
+      currentObj.innerHTML = theChar.toUpperCase();
+  }
 }
 
 
@@ -164,7 +190,13 @@ function getSudoku(){
       boxes = document.getElementsByTagName("td");
 
   for (var i = 0; i < boxes.length; i++){
-    temp.push(+boxes[i].innerHTML)
+    let inner;
+    if (type == "numbers")
+      inner = +boxes[i].innerHTML;
+    else if (type == "letters")
+      inner = TO_NUM[boxes[i].innerHTML] || 0;
+
+    temp.push(inner);
     if (i % 9 == 8){
       matrix.push(temp);
       temp = [];
@@ -203,6 +235,12 @@ function resetClock(){
   seconds = 0, minutes = 0, hours = 0, totalTime = 0;
 }
 
+function stopBoard(){
+  var squareElement = document.getElementsByTagName("td");
+  for (var i = 0; i < squareElement.length; i++)
+    squareElement[i].onclick = null;
+}
+
 
 function newGame(){
   isGenerated = true;
@@ -215,6 +253,12 @@ function newGame(){
 
   var squareElement = document.getElementsByTagName("td"),
       getGen = document.getElementsByName("generation-algorithm");
+      typeOption = document.getElementsByName("inputType");
+
+  for (var i = 0; i < 2; i++){
+    if (typeOption[i].checked)
+      type = typeOption[i].id;
+  }
 
   if (getGen[0].checked){
     finalBoard = generateSudoku(SOLVED_SUDOKU);
@@ -245,11 +289,13 @@ function validate(){
     if (document.getElementsByName("generation-algorithm")[0].checked){
       localStorage.correctSolutions = ++correctSolutions;
 
-      if (shortestTime === null || totalTime < shortestTime){
+      if (!shortestTime || totalTime < shortestTime){
         shorestTime = totalTime;
         localStorage.shortestTime = totalTime;
       }
     }
+    stopBoard();
+
   }
   else{
     alert("That's wrong. Try again.");
@@ -264,7 +310,6 @@ function restart(){
     createSudoku(hiddenBoard, true);
     resetClock();
   }
-
 
   if (document.getElementsByName("generation-algorithm")[1].checked){
     hiddenBoard = getSudoku();
@@ -289,8 +334,5 @@ function showSolution(){
     clearTimeout(timeLoop);
     revealNumbers(hiddenBoard, finalBoard);
   }
-  var squareElement = document.getElementsByTagName("td");
-
-  for (var i = 0; i < squareElement.length; i++)
-    squareElement[i].onclick = null;
-} 
+  stopBoard();
+}
