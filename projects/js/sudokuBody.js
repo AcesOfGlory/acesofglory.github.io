@@ -117,7 +117,7 @@ function initialise(e){
 
 function insertNumber(e){
   if (isRevealed) return false;
-  if (currentObj.style.backgroundColor == "rgb(221, 221, 221)") return false;
+  if (!currentObj || currentObj.style.backgroundColor == "rgb(221, 221, 221)") return false;
   currentObj.style.backgroundColor = HIGHLIGHT_COLOUR;
 
   if (e.keyCode)
