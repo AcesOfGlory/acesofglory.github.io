@@ -25,8 +25,8 @@ function createSudoku(board, isReset=false){
   }
   var hidden = createHiddenBoard(board, difficulty, limit);
 
-  for (var i = 1; i <= 9; i++){
-    for (var j = 1; j <= 9; j++){
+  for (var i = 1; i <= BOARD_SIZE; i++){
+    for (var j = 1; j <= BOARD_SIZE; j++){
       var element = document.getElementById(i+"x"+j);
 
       if (isReset){
@@ -72,8 +72,8 @@ function createSudoku(board, isReset=false){
 
 
 function revealNumbers(hiddenBoard, finalBoard){
-  for (var i = 1; i <= 9; i++){
-    for (var j = 1; j <= 9; j++){
+  for (var i = 1; i <= BOARD_SIZE; i++){
+    for (var j = 1; j <= BOARD_SIZE; j++){
       var element = document.getElementById(i+"x"+j);
       let temp;
       if (type == "numbers")
@@ -141,8 +141,8 @@ function insertNumber(e){
 
   if (code == 39 || (code == 68 && type == "numbers")){     // Right
     nextObj = document.getElementById(`${i}x${j + 1}`);
-    if (j <= 9){
-	    while (j <= 9 && nextObj && nextObj.style.backgroundColor)
+    if (j <= BOARD_SIZE){
+	    while (j <= BOARD_SIZE && nextObj && nextObj.style.backgroundColor)
 		    nextObj = document.getElementById(`${i}x${++j}`);
     }
   }
@@ -155,8 +155,8 @@ function insertNumber(e){
   }
   else if (code == 40 || (code == 83 && type == "numbers")){  // Down
     nextObj = document.getElementById(`${i + 1}x${j}`);
-    if (i <= 9){
-      while (i <= 9 && nextObj && nextObj.style.backgroundColor)
+    if (i <= BOARD_SIZE){
+      while (i <= BOARD_SIZE && nextObj && nextObj.style.backgroundColor)
         nextObj = document.getElementById(`${++i}x${j}`);
     }
   }
@@ -178,13 +178,13 @@ function insertNumber(e){
   var theChar = String.fromCharCode(code);
 
   if (type === "numbers"){
-    if (code >= 49 && code <= 57)
+    if (code >= 49 && code <= 57)  //57
       currentObj.innerHTML = theChar;
-    else if (code >= 97 && code <= 105)
+    else if (code >= 97 && code <= 105)  // 105
       currentObj.innerHTML = String.fromCharCode(code - 48);
   }
   else if (type == "letters"){
-    if (/[a-i]/i.test(theChar))
+    if (/[a-y]/i.test(theChar))
       currentObj.innerHTML = theChar.toUpperCase();
   }
 }
@@ -203,7 +203,7 @@ function getSudoku(){
       inner = TO_NUM[boxes[i].innerHTML] || 0;
 
     temp.push(inner);
-    if (i % 9 == 8){
+    if (i % BOARD_SIZE == BOARD_SIZE - 1){
       matrix.push(temp);
       temp = [];
     }
@@ -255,6 +255,7 @@ function newGame(){
   isRevealed = false;
   totalTime = 0;
 
+  if (!sizeCheck()) return false;
   resetClock();
   clearTimeout(timeLoop);
 
@@ -329,6 +330,7 @@ function restart(){
 
 function showSolution(){
   if (!isGenerated) return false;
+  if (BOARD_SIZE !== 9) return false;
   if (document.getElementsByName("generation-algorithm")[1].checked){
     hiddenBoard = getSudoku();
     var hiddenCustomBoard = getSudoku(),
