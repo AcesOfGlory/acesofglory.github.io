@@ -134,8 +134,8 @@ function insertNumber(e){
     currentObj = null;
     return false;
   }
-
-  var i = +currentObj.id[0], j = +currentObj.id[2],
+  var idSplit = currentObj.id.split("x"),
+      i = +idSplit[0], j = +idSplit[1],
       nextObj;
 
 
