@@ -14,13 +14,15 @@ const text = ['Bulbasaur', 'Ivysaur', 'Venusaur', 'Charmander', 'Charmeleon', 'C
 var pokemon;
 
 function openLink(){
-  window.open(`http://bulbapedia.bulbagarden.net/wiki/${pokemon}_(Pok%C3%A9mon)`);
+  if (pokemon)
+    window.open(`http://bulbapedia.bulbagarden.net/wiki/${pokemon}_(Pok%C3%A9mon)`);
 }
 
 function generatePokemon(){
-  pokemon = text[Math.floor(Math.random() * text.length)];
+  var random = [Math.floor(Math.random() * text.length)]
+  pokemon = text[random];
 
-  document.getElementById("output").innerHTML = pokemon;
+  document.getElementById("output").innerHTML = `${random}: ${pokemon}`;
 }
 
 </script>
