@@ -330,7 +330,8 @@ function restart(){
 
 function showSolution(){
   if (!isGenerated) return false;
-  if (BOARD_SIZE !== 9) return false;
+  if (document.getElementsByName("generation-algorithm")[1].checked && BOARD_SIZE !== 9) return false;
+
   if (document.getElementsByName("generation-algorithm")[1].checked){
     hiddenBoard = getSudoku();
     var hiddenCustomBoard = getSudoku(),
