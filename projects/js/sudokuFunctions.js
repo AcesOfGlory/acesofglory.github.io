@@ -127,14 +127,13 @@ function validSolution(board){
 
   const validateBoxes = board => {
     var sudoku = [];
-    for (var i = 0; i < BOARD_SIZE; i += BOX_SIZE){
-      for (var j = 0; j < BOARD_SIZE; j += BOX_SIZE){
-        var box = [];
-        for (let _ = 0; _ < BOX_SIZE; _++){
-          var nums = box.push(board[i+_].slice(j, j+BOX_SIZE))
-          box.push(nums)
+    for (var i = 0; i < 9; i += 3){
+      for (var j = 0; j < 9; j += 3){
+        var nums = [];
+        for (var _ = 0; _ < 3; _++){
+          nums.push(...board[i+_].slice(j, j+BOX_SIZE));
         }
-        sudoku.push(box);
+        sudoku.push(nums);
       }
     }
     return isDuplicate(sudoku);
@@ -235,10 +234,3 @@ function generateSudoku(matrix){
 	}
   return matrix;
 }
-
-module.exports = {
-    validSolution: validSolution,
-    generateSudoku: generateSudoku,
-    getSolution: getSolution,
-    createHiddenBoard: createHiddenBoard
-};
