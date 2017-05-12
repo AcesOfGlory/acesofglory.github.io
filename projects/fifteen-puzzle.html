@@ -11,7 +11,6 @@ published: true
 
 table {
    border-collapse: collapse;
-   align: center;
 }
 colgroup, tbody {
   border: solid medium;
@@ -162,7 +161,7 @@ function moveBoard(e){
   var idSplit = currentObj.id.split("x"),
       i = +idSplit[0], j = +idSplit[1];
 
-  if (code == 39 || code == 68){     // Right
+  if (code == 37 || code == 65){ // Left
     if (j < width-1){
       puzzle[i][j] = puzzle[i][j+1]
       puzzle[i][j+1] = null;
@@ -170,7 +169,7 @@ function moveBoard(e){
       moves++;
     }
   }
-  else if (code == 37 || code == 65){ // Left
+  else if (code == 39 || code == 68){     // Right
     if (j >= 1){
       puzzle[i][j] = puzzle[i][j-1]
       puzzle[i][j-1] = null;
@@ -178,7 +177,7 @@ function moveBoard(e){
       moves++;
     }
   }
-  else if (code == 40 || code == 83){  // Down
+  else if (code == 38 || code == 87){ // Up
     if (i < height-1){
       puzzle[i][j] = puzzle[i+1][j]
       puzzle[i+1][j] = null;
@@ -186,7 +185,7 @@ function moveBoard(e){
       moves++;
     }
   }
-  else if (code == 38 || code == 87){ // Up
+  else if (code == 40 || code == 83){  // Down
     if (i >= 1){
       puzzle[i][j] = puzzle[i-1][j]
       puzzle[i-1][j] = null;
