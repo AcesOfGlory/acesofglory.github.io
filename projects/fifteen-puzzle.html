@@ -86,14 +86,13 @@ const SIZE_MAX = 150,
       BOARD_MIN = 1;
 
 function generateBoard() {
+  if (!sizeCheck()) return false;
+
   var table = document.getElementById("puzzleBoardDiv");
   table.removeChild(document.getElementById("puzzleBoardTable"));
 
   var tableCreation = document.createElement("table");
   tableCreation.id = "puzzleBoardTable";
-
-  height = +document.getElementById("inputHeight").value;
-  width = +document.getElementById("inputWidth").value;
 
   var tableBody = document.createElement("tbody");
 
@@ -153,6 +152,7 @@ function generatePuzzle(height=4, width=4){
 }
 
 function moveBoard(e){
+  if (!sizeCheck()) return;
   if (e.keyCode)
     var code = e.keyCode;
   else if (e.which)
@@ -202,17 +202,23 @@ function moveBoard(e){
   document.getElementById("moves-output").innerHTML = `Moves: ${moves}`;
 }
 
-document.getElementById("inputHeight").addEventListener("input", () => {
+function sizeCheck(){
   height = +document.getElementById("inputHeight").value;
-  if (height >= BOARD_MIN && height <= BOARD_MAX)
+  width = +document.getElementById("inputWidth").value;
+  return height >= BOARD_MIN && height <= BOARD_MAX
+          && width >= BOARD_MIN && width <= BOARD_MAX;
+}
+
+document.getElementById("inputHeight").addEventListener("input", () => {
+  if (sizeCheck)
     generateBoard();
 }, false);
 
 document.getElementById("inputWidth").addEventListener("input", () => {
-  height = +document.getElementById("inputHeight").value;
-  if (width >= BOARD_MIN && width <= BOARD_MAX)
+  if (sizeCheck)
     generateBoard();
 }, false);
+
 
 document.getElementById("boxHeight").addEventListener("input", () => {
   const elementHeight = +document.getElementById("boxHeight").value;
