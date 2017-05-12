@@ -165,6 +165,7 @@ function moveBoard(e){
     if (j < width-1){
       puzzle[i][j] = puzzle[i][j+1]
       puzzle[i][j+1] = null;
+      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
       currentObj = document.getElementById(`${i}x${++j}`);
       moves++;
     }
@@ -173,6 +174,7 @@ function moveBoard(e){
     if (j >= 1){
       puzzle[i][j] = puzzle[i][j-1]
       puzzle[i][j-1] = null;
+      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
       currentObj = document.getElementById(`${i}x${--j}`);
       moves++;
     }
@@ -181,6 +183,7 @@ function moveBoard(e){
     if (i < height-1){
       puzzle[i][j] = puzzle[i+1][j]
       puzzle[i+1][j] = null;
+      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
       currentObj = document.getElementById(`${++i}x${j}`);
       moves++;
     }
@@ -189,16 +192,12 @@ function moveBoard(e){
     if (i >= 1){
       puzzle[i][j] = puzzle[i-1][j]
       puzzle[i-1][j] = null;
+      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
       currentObj = document.getElementById(`${--i}x${j}`);
       moves++;
     }
   }
-
-  for (var i = 0; i < height; i++){
-    for (var j = 0; j < width; j++){
-      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
-    }
-  }
+  currentObj.innerHTML = puzzle[i][j];
   document.getElementById("moves-output").innerHTML = `Moves: ${moves}`;
 }
 
