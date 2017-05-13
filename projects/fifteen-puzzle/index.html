@@ -73,5 +73,38 @@ td {
     </table>
   </div>
 </center>
+         
+<script type="text/javascript">
+  
+document.getElementById("inputHeight").addEventListener("input", () => {
+  if (sizeCheck)
+    generateBoard();
+}, false);
+
+document.getElementById("inputWidth").addEventListener("input", () => {
+  if (sizeCheck)
+    generateBoard();
+}, false);
+
+
+document.getElementById("boxHeight").addEventListener("input", () => {
+  const elementHeight = +document.getElementById("boxHeight").value;
+  if (elementHeight < SIZE_MIN || elementHeight > SIZE_MAX) return false;
+  var changeDimensions = document.getElementsByTagName("td");
+
+  for (var i = 0; i < changeDimensions.length; i++)
+    changeDimensions[i].style.height = elementHeight + "px";
+}, false);
+
+document.getElementById("boxWidth").addEventListener("input", () => {
+  const elementWidth = +document.getElementById("boxWidth").value;
+  var changeDimensions = document.getElementsByTagName("td");
+  if (elementWidth < SIZE_MIN || elementWidth > SIZE_MAX) return false;
+
+  for (var i = 0; i < changeDimensions.length; i++)
+    changeDimensions[i].style.width = elementWidth + "px";
+}, false);
+  
+</script>
 
 
