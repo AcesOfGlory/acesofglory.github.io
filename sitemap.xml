@@ -7,33 +7,168 @@
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
-  <loc>https://www.samnayak.com/</loc>
-  <lastmod>2017-02-17T22:06:02+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>1.00</priority>
+  <loc>http://www.samnayak.com/projects</loc>
+  <lastmod>2017-05-12T21:41:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.samnayak.com/files/resume.pdf</loc>
-  <lastmod>2017-02-17T22:05:50+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+  <loc>http://www.samnayak.com/projects/caesar-cipher/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.samnayak.com/01-12-2016-maze-generator-solver/</loc>
-  <lastmod>2017-02-17T22:06:02+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+  <loc>http://www.samnayak.com/projects/case-converter/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.samnayak.com/13-11-2016-genetic-algorithm/</loc>
-  <lastmod>2017-02-17T22:06:02+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+  <loc>http://www.samnayak.com/projects/chinese-zodiac/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>https://www.samnayak.com/13-10-2016-pseudorandom/</loc>
-  <lastmod>2017-02-17T22:06:02+00:00</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.80</priority>
+  <loc>http://www.samnayak.com/projects/coordinates/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/countdown/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/date-calculator/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/double-or-die/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/eight-ball/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/fifteen-puzzle/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/fortune-cookie-clicker/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/genetic-algorithm/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/imageboard/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/integer-english/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/ip/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/maze-generator/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/periodic-table/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/probability-generator/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/random-pokemon/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/random-strawpoll/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/rock-paper-scissors/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/scrabble-score/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/shitpost-generator/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/stopwatch/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/sudoku/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/projects/word-generator/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/about/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/files/resume.pdf</loc>
+  <lastmod>2017-05-12T21:41:27+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/search/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/15-09-2016-sudoku/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/13-04-2016-genetic-algorithm/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.samnayak.com/13-02-2016-pseudorandom/</loc>
+  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
+  <changefreq>daily</changefreq>
 </url>
 </urlset>
