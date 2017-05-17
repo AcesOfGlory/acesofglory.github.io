@@ -1,12 +1,16 @@
 var moves = 0,
     height = 4, width = 4,
     currentObj,
-    puzzle;
+    puzzle,
+    isEnded;
 
 const SIZE_MAX = 150,
       SIZE_MIN = 10,
       BOARD_MAX = 100,
-      BOARD_MIN = 1;
+      BOARD_MIN = 1,
+	    FOUR_GEN = 0.2,
+      TWO_GEN = 0.8;
+
 
 function generateBoard() {
   if (!sizeCheck()) return false;
@@ -36,91 +40,159 @@ function generateBoard() {
   generatePuzzle(height, width);
 }
 
+function squaresEmpty(){
+  for (var i = 0; i < height; i++){
+    for (var j = 0; j < width; j++){
+      if (puzzle[i][j] == 0)
+        return true;
+    }
+  }
+  return false;
+}
+
+function endGame(){
+  alert("You lost");
+  isEnded = true;
+}
+
+function generateNumbers(puzzle, height, width, start=false){
+  const randomNumber = _ => Math.random() < FOUR_GEN ? 4 : 2;
+
+
+  var row1 = Math.floor(Math.random() * height),
+      col1 = Math.floor(Math.random() * width);
+
+  if (start){
+    var row2 = Math.floor(Math.random() * height),
+        col2 = Math.floor(Math.random() * width);
+
+    while (col1 == col2 && row1 == row2){
+      row2 = Math.floor(Math.random() * height);
+      col2 = Math.floor(Math.random() * width);
+    }
+    puzzle[row1][col1] = randomNumber();
+    puzzle[row2][col2] = randomNumber();
+  }
+  else {
+    if (!squaresEmpty())
+      return endGame();
+
+    while (puzzle[row1][col1] != 0){
+      row1 = Math.floor(Math.random() * height);
+      col1 = Math.floor(Math.random() * width);
+    }
+    puzzle[row1][col1] = randomNumber();
+  }
+}
+
 function generatePuzzle(height=4, width=4){
+  isEnded = false;
   moves = 0;
   document.getElementById("moves-output").innerHTML = `Moves: ${moves}`;
-  var length = height * width,
-      values = [...Array(length-1)].map((x, y) => y+1).concat(null);
+  var length = height * width;
 
-  const shuffleArray = array => {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
-  }
-
-  shuffleArray(values);
-  puzzle = [];
+  puzzle = [...Array(height)].map(_ => Array(width).fill(0));
+  generateNumbers(puzzle, height, width, true);
 
   for (var i = 0; i < height; i++){
-    let currentRow = [];
     for (var j = 0; j < width; j++){
-      let cur = values.pop();
       let element = document.getElementById(`${i}x${j}`);
-
-      currentRow.push(cur);
-      element.innerHTML = cur;
-
-      if (cur === null){
-        currentObj = element;
-      }
-
+      if (puzzle[i][j] !== 0)
+        element.innerHTML = puzzle[i][j];
     }
-    puzzle.push(currentRow);
   }
   document.documentElement.onkeydown = moveBoard;
 }
 
 function moveBoard(e){
   if (!sizeCheck()) return;
+  if (isEnded) return;
+
   if (e.keyCode)
     var code = e.keyCode;
   else if (e.which)
     var code = e.which;
 
-  var idSplit = currentObj.id.split("x"),
-      i = +idSplit[0], j = +idSplit[1];
+  var direction;
 
-  if (code == 37 || code == 65){ // Left
-    if (j < width-1){
-      puzzle[i][j] = puzzle[i][j+1]
-      puzzle[i][j+1] = null;
-      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
-      currentObj = document.getElementById(`${i}x${++j}`);
-      moves++;
+  function merge(array) {
+    if (direction === "left" || direction === "down") {
+      for (var i = 0; i < array.length-1; i++) {
+        if (array[i] !== 0 && array[i] === array[i+1]) {
+          array[i] *= 2;
+          array[i+1] = 0;
+        }
+      }
     }
+    else {
+      for (var j = array.length; j > 0; j--) {
+        if (array[j] !== 0 && array[j] === array[j-1]) {
+          array[j] *= 2;
+          array[j-1] = 0;
+        }
+      }
+    }
+    return array.filter(value => value > 0);
+  }
+
+  function padZeroes(array) {
+    while (array.length < height) {
+      if (direction === "left" || direction === "up") {
+        array.push(0);
+      } else {
+        array.unshift(0);
+      }
+    }
+    return array;
+  }
+
+  const arrayColumn = (arr, n) => arr.map(x => x[n]);
+
+  if ((code == 37 || code == 65)){     // Left
+    direction = "left"
   }
   else if (code == 39 || code == 68){     // Right
-    if (j >= 1){
-      puzzle[i][j] = puzzle[i][j-1]
-      puzzle[i][j-1] = null;
-      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
-      currentObj = document.getElementById(`${i}x${--j}`);
-      moves++;
-    }
+    direction = "right"
   }
   else if (code == 38 || code == 87){ // Up
-    if (i < height-1){
-      puzzle[i][j] = puzzle[i+1][j]
-      puzzle[i+1][j] = null;
-      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
-      currentObj = document.getElementById(`${++i}x${j}`);
-      moves++;
-    }
+    direction = "up"
   }
   else if (code == 40 || code == 83){  // Down
-    if (i >= 1){
-      puzzle[i][j] = puzzle[i-1][j]
-      puzzle[i-1][j] = null;
-      document.getElementById(`${i}x${j}`).innerHTML = puzzle[i][j];
-      currentObj = document.getElementById(`${--i}x${j}`);
-      moves++;
+    direction = "down"
+  }
+
+  for (var i = 0; i < puzzle.length; i++) {
+    var row = puzzle[i];
+    if (direction == "left" || direction == "right"){
+      puzzle[i] = padZeroes(merge(row.filter(x => x > 0)));
+    }
+    else if (direction == "up" || direction == "down"){
+      var row = arrayColumn(puzzle, i)
+      var col = padZeroes(merge(row.filter(x => x > 0)));
+
+      for (var j = 0; j < puzzle.length; j++){
+        puzzle[j][i] = col[j]
+      }
     }
   }
-  currentObj.innerHTML = puzzle[i][j];
+
+  moves++;
+
+  if (direction)
+    generateNumbers(puzzle, height, width, false);
+
+  for (var i = 0; i < height; i++){
+    for (var j = 0; j < width; j++){
+      let element = document.getElementById(`${i}x${j}`);
+      if (puzzle[i][j] !== 0){
+        element.innerHTML = puzzle[i][j];
+      }
+      else {
+        element.innerHTML = "";
+      }
+    }
+  }
+
   document.getElementById("moves-output").innerHTML = `Moves: ${moves}`;
 }
 
