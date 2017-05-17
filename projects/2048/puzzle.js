@@ -90,7 +90,7 @@ function generateNumbers(puzzle){
 }
 
 function generatePuzzle(){
-  document.documentElement.onkeydown = null;
+  //document.documentElement.onkeydown = null;
   if (!checkMultiplier()) return false;
 
   COLOURS = {};
@@ -115,7 +115,7 @@ function generatePuzzle(){
       }
     }
   }
-  document.documentElement.onkeydown = moveBoard;
+  //document.documentElement.onkeydown = moveBoard;
 
   $(function() {
     $("#test").swipe( {
