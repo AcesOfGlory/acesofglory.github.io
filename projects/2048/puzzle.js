@@ -119,9 +119,9 @@ function generatePuzzle(){
 
   $(function() {
     $("#puzzleBoardDiv").swipe( {
-      swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+      swipeFunction:function(event, direction, distance, duration, fingerCount, fingerData) {
         alert("You swiped " + direction);
-        moveBoard(null, direction);
+        return moveBoard(null, direction);
       }
     });
   })
@@ -143,9 +143,9 @@ function moveBoard(e=null, dir=null){
       code,
       previousMove = [...puzzle].toString();
 
-  if (e.keyCode)
+  if (e && e.keyCode)
     code = e.keyCode;
-  else if (e.which)
+  else if (e && e.which)
     code = e.which;
 
   function isEmpty(array) {
@@ -285,3 +285,12 @@ function checkMultiplier(){
 }
 
 window.onload = generatePuzzle;
+
+$(function() {
+  $("#puzzleBoardDiv").swipe( {
+    swipeFunction:function(event, direction, distance, duration, fingerCount, fingerData) {
+      alert("You swiped " + direction);
+      return moveBoard(null, direction);
+    }
+  });
+})
