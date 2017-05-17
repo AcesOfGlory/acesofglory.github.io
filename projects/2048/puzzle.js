@@ -23,40 +23,6 @@ const SIZE_MAX = 150,
       FIRST_GEN = 0.8;
 
 
-function handleTouchStart(evt) {
-  xDown = evt.originalEvent.touches[0].clientX;
-  yDown = evt.originalEvent.touches[0].clientY;
-};
-
-function handleTouchMove(evt) {
-  if ( ! xDown || ! yDown ) {
-      return;
-  }
-
-  var xUp = evt.originalEvent.touches[0].clientX;
-  var yUp = evt.originalEvent.touches[0].clientY;
-
-  var xDiff = xDown - xUp;
-  var yDiff = yDown - yUp;
-
-  if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-      if ( xDiff > 0 ) {
-          moveBoard("left");
-      } else {
-          moveBoard("right");
-      }
-  } else {
-      if ( yDiff > 0 ) {
-          moveBoard("up");
-      } else {
-          moveBoard("down");
-      }
-  }
-  /* reset values */
-  xDown = null;
-  yDown = null;
-};
-
 function generateBoard() {
   if (!sizeCheck()) return false;
 
@@ -150,11 +116,16 @@ function generatePuzzle(){
     }
   }
   document.documentElement.onkeydown = moveBoard;
-  document.addEventListener('touchstart', handleTouchStart, false);
-  document.addEventListener('touchmove', handleTouchMove, false);
 
-  var xDown = null;
-  var yDown = null;
+  $(function() {
+    $("#test").swipe( {
+    //Generic swipe handler for all directions
+    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+      alert("You swiped " + direction)
+      $(this).text("You swiped " + direction );
+    }
+  });
+  })
 }
 
 function randomColour(square){
