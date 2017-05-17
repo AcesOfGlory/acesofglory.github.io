@@ -116,6 +116,11 @@ function generatePuzzle(){
     }
   }
   document.documentElement.onkeydown = moveBoard;
+
+  $(document).swipe(function( direction, offset ) {
+    if (offset < 200) { return; }
+    moveBoard(direction);
+  });
 }
 
 function randomColour(square){
@@ -126,17 +131,18 @@ function randomColour(square){
   return COLOURS[getLog];
 }
 
-function moveBoard(e){
+function moveBoard(e=null){
   if (!sizeCheck()) return;
   if (isEnded) return;
 
-  if (e.keyCode)
-    var code = e.keyCode;
-  else if (e.which)
-    var code = e.which;
-
   var direction,
+      code,
       previousMove = [...puzzle].toString();
+
+  if (e.keyCode)
+    code = e.keyCode;
+  else if (e.which)
+    code = e.which;
 
   function isEmpty(array) {
     var empty = true;
@@ -181,16 +187,16 @@ function moveBoard(e){
 
   const arrayColumn = (arr, n) => arr.map(x => x[n]);
 
-  if ((code == 37 || code == 65)){     // Left
+  if (code == 37 || code == 65 || e == "left"){     // Left
     direction = "left";
   }
-  else if (code == 39 || code == 68){     // Right
+  else if (code == 39 || code == 68 || e == "right"){     // Right
     direction = "right";
   }
-  else if (code == 38 || code == 87){ // Up
+  else if (code == 38 || code == 87 || e == "up"){ // Up
     direction = "up";
   }
-  else if (code == 40 || code == 83){  // Down
+  else if (code == 40 || code == 83 || e == "down"){  // Down
     direction = "down";
   }
 
