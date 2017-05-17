@@ -118,13 +118,12 @@ function generatePuzzle(){
   //document.documentElement.onkeydown = moveBoard;
 
   $(function() {
-    $("#test").swipe( {
-    //Generic swipe handler for all directions
-    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-      alert("You swiped " + direction)
-      $(this).text("You swiped " + direction );
-    }
-  });
+    $("#puzzleBoardDiv").swipe( {
+      swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+        alert("You swiped " + direction)
+        $(this).text("You swiped " + direction );
+      }
+    });
   })
 }
 
