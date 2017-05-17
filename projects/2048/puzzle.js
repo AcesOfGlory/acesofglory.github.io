@@ -90,7 +90,7 @@ function generateNumbers(puzzle){
 }
 
 function generatePuzzle(){
-  //document.documentElement.onkeydown = null;
+  document.addEventListener("keydown", null, false);
   if (!checkMultiplier()) return false;
 
   COLOURS = {};
@@ -115,13 +115,13 @@ function generatePuzzle(){
       }
     }
   }
-  //document.documentElement.onkeydown = moveBoard;
+  document.addEventListener("keydown", moveBoard, false);
 
   $(function() {
     $("#puzzleBoardDiv").swipe( {
       swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-        alert("You swiped " + direction)
-        $(this).text("You swiped " + direction );
+        alert("You swiped " + direction);
+        moveBoard(null, direction);
       }
     });
   })
@@ -135,7 +135,7 @@ function randomColour(square){
   return COLOURS[getLog];
 }
 
-function moveBoard(e=null){
+function moveBoard(e=null, dir=null){
   if (!sizeCheck()) return;
   if (isEnded) return;
 
@@ -191,16 +191,16 @@ function moveBoard(e=null){
 
   const arrayColumn = (arr, n) => arr.map(x => x[n]);
 
-  if (code == 37 || code == 65 || e == "left"){     // Left
+  if (code == 37 || code == 65 || dir == "left"){     // Left
     direction = "left";
   }
-  else if (code == 39 || code == 68 || e == "right"){     // Right
+  else if (code == 39 || code == 68 || dir == "right"){     // Right
     direction = "right";
   }
-  else if (code == 38 || code == 87 || e == "up"){ // Up
+  else if (code == 38 || code == 87 || dir == "up"){ // Up
     direction = "up";
   }
-  else if (code == 40 || code == 83 || e == "down"){  // Down
+  else if (code == 40 || code == 83 || dir == "down"){  // Down
     direction = "down";
   }
 
