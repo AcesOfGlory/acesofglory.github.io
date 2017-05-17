@@ -8,7 +8,7 @@ const SIZE_MAX = 150,
       SIZE_MIN = 10,
       BOARD_MAX = 100,
       BOARD_MIN = 1,
-	    FOUR_GEN = 0.2,
+      FOUR_GEN = 0.2,
       TWO_GEN = 0.8;
 
 
@@ -114,12 +114,22 @@ function moveBoard(e){
     var code = e.which;
 
   var direction;
+  var isChange;
+  var meme = [...puzzle].toString();
+
+  function isEmpty(array) {
+    var empty = true;
+    array.forEach(function(value) {
+      if(value > 0) empty = false;
+    });
+    return empty;
+  }
 
   function merge(array) {
-    if (direction === "left" || direction === "down") {
+    if (direction === "down" || direction === "left") {
       for (var i = 0; i < array.length-1; i++) {
         if (array[i] !== 0 && array[i] === array[i+1]) {
-          array[i] *= 2;
+          array[i] <<= 1;
           array[i+1] = 0;
         }
       }
@@ -127,7 +137,7 @@ function moveBoard(e){
     else {
       for (var j = array.length; j > 0; j--) {
         if (array[j] !== 0 && array[j] === array[j-1]) {
-          array[j] *= 2;
+          array[j] <<= 1;
           array[j-1] = 0;
         }
       }
@@ -137,7 +147,7 @@ function moveBoard(e){
 
   function padZeroes(array) {
     while (array.length < height) {
-      if (direction === "left" || direction === "up") {
+      if (direction === "up" || direction === "left") {
         array.push(0);
       } else {
         array.unshift(0);
@@ -161,25 +171,27 @@ function moveBoard(e){
     direction = "down"
   }
 
-  for (var i = 0; i < puzzle.length; i++) {
+  for (var i = 0; i < height; i++) {
     var row = puzzle[i];
     if (direction == "left" || direction == "right"){
-      puzzle[i] = padZeroes(merge(row.filter(x => x > 0)));
+      if (!isEmpty(row))
+        puzzle[i] = padZeroes(merge(row.filter(x => x > 0)));
     }
     else if (direction == "up" || direction == "down"){
       var row = arrayColumn(puzzle, i)
-      var col = padZeroes(merge(row.filter(x => x > 0)));
-
-      for (var j = 0; j < puzzle.length; j++){
-        puzzle[j][i] = col[j]
+      if (!isEmpty(row)){
+        var col = padZeroes(merge(row.filter(x => x > 0)));
+        for (var j = 0; j < height; j++){
+          puzzle[j][i] = col[j]
+        }
       }
     }
   }
 
-  moves++;
-
-  if (direction)
+  if (direction && meme !== puzzle.toString()){
     generateNumbers(puzzle, height, width, false);
+    document.getElementById("moves-output").innerHTML = `Moves: ${++moves}`;
+  }
 
   for (var i = 0; i < height; i++){
     for (var j = 0; j < width; j++){
@@ -192,8 +204,6 @@ function moveBoard(e){
       }
     }
   }
-
-  document.getElementById("moves-output").innerHTML = `Moves: ${moves}`;
 }
 
 function sizeCheck(){
