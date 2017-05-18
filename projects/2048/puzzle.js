@@ -168,7 +168,7 @@ function moveBoard(e=null, dir=null){
       for (var j = array.length; j > 0; j--) {
         if (array[j] !== 0 && array[j] === array[j-1]) {
           array[j] *= multiplier;
-          score += 4 * Math.floor(Math.log(array[i]) / Math.log(multiplier));
+          score += 4 * Math.floor(Math.log(array[j]) / Math.log(multiplier));
           array[j-1] = 0;
         }
       }
