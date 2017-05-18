@@ -283,12 +283,3 @@ function checkMultiplier(){
 }
 
 window.onload = generatePuzzle;
-
-$(function() {
-  $("#puzzleBoardDiv").swipe( {
-    swipeFunction:function(event, direction, distance, duration, fingerCount, fingerData) {
-      alert("You swiped " + direction);
-      moveBoard(null, direction);
-    }
-  });
-})
