@@ -33,6 +33,7 @@ function generateBoard() {
   tableCreation.id = "puzzleBoardTable";
 
   var tableBody = document.createElement("tbody");
+  var borderBox = document.getElementById("border-input").checked;
 
   for (var i = 0; i < height; i++){
     var tr = document.createElement("tr");
@@ -43,9 +44,14 @@ function generateBoard() {
       td.id = `${i}x${j}`;
       td.style.height = document.getElementById("boxHeight").value + "px";
       td.style.width = document.getElementById("boxWidth").value + "px";
+      td.style.color = document.getElementById("font-input").checked ? "black" : "white";
+      td.style.border = borderBox ? "none" : "solid thin";
+      td.style.borderColor = borderBox ? "none" : "black";
+
       tr.appendChild(td);
     }
   }
+  tableBody.style.border = borderBox ? "none" : "solid medium";
   tableCreation.appendChild(tableBody);
   table.appendChild(tableCreation);
   generatePuzzle();
@@ -121,7 +127,7 @@ function generatePuzzle(){
     $("#puzzleBoardDiv").swipe( {
       swipeFunction:function(event, direction, distance, duration, fingerCount, fingerData) {
         alert("You swiped " + direction);
-        return moveBoard(null, direction);
+        moveBoard(null, direction);
       }
     });
   })
@@ -161,7 +167,7 @@ function moveBoard(e=null, dir=null){
       for (var i = 0; i < array.length-1; i++) {
         if (array[i] !== 0 && array[i] === array[i+1]) {
           array[i] *= multiplier;
-          score += array[i];
+          score += 4 * Math.floor(Math.log(array[i]) / Math.log(multiplier));
           array[i+1] = 0;
         }
       }
@@ -170,7 +176,7 @@ function moveBoard(e=null, dir=null){
       for (var j = array.length; j > 0; j--) {
         if (array[j] !== 0 && array[j] === array[j-1]) {
           array[j] *= multiplier;
-          score += array[j];
+          score += 4 * Math.floor(Math.log(array[i]) / Math.log(multiplier));
           array[j-1] = 0;
         }
       }
@@ -290,7 +296,7 @@ $(function() {
   $("#puzzleBoardDiv").swipe( {
     swipeFunction:function(event, direction, distance, duration, fingerCount, fingerData) {
       alert("You swiped " + direction);
-      return moveBoard(null, direction);
+      moveBoard(null, direction);
     }
   });
 })
