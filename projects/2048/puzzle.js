@@ -4,9 +4,9 @@ var moves = 0,
     continueGame = false,
     score = 0,
     highscore,
-    currentObj,
     puzzle,
     isEnded,
+    found,
     COLOURS = {};
 
 if (typeof(Storage) !== "undefined") {
@@ -20,7 +20,8 @@ const SIZE_MAX = 150,
       SIZE_MIN = 10,
       BOARD_MAX = 100,
       BOARD_MIN = 2,
-      FIRST_GEN = 0.8;
+      FIRST_GEN = 0.8,
+      TARGET = 11;
 
 
 function generateBoard() {
@@ -57,7 +58,7 @@ function generateBoard() {
   generatePuzzle();
 }
 
-function squaresEmpty(){
+function isEmpty(){
   for (var i = 0; i < height; i++){
     for (var j = 0; j < width; j++){
       if (puzzle[i][j] == 0)
@@ -82,17 +83,22 @@ function endGame(won=false){
   }
 }
 
-function generateNumbers(puzzle){
+function generateNumbers(puzzle, numbers=1){
   const randomNumber = _ => Math.random() < FIRST_GEN ? multiplier : multiplier * multiplier;
 
-  var row1 = Math.floor(Math.random() * height),
-      col1 = Math.floor(Math.random() * width);
+  for (var _ = 0; _ < numbers; _++){
+    if (!isEmpty())
+      return endGame(false);
 
-  while (puzzle[row1][col1] != 0){
-    row1 = Math.floor(Math.random() * height);
-    col1 = Math.floor(Math.random() * width);
+    var row1 = Math.floor(Math.random() * height),
+        col1 = Math.floor(Math.random() * width);
+
+    while (puzzle[row1][col1] != 0){
+      row1 = Math.floor(Math.random() * height);
+      col1 = Math.floor(Math.random() * width);
+    }
+    puzzle[row1][col1] = randomNumber();
   }
-  puzzle[row1][col1] = randomNumber();
 }
 
 function generatePuzzle(){
@@ -101,6 +107,7 @@ function generatePuzzle(){
 
   COLOURS = {};
   isEnded = false;
+  found = false;
   moves = 0;
   score = 0;
   document.getElementById("moves-output").innerHTML = `Moves: ${moves}`;
@@ -109,8 +116,7 @@ function generatePuzzle(){
 
   var length = height * width;
   puzzle = [...Array(height)].map(_ => Array(width).fill(0));
-  generateNumbers(puzzle);
-  generateNumbers(puzzle);
+  generateNumbers(puzzle, Math.floor(height / 2));
 
   for (var i = 0; i < height; i++){
     for (var j = 0; j < width; j++){
@@ -145,20 +151,14 @@ function moveBoard(e=null, dir=null){
   else if (e && e.which)
     code = e.which;
 
-  function isEmpty(array) {
-    var empty = true;
-    array.forEach(function(value) {
-      if(value > 0) empty = false;
-    });
-    return empty;
-  }
-
   function merge(array) {
     if (direction === "down" || direction === "left") {
       for (var i = 0; i < array.length-1; i++) {
         if (array[i] !== 0 && array[i] === array[i+1]) {
           array[i] *= multiplier;
           score += 4 * Math.floor(Math.log(array[i]) / Math.log(multiplier));
+          if (!continueGame && array[i] === Math.pow(multiplier, TARGET))
+            found = true;
           array[i+1] = 0;
         }
       }
@@ -168,6 +168,8 @@ function moveBoard(e=null, dir=null){
         if (array[j] !== 0 && array[j] === array[j-1]) {
           array[j] *= multiplier;
           score += 4 * Math.floor(Math.log(array[j]) / Math.log(multiplier));
+          if (!continueGame && array[j] === Math.pow(multiplier, TARGET))
+            found = true;
           array[j-1] = 0;
         }
       }
@@ -204,12 +206,12 @@ function moveBoard(e=null, dir=null){
   for (var i = 0; i < height; i++) {
     var row = puzzle[i];
     if (direction == "left" || direction == "right"){
-      if (!isEmpty(row))
+      if (isEmpty(row))
         puzzle[i] = padZeroes(merge(row.filter(x => x > 0)));
     }
     else if (direction == "up" || direction == "down"){
       var row = arrayColumn(puzzle, i);
-      if (!isEmpty(row)){
+      if (isEmpty(row)){
         var col = padZeroes(merge(row.filter(x => x > 0)));
         for (var j = 0; j < height; j++){
           puzzle[j][i] = col[j];
@@ -218,11 +220,11 @@ function moveBoard(e=null, dir=null){
     }
   }
 
-  if (!squaresEmpty())
+  if (!isEmpty())
     return endGame(false);
 
   if (direction && previousMove !== puzzle.toString()){
-    generateNumbers(puzzle);
+    generateNumbers(puzzle, Math.floor(height / 4));
     document.getElementById("moves-output").innerHTML = `Moves: ${++moves}`;
     document.getElementById("score-output").innerHTML = `Score: ${score}`;
 
@@ -231,6 +233,11 @@ function moveBoard(e=null, dir=null){
       localStorage.highscore = highscore;
       document.getElementById("highscore-output").innerHTML = `Highscore: ${highscore}`;
     }
+
+    setTimeout(function() {
+      if (found && !continueGame)
+        endGame(true);
+    }, 0);
   }
 
   for (var i = 0; i < height; i++){
@@ -246,19 +253,6 @@ function moveBoard(e=null, dir=null){
       }
     }
   }
-
-  setTimeout(function() {
-    if (!continueGame)
-      return checkIfWon();
-  }, 0);
-}
-
-function checkIfWon(){
-  puzzle.forEach(row => {
-    if (row.indexOf(Math.pow(multiplier, 11)) !== -1) {
-      return endGame(true);
-    }
-  });
 }
 
 function sizeCheck(){
