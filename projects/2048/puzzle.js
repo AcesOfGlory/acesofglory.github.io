@@ -34,6 +34,7 @@ function generateBoard() {
 
   var tableBody = document.createElement("tbody");
   var borderBox = document.getElementById("border-input").checked;
+  console.log(borderBox);
 
   for (var i = 0; i < height; i++){
     var tr = document.createElement("tr");
@@ -122,15 +123,6 @@ function generatePuzzle(){
     }
   }
   document.addEventListener("keydown", moveBoard, false);
-
-  $(function() {
-    $("#puzzleBoardDiv").swipe( {
-      swipeFunction:function(event, direction, distance, duration, fingerCount, fingerData) {
-        alert("You swiped " + direction);
-        moveBoard(null, direction);
-      }
-    });
-  })
 }
 
 function randomColour(square){
