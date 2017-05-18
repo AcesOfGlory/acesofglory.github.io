@@ -34,7 +34,6 @@ function generateBoard() {
 
   var tableBody = document.createElement("tbody");
   var borderBox = document.getElementById("border-input").checked;
-  console.log(borderBox);
 
   for (var i = 0; i < height; i++){
     var tr = document.createElement("tr");
@@ -45,7 +44,7 @@ function generateBoard() {
       td.id = `${i}x${j}`;
       td.style.height = document.getElementById("boxHeight").value + "px";
       td.style.width = document.getElementById("boxWidth").value + "px";
-      td.style.color = document.getElementById("font-input").checked ? "black" : "white";
+      td.style.color = document.getElementById("font-input").checked ? "white" : "black";
       td.style.border = borderBox ? "none" : "solid thin";
       td.style.borderColor = borderBox ? "none" : "black";
 
@@ -249,15 +248,15 @@ function moveBoard(e=null, dir=null){
   }
 
   setTimeout(function() {
-    return checkIfWon();
+    if (!continueGame)
+      return checkIfWon();
   }, 0);
 }
 
 function checkIfWon(){
   puzzle.forEach(row => {
     if (row.indexOf(Math.pow(multiplier, 11)) !== -1) {
-      if (!continueGame)
-        return endGame(true);
+      return endGame(true);
     }
   });
 }
