@@ -87,8 +87,9 @@ function generateNumbers(puzzle, numbers=1){
   const randomNumber = _ => Math.random() < FIRST_GEN ? multiplier : multiplier * multiplier;
 
   for (var _ = 0; _ < numbers; _++){
-    if (!isEmpty())
+    if (!isEmpty()){
       return endGame(false);
+    }
 
     var row1 = Math.floor(Math.random() * height),
         col1 = Math.floor(Math.random() * width);
@@ -116,7 +117,7 @@ function generatePuzzle(){
 
   var length = height * width;
   puzzle = [...Array(height)].map(_ => Array(width).fill(0));
-  generateNumbers(puzzle, Math.floor(height / 2));
+  generateNumbers(puzzle, Math.ceil(height / 2));
 
   for (var i = 0; i < height; i++){
     for (var j = 0; j < width; j++){
@@ -206,25 +207,23 @@ function moveBoard(e=null, dir=null){
   for (var i = 0; i < height; i++) {
     var row = puzzle[i];
     if (direction == "left" || direction == "right"){
-      if (isEmpty(row))
-        puzzle[i] = padZeroes(merge(row.filter(x => x > 0)));
+      puzzle[i] = padZeroes(merge(row.filter(x => x > 0)));
     }
     else if (direction == "up" || direction == "down"){
       var row = arrayColumn(puzzle, i);
-      if (isEmpty(row)){
-        var col = padZeroes(merge(row.filter(x => x > 0)));
-        for (var j = 0; j < height; j++){
-          puzzle[j][i] = col[j];
-        }
+      var col = padZeroes(merge(row.filter(x => x > 0)));
+      for (var j = 0; j < height; j++){
+        puzzle[j][i] = col[j];
       }
     }
   }
 
-  if (!isEmpty())
+  if (!isEmpty()){
     return endGame(false);
+  }
 
   if (direction && previousMove !== puzzle.toString()){
-    generateNumbers(puzzle, Math.floor(height / 4));
+    generateNumbers(puzzle, Math.ceil(height / 4));
     document.getElementById("moves-output").innerHTML = `Moves: ${++moves}`;
     document.getElementById("score-output").innerHTML = `Score: ${score}`;
 
@@ -235,21 +234,22 @@ function moveBoard(e=null, dir=null){
     }
 
     setTimeout(function() {
-      if (found && !continueGame)
+      if (found && !continueGame){
         endGame(true);
-    }, 0);
-  }
-
-  for (var i = 0; i < height; i++){
-    for (var j = 0; j < width; j++){
-      let element = document.getElementById(`${i}x${j}`);
-      if (puzzle[i][j] !== 0){
-        element.innerHTML = puzzle[i][j];
-        element.style.backgroundColor = randomColour(puzzle[i][j]);
       }
-      else {
-        element.innerHTML = "";
-        element.style.backgroundColor = "";
+    }, 0);
+
+    for (var i = 0; i < height; i++){
+      for (var j = 0; j < width; j++){
+        let element = document.getElementById(`${i}x${j}`);
+        if (puzzle[i][j] !== 0){
+          element.innerHTML = puzzle[i][j];
+          element.style.backgroundColor = randomColour(puzzle[i][j]);
+        }
+        else {
+          element.innerHTML = "";
+          element.style.backgroundColor = "";
+        }
       }
     }
   }
