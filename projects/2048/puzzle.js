@@ -58,6 +58,22 @@ function generateBoard() {
   generatePuzzle();
 }
 
+function showRules(){
+  var powers = [];
+  for (var i = 1; i <= TARGET; i++){
+    powers.push(`${multiplier}^${i}  :     ${Math.pow(multiplier, i)}`)
+  }
+
+  alert(`Rules\n-------\n\n`
+      + `Use your arrow keys to move the tiles. When two tiles with the same number touch, they merge into one!\n`
+      + `Once the tiles merge, the tile number is equal to the product of the two numbers.\n`
+      + `To win the game, you must merge the tiles until you get a tile number equal the multiplier to the power ${TARGET}.\n\n`
+      + `Legend\n-------\n\n`
+      + `${powers.join("\n")}`
+  );
+}
+
+
 function isEmpty(){
   for (var i = 0; i < height; i++){
     for (var j = 0; j < width; j++){
