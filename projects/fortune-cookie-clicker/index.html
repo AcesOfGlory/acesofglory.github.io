@@ -1,0 +1,37 @@
+---
+layout: minimal
+published: true
+---
+
+<h1>Fortune Cookie Clicker</h1>
+<small>Version 1.0.16</small>
+
+<title>Fortune Cookie Clicker | Sam Nayak</title>
+
+<div id="buildings-shop" class="button-column">Buildings: <p></div>
+
+<div>
+	<input type="image" onclick="clickCookie();" id="cookie-image" class="button-style" src="/img/fortune-cookie-image.png"/>
+</div>
+
+<p id="cookie-amount">Cookies = 0</p>
+<p id="cps-amount">CPS = 0</p>
+
+<style type="text/css">
+
+	.button-style{
+		height: 250px;
+		width: 250px;
+		outline: 0;
+    float: left;
+	}
+
+	.button-column{
+  	float: right;
+	}
+
+</style>
+
+<head>
+	<script type="text/javascript" src="fortuneCookieClicker.js"></script>
+</head>
