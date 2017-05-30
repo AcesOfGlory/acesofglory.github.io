@@ -1,174 +1,22 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-<url>
-  <loc>http://www.samnayak.com/projects</loc>
-  <lastmod>2017-05-12T21:41:27+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/caesar-cipher/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/case-converter/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/chinese-zodiac/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/coordinates/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/countdown/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/date-calculator/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/double-or-die/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/eight-ball/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/fifteen-puzzle/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/fortune-cookie-clicker/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/genetic-algorithm/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/imageboard/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/integer-english/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/ip/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/maze-generator/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/periodic-table/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/probability-generator/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/random-pokemon/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/random-strawpoll/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/rock-paper-scissors/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/scrabble-score/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/shitpost-generator/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/stopwatch/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/sudoku/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/projects/word-generator/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/about/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/files/resume.pdf</loc>
-  <lastmod>2017-05-12T21:41:27+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/search/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/15-09-2016-sudoku/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/13-04-2016-genetic-algorithm/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.samnayak.com/13-02-2016-pseudorandom/</loc>
-  <lastmod>2017-05-12T21:41:34+00:00</lastmod>
-  <changefreq>daily</changefreq>
-</url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<sitemap>
+		<loc>{{ site.url }}/post-sitemap.xml</loc>
+		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+	</sitemap>
+	<sitemap>
+		<loc>{{ site.url }}/page-sitemap.xml</loc>
+		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+	</sitemap>
+	<sitemap>
+		<loc>{{ site.url }}/project-sitemap.xml</loc>
+		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+	</sitemap>
+	<sitemap>
+		<loc>{{ site.url }}/category-sitemap.xml</loc>
+		<lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+	</sitemap>
+</sitemapindex>
