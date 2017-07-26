@@ -4,15 +4,15 @@ title: About
 published: true
 ---
 
-My name is Sam Nayak and I am an 18 year old software developer. 
+18 year old software developer. See resume [here](https://www.samnayak.com/files/resume.pdf)
 
 
 # Development Tools
 
 ## Text Editors:
 
-- [Sublime Text](https://www.sublimetext.com/) - My favourite text-editor which I am currently using. The premium version has a lot more advantages than the free version which has some limitations. There are so many very useful commands which aid in modifying code that save hassle and time.
-- [Atom](https://atom.io/) - Amazing free text-editor useful for people who are less familiar with text-editors. If you are new or you don't want to pay for a text-editor, I highly recommend Atom.
+- [Sublime Text](https://www.sublimetext.com/) - Good software editor, however it lacks downloadable plugins and lacks the ability to split panels. The premium version has a lot more advantages than the free version which has some limitations.
+- [Atom](https://atom.io/) - My favourite text-editor which I am currently using. Amazing free text-editor useful for people who are less familiar with text-editors.
 - [Visual Studio](https://www.visualstudio.com/)
 - [Komodo Edit/IDE](http://www.activestate.com/komodo-ide) - My first IDE, very useful. 
 - [Eclipse](https://eclipse.org/) - Okay text-editor for Java, not the biggest fan. 
