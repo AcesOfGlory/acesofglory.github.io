@@ -26,7 +26,6 @@ description: Sam Nayak's Personal Website
 navbar-links:
   Home: ""
   About: "about"
-  Résumé: "files/resume.pdf"
   Projects: "projects"
   Search: "search"
 
