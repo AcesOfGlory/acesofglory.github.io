@@ -4,7 +4,7 @@ title: About
 published: true
 ---
 
-18 year old software developer. See resume [here](https://www.samnayak.com/files/resume.pdf)
+19 year old software developer.
 
 
 # Development Tools
